@@ -1,0 +1,9 @@
+program my_program;
+vars
+    int x, y;
+
+main(){
+    x = 10;
+    y = 20;
+    write(x + y);
+}
