@@ -5,5 +5,5 @@ vars
 main(){
     x = 10;
     y = 20;
-    write(x + y);
+    write("x + y = ", x + y);
 }
