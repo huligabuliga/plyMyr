@@ -31,7 +31,7 @@ Rule 0     S' -> program
 Rule 1     program -> PROGRAM ID SEMICOLON vars function_list main_function
 Rule 2     vars -> VARS var_list
 Rule 3     var_list -> var_list type id_list SEMICOLON
-Rule 4     var_list -> empty
+Rule 4     var_list -> type id_list SEMICOLON
 Rule 5     type -> INT
 Rule 6     type -> FLOAT
 Rule 7     type -> CHAR
@@ -58,10 +58,10 @@ Rule 27    function_call -> ID LPAREN arg_list RPAREN
 Rule 28    arg_list -> arg_list COMMA expression
 Rule 29    arg_list -> expression
 Rule 30    read_statement -> READ id_list
-Rule 31    write_statement -> WRITE write_list
+Rule 31    write_statement -> WRITE LPAREN write_list RPAREN
 Rule 32    write_list -> write_list COMMA expression
 Rule 33    write_list -> STRING
-Rule 34    write_list -> expression
+Rule 34    write_list -> ID COMMA expression
 Rule 35    if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE
 Rule 36    if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE
 Rule 37    while_statement -> WHILE LPAREN expression RPAREN DO LBRACE statement_list RBRACE
@@ -90,7 +90,7 @@ BOOLEAN              :
 CHAR                 : 7
 CIRCLE               : 
 COLOR                : 
-COMMA                : 8 13 28 32
+COMMA                : 8 13 28 32 34
 DIVIDE               : 44
 DO                   : 37 38
 ELSE                 : 36
@@ -101,7 +101,7 @@ FOR                  : 38
 FUNCTION             : 12
 GE                   : 
 GT                   : 
-ID                   : 1 8 9 12 13 14 25 26 27 38 47 48
+ID                   : 1 8 9 12 13 14 25 26 27 34 38 47 48
 IF                   : 35 36
 INT                  : 5
 INTEGER              : 49
@@ -109,7 +109,7 @@ LBRACE               : 15 35 36 36 37 38
 LBRACKET             : 26 38 48
 LE                   : 
 LINE                 : 
-LPAREN               : 12 15 27 35 36 37 46
+LPAREN               : 12 15 27 31 35 36 37 46
 LT                   : 
 MAIN                 : 15
 MINUS                : 40
@@ -125,8 +125,8 @@ RBRACE               : 12 15 35 36 36 37 38
 RBRACKET             : 26 38 48
 READ                 : 30
 RETURN               : 
-RPAREN               : 12 15 27 35 36 37 46
-SEMICOLON            : 1 3 12 18 19 20 21
+RPAREN               : 12 15 27 31 35 36 37 46
+SEMICOLON            : 1 3 4 12 18 19 20 21
 STRING               : 33 42
 THEN                 : 
 THICKNESS            : 
@@ -142,14 +142,14 @@ Nonterminals, with rules where they appear
 
 arg_list             : 27 28
 assignment           : 18
-empty                : 4 11 17
+empty                : 11 17
 expression           : 25 26 26 28 29 32 34 35 36 37 38 38 39 40 46 48
 factor               : 43 44 45
 for_statement        : 24
 function             : 10
 function_call        : 19
 function_list        : 1 10
-id_list              : 3 8 30
+id_list              : 3 4 8 30
 if_statement         : 22
 main_function        : 1
 param_list           : 12 13
@@ -158,7 +158,7 @@ read_statement       : 20
 statement            : 16
 statement_list       : 12 15 16 35 36 36 37 38
 term                 : 39 40 41 43 44
-type                 : 3 12 13 14
+type                 : 3 4 12 13 14
 var_list             : 2 3
 vars                 : 1 12
 while_statement      : 23
@@ -222,24 +222,17 @@ state 6
 
     (2) vars -> VARS . var_list
     (3) var_list -> . var_list type id_list SEMICOLON
-    (4) var_list -> . empty
-    (51) empty -> .
+    (4) var_list -> . type id_list SEMICOLON
+    (5) type -> . INT
+    (6) type -> . FLOAT
+    (7) type -> . CHAR
 
-    INT             reduce using rule 51 (empty -> .)
-    FLOAT           reduce using rule 51 (empty -> .)
-    CHAR            reduce using rule 51 (empty -> .)
-    MAIN            reduce using rule 51 (empty -> .)
-    FUNCTION        reduce using rule 51 (empty -> .)
-    RBRACE          reduce using rule 51 (empty -> .)
-    ID              reduce using rule 51 (empty -> .)
-    READ            reduce using rule 51 (empty -> .)
-    WRITE           reduce using rule 51 (empty -> .)
-    IF              reduce using rule 51 (empty -> .)
-    WHILE           reduce using rule 51 (empty -> .)
-    FOR             reduce using rule 51 (empty -> .)
+    INT             shift and go to state 11
+    FLOAT           shift and go to state 12
+    CHAR            shift and go to state 13
 
     var_list                       shift and go to state 9
-    empty                          shift and go to state 10
+    type                           shift and go to state 10
 
 state 7
 
@@ -248,11 +241,11 @@ state 7
     (15) main_function -> . MAIN LPAREN RPAREN LBRACE statement_list RBRACE
     (12) function -> . FUNCTION type ID LPAREN param_list RPAREN SEMICOLON vars statement_list RBRACE
 
-    MAIN            shift and go to state 13
-    FUNCTION        shift and go to state 14
+    MAIN            shift and go to state 16
+    FUNCTION        shift and go to state 17
 
-    main_function                  shift and go to state 11
-    function                       shift and go to state 12
+    main_function                  shift and go to state 14
+    function                       shift and go to state 15
 
 state 8
 
@@ -279,38 +272,51 @@ state 9
     IF              reduce using rule 2 (vars -> VARS var_list .)
     WHILE           reduce using rule 2 (vars -> VARS var_list .)
     FOR             reduce using rule 2 (vars -> VARS var_list .)
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    CHAR            shift and go to state 18
+    INT             shift and go to state 11
+    FLOAT           shift and go to state 12
+    CHAR            shift and go to state 13
 
-    type                           shift and go to state 15
+    type                           shift and go to state 18
 
 state 10
 
-    (4) var_list -> empty .
+    (4) var_list -> type . id_list SEMICOLON
+    (8) id_list -> . id_list COMMA ID
+    (9) id_list -> . ID
 
-    INT             reduce using rule 4 (var_list -> empty .)
-    FLOAT           reduce using rule 4 (var_list -> empty .)
-    CHAR            reduce using rule 4 (var_list -> empty .)
-    MAIN            reduce using rule 4 (var_list -> empty .)
-    FUNCTION        reduce using rule 4 (var_list -> empty .)
-    RBRACE          reduce using rule 4 (var_list -> empty .)
-    ID              reduce using rule 4 (var_list -> empty .)
-    READ            reduce using rule 4 (var_list -> empty .)
-    WRITE           reduce using rule 4 (var_list -> empty .)
-    IF              reduce using rule 4 (var_list -> empty .)
-    WHILE           reduce using rule 4 (var_list -> empty .)
-    FOR             reduce using rule 4 (var_list -> empty .)
+    ID              shift and go to state 20
 
+    id_list                        shift and go to state 19
 
 state 11
+
+    (5) type -> INT .
+
+    ID              reduce using rule 5 (type -> INT .)
+
+
+state 12
+
+    (6) type -> FLOAT .
+
+    ID              reduce using rule 6 (type -> FLOAT .)
+
+
+state 13
+
+    (7) type -> CHAR .
+
+    ID              reduce using rule 7 (type -> CHAR .)
+
+
+state 14
 
     (1) program -> PROGRAM ID SEMICOLON vars function_list main_function .
 
     $end            reduce using rule 1 (program -> PROGRAM ID SEMICOLON vars function_list main_function .)
 
 
-state 12
+state 15
 
     (10) function_list -> function_list function .
 
@@ -318,81 +324,46 @@ state 12
     FUNCTION        reduce using rule 10 (function_list -> function_list function .)
 
 
-state 13
+state 16
 
     (15) main_function -> MAIN . LPAREN RPAREN LBRACE statement_list RBRACE
 
-    LPAREN          shift and go to state 19
+    LPAREN          shift and go to state 21
 
 
-state 14
+state 17
 
     (12) function -> FUNCTION . type ID LPAREN param_list RPAREN SEMICOLON vars statement_list RBRACE
     (5) type -> . INT
     (6) type -> . FLOAT
     (7) type -> . CHAR
 
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    CHAR            shift and go to state 18
+    INT             shift and go to state 11
+    FLOAT           shift and go to state 12
+    CHAR            shift and go to state 13
 
-    type                           shift and go to state 20
+    type                           shift and go to state 22
 
-state 15
+state 18
 
     (3) var_list -> var_list type . id_list SEMICOLON
     (8) id_list -> . id_list COMMA ID
     (9) id_list -> . ID
 
-    ID              shift and go to state 22
+    ID              shift and go to state 20
 
-    id_list                        shift and go to state 21
-
-state 16
-
-    (5) type -> INT .
-
-    ID              reduce using rule 5 (type -> INT .)
-
-
-state 17
-
-    (6) type -> FLOAT .
-
-    ID              reduce using rule 6 (type -> FLOAT .)
-
-
-state 18
-
-    (7) type -> CHAR .
-
-    ID              reduce using rule 7 (type -> CHAR .)
-
+    id_list                        shift and go to state 23
 
 state 19
 
-    (15) main_function -> MAIN LPAREN . RPAREN LBRACE statement_list RBRACE
+    (4) var_list -> type id_list . SEMICOLON
+    (8) id_list -> id_list . COMMA ID
 
-    RPAREN          shift and go to state 23
+    SEMICOLON       shift and go to state 24
+    COMMA           shift and go to state 25
 
 
 state 20
-
-    (12) function -> FUNCTION type . ID LPAREN param_list RPAREN SEMICOLON vars statement_list RBRACE
-
-    ID              shift and go to state 24
-
-
-state 21
-
-    (3) var_list -> var_list type id_list . SEMICOLON
-    (8) id_list -> id_list . COMMA ID
-
-    SEMICOLON       shift and go to state 25
-    COMMA           shift and go to state 26
-
-
-state 22
 
     (9) id_list -> ID .
 
@@ -400,21 +371,69 @@ state 22
     COMMA           reduce using rule 9 (id_list -> ID .)
 
 
+state 21
+
+    (15) main_function -> MAIN LPAREN . RPAREN LBRACE statement_list RBRACE
+
+    RPAREN          shift and go to state 26
+
+
+state 22
+
+    (12) function -> FUNCTION type . ID LPAREN param_list RPAREN SEMICOLON vars statement_list RBRACE
+
+    ID              shift and go to state 27
+
+
 state 23
 
-    (15) main_function -> MAIN LPAREN RPAREN . LBRACE statement_list RBRACE
+    (3) var_list -> var_list type id_list . SEMICOLON
+    (8) id_list -> id_list . COMMA ID
 
-    LBRACE          shift and go to state 27
+    SEMICOLON       shift and go to state 28
+    COMMA           shift and go to state 25
 
 
 state 24
 
-    (12) function -> FUNCTION type ID . LPAREN param_list RPAREN SEMICOLON vars statement_list RBRACE
+    (4) var_list -> type id_list SEMICOLON .
 
-    LPAREN          shift and go to state 28
+    INT             reduce using rule 4 (var_list -> type id_list SEMICOLON .)
+    FLOAT           reduce using rule 4 (var_list -> type id_list SEMICOLON .)
+    CHAR            reduce using rule 4 (var_list -> type id_list SEMICOLON .)
+    MAIN            reduce using rule 4 (var_list -> type id_list SEMICOLON .)
+    FUNCTION        reduce using rule 4 (var_list -> type id_list SEMICOLON .)
+    RBRACE          reduce using rule 4 (var_list -> type id_list SEMICOLON .)
+    ID              reduce using rule 4 (var_list -> type id_list SEMICOLON .)
+    READ            reduce using rule 4 (var_list -> type id_list SEMICOLON .)
+    WRITE           reduce using rule 4 (var_list -> type id_list SEMICOLON .)
+    IF              reduce using rule 4 (var_list -> type id_list SEMICOLON .)
+    WHILE           reduce using rule 4 (var_list -> type id_list SEMICOLON .)
+    FOR             reduce using rule 4 (var_list -> type id_list SEMICOLON .)
 
 
 state 25
+
+    (8) id_list -> id_list COMMA . ID
+
+    ID              shift and go to state 29
+
+
+state 26
+
+    (15) main_function -> MAIN LPAREN RPAREN . LBRACE statement_list RBRACE
+
+    LBRACE          shift and go to state 30
+
+
+state 27
+
+    (12) function -> FUNCTION type ID . LPAREN param_list RPAREN SEMICOLON vars statement_list RBRACE
+
+    LPAREN          shift and go to state 31
+
+
+state 28
 
     (3) var_list -> var_list type id_list SEMICOLON .
 
@@ -432,14 +451,15 @@ state 25
     FOR             reduce using rule 3 (var_list -> var_list type id_list SEMICOLON .)
 
 
-state 26
+state 29
 
-    (8) id_list -> id_list COMMA . ID
+    (8) id_list -> id_list COMMA ID .
 
-    ID              shift and go to state 29
+    SEMICOLON       reduce using rule 8 (id_list -> id_list COMMA ID .)
+    COMMA           reduce using rule 8 (id_list -> id_list COMMA ID .)
 
 
-state 27
+state 30
 
     (15) main_function -> MAIN LPAREN RPAREN LBRACE . statement_list RBRACE
     (16) statement_list -> . statement_list statement
@@ -454,10 +474,10 @@ state 27
     WHILE           reduce using rule 51 (empty -> .)
     FOR             reduce using rule 51 (empty -> .)
 
-    statement_list                 shift and go to state 30
-    empty                          shift and go to state 31
+    statement_list                 shift and go to state 32
+    empty                          shift and go to state 33
 
-state 28
+state 31
 
     (12) function -> FUNCTION type ID LPAREN . param_list RPAREN SEMICOLON vars statement_list RBRACE
     (13) param_list -> . param_list COMMA type ID
@@ -466,22 +486,14 @@ state 28
     (6) type -> . FLOAT
     (7) type -> . CHAR
 
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    CHAR            shift and go to state 18
+    INT             shift and go to state 11
+    FLOAT           shift and go to state 12
+    CHAR            shift and go to state 13
 
-    type                           shift and go to state 32
-    param_list                     shift and go to state 33
+    type                           shift and go to state 34
+    param_list                     shift and go to state 35
 
-state 29
-
-    (8) id_list -> id_list COMMA ID .
-
-    SEMICOLON       reduce using rule 8 (id_list -> id_list COMMA ID .)
-    COMMA           reduce using rule 8 (id_list -> id_list COMMA ID .)
-
-
-state 30
+state 32
 
     (15) main_function -> MAIN LPAREN RPAREN LBRACE statement_list . RBRACE
     (16) statement_list -> statement_list . statement
@@ -496,30 +508,30 @@ state 30
     (26) assignment -> . ID LBRACKET expression RBRACKET ASSIGN expression
     (27) function_call -> . ID LPAREN arg_list RPAREN
     (30) read_statement -> . READ id_list
-    (31) write_statement -> . WRITE write_list
+    (31) write_statement -> . WRITE LPAREN write_list RPAREN
     (35) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
     (36) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE
     (37) while_statement -> . WHILE LPAREN expression RPAREN DO LBRACE statement_list RBRACE
     (38) for_statement -> . FOR ID LBRACKET expression TO expression RBRACKET DO LBRACE statement_list RBRACE
 
-    RBRACE          shift and go to state 34
-    ID              shift and go to state 43
-    READ            shift and go to state 44
-    WRITE           shift and go to state 45
-    IF              shift and go to state 46
-    WHILE           shift and go to state 47
-    FOR             shift and go to state 48
+    RBRACE          shift and go to state 36
+    ID              shift and go to state 45
+    READ            shift and go to state 46
+    WRITE           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    FOR             shift and go to state 50
 
-    statement                      shift and go to state 35
-    assignment                     shift and go to state 36
-    function_call                  shift and go to state 37
-    read_statement                 shift and go to state 38
-    write_statement                shift and go to state 39
-    if_statement                   shift and go to state 40
-    while_statement                shift and go to state 41
-    for_statement                  shift and go to state 42
+    statement                      shift and go to state 37
+    assignment                     shift and go to state 38
+    function_call                  shift and go to state 39
+    read_statement                 shift and go to state 40
+    write_statement                shift and go to state 41
+    if_statement                   shift and go to state 42
+    while_statement                shift and go to state 43
+    for_statement                  shift and go to state 44
 
-state 31
+state 33
 
     (17) statement_list -> empty .
 
@@ -532,30 +544,30 @@ state 31
     FOR             reduce using rule 17 (statement_list -> empty .)
 
 
-state 32
+state 34
 
     (14) param_list -> type . ID
 
-    ID              shift and go to state 49
+    ID              shift and go to state 51
 
 
-state 33
+state 35
 
     (12) function -> FUNCTION type ID LPAREN param_list . RPAREN SEMICOLON vars statement_list RBRACE
     (13) param_list -> param_list . COMMA type ID
 
-    RPAREN          shift and go to state 50
-    COMMA           shift and go to state 51
+    RPAREN          shift and go to state 52
+    COMMA           shift and go to state 53
 
 
-state 34
+state 36
 
     (15) main_function -> MAIN LPAREN RPAREN LBRACE statement_list RBRACE .
 
     $end            reduce using rule 15 (main_function -> MAIN LPAREN RPAREN LBRACE statement_list RBRACE .)
 
 
-state 35
+state 37
 
     (16) statement_list -> statement_list statement .
 
@@ -568,35 +580,35 @@ state 35
     FOR             reduce using rule 16 (statement_list -> statement_list statement .)
 
 
-state 36
-
-    (18) statement -> assignment . SEMICOLON
-
-    SEMICOLON       shift and go to state 52
-
-
-state 37
-
-    (19) statement -> function_call . SEMICOLON
-
-    SEMICOLON       shift and go to state 53
-
-
 state 38
 
-    (20) statement -> read_statement . SEMICOLON
+    (18) statement -> assignment . SEMICOLON
 
     SEMICOLON       shift and go to state 54
 
 
 state 39
 
-    (21) statement -> write_statement . SEMICOLON
+    (19) statement -> function_call . SEMICOLON
 
     SEMICOLON       shift and go to state 55
 
 
 state 40
+
+    (20) statement -> read_statement . SEMICOLON
+
+    SEMICOLON       shift and go to state 56
+
+
+state 41
+
+    (21) statement -> write_statement . SEMICOLON
+
+    SEMICOLON       shift and go to state 57
+
+
+state 42
 
     (22) statement -> if_statement .
 
@@ -609,7 +621,7 @@ state 40
     FOR             reduce using rule 22 (statement -> if_statement .)
 
 
-state 41
+state 43
 
     (23) statement -> while_statement .
 
@@ -622,7 +634,7 @@ state 41
     FOR             reduce using rule 23 (statement -> while_statement .)
 
 
-state 42
+state 44
 
     (24) statement -> for_statement .
 
@@ -635,80 +647,57 @@ state 42
     FOR             reduce using rule 24 (statement -> for_statement .)
 
 
-state 43
+state 45
 
     (25) assignment -> ID . ASSIGN expression
     (26) assignment -> ID . LBRACKET expression RBRACKET ASSIGN expression
     (27) function_call -> ID . LPAREN arg_list RPAREN
 
-    ASSIGN          shift and go to state 56
-    LBRACKET        shift and go to state 57
-    LPAREN          shift and go to state 58
+    ASSIGN          shift and go to state 58
+    LBRACKET        shift and go to state 59
+    LPAREN          shift and go to state 60
 
 
-state 44
+state 46
 
     (30) read_statement -> READ . id_list
     (8) id_list -> . id_list COMMA ID
     (9) id_list -> . ID
 
-    ID              shift and go to state 22
+    ID              shift and go to state 20
 
-    id_list                        shift and go to state 59
-
-state 45
-
-    (31) write_statement -> WRITE . write_list
-    (32) write_list -> . write_list COMMA expression
-    (33) write_list -> . STRING
-    (34) write_list -> . expression
-    (39) expression -> . expression PLUS term
-    (40) expression -> . expression MINUS term
-    (41) expression -> . term
-    (42) expression -> . STRING
-    (43) term -> . term TIMES factor
-    (44) term -> . term DIVIDE factor
-    (45) term -> . factor
-    (46) factor -> . LPAREN expression RPAREN
-    (47) factor -> . ID
-    (48) factor -> . ID LBRACKET expression RBRACKET
-    (49) factor -> . INTEGER
-    (50) factor -> . FLOATING_POINT
-
-    STRING          shift and go to state 62
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
-
-    write_list                     shift and go to state 60
-    expression                     shift and go to state 61
-    term                           shift and go to state 63
-    factor                         shift and go to state 64
-
-state 46
-
-    (35) if_statement -> IF . LPAREN expression RPAREN LBRACE statement_list RBRACE
-    (36) if_statement -> IF . LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE
-
-    LPAREN          shift and go to state 69
-
+    id_list                        shift and go to state 61
 
 state 47
 
-    (37) while_statement -> WHILE . LPAREN expression RPAREN DO LBRACE statement_list RBRACE
+    (31) write_statement -> WRITE . LPAREN write_list RPAREN
 
-    LPAREN          shift and go to state 70
+    LPAREN          shift and go to state 62
 
 
 state 48
 
-    (38) for_statement -> FOR . ID LBRACKET expression TO expression RBRACKET DO LBRACE statement_list RBRACE
+    (35) if_statement -> IF . LPAREN expression RPAREN LBRACE statement_list RBRACE
+    (36) if_statement -> IF . LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE
 
-    ID              shift and go to state 71
+    LPAREN          shift and go to state 63
 
 
 state 49
+
+    (37) while_statement -> WHILE . LPAREN expression RPAREN DO LBRACE statement_list RBRACE
+
+    LPAREN          shift and go to state 64
+
+
+state 50
+
+    (38) for_statement -> FOR . ID LBRACKET expression TO expression RBRACKET DO LBRACE statement_list RBRACE
+
+    ID              shift and go to state 65
+
+
+state 51
 
     (14) param_list -> type ID .
 
@@ -716,27 +705,27 @@ state 49
     COMMA           reduce using rule 14 (param_list -> type ID .)
 
 
-state 50
+state 52
 
     (12) function -> FUNCTION type ID LPAREN param_list RPAREN . SEMICOLON vars statement_list RBRACE
 
-    SEMICOLON       shift and go to state 72
+    SEMICOLON       shift and go to state 66
 
 
-state 51
+state 53
 
     (13) param_list -> param_list COMMA . type ID
     (5) type -> . INT
     (6) type -> . FLOAT
     (7) type -> . CHAR
 
-    INT             shift and go to state 16
-    FLOAT           shift and go to state 17
-    CHAR            shift and go to state 18
+    INT             shift and go to state 11
+    FLOAT           shift and go to state 12
+    CHAR            shift and go to state 13
 
-    type                           shift and go to state 73
+    type                           shift and go to state 67
 
-state 52
+state 54
 
     (18) statement -> assignment SEMICOLON .
 
@@ -749,7 +738,7 @@ state 52
     FOR             reduce using rule 18 (statement -> assignment SEMICOLON .)
 
 
-state 53
+state 55
 
     (19) statement -> function_call SEMICOLON .
 
@@ -762,7 +751,7 @@ state 53
     FOR             reduce using rule 19 (statement -> function_call SEMICOLON .)
 
 
-state 54
+state 56
 
     (20) statement -> read_statement SEMICOLON .
 
@@ -775,7 +764,7 @@ state 54
     FOR             reduce using rule 20 (statement -> read_statement SEMICOLON .)
 
 
-state 55
+state 57
 
     (21) statement -> write_statement SEMICOLON .
 
@@ -788,7 +777,7 @@ state 55
     FOR             reduce using rule 21 (statement -> write_statement SEMICOLON .)
 
 
-state 56
+state 58
 
     (25) assignment -> ID ASSIGN . expression
     (39) expression -> . expression PLUS term
@@ -804,17 +793,17 @@ state 56
     (49) factor -> . INTEGER
     (50) factor -> . FLOATING_POINT
 
-    STRING          shift and go to state 75
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
+    STRING          shift and go to state 71
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
 
-    expression                     shift and go to state 74
-    term                           shift and go to state 63
-    factor                         shift and go to state 64
+    expression                     shift and go to state 69
+    term                           shift and go to state 70
+    factor                         shift and go to state 72
 
-state 57
+state 59
 
     (26) assignment -> ID LBRACKET . expression RBRACKET ASSIGN expression
     (39) expression -> . expression PLUS term
@@ -830,17 +819,17 @@ state 57
     (49) factor -> . INTEGER
     (50) factor -> . FLOATING_POINT
 
-    STRING          shift and go to state 75
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
+    STRING          shift and go to state 71
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
 
     expression                     shift and go to state 76
-    term                           shift and go to state 63
-    factor                         shift and go to state 64
+    term                           shift and go to state 70
+    factor                         shift and go to state 72
 
-state 58
+state 60
 
     (27) function_call -> ID LPAREN . arg_list RPAREN
     (28) arg_list -> . arg_list COMMA expression
@@ -858,169 +847,39 @@ state 58
     (49) factor -> . INTEGER
     (50) factor -> . FLOATING_POINT
 
-    STRING          shift and go to state 75
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
+    STRING          shift and go to state 71
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
 
     arg_list                       shift and go to state 77
     expression                     shift and go to state 78
-    term                           shift and go to state 63
-    factor                         shift and go to state 64
+    term                           shift and go to state 70
+    factor                         shift and go to state 72
 
-state 59
+state 61
 
     (30) read_statement -> READ id_list .
     (8) id_list -> id_list . COMMA ID
 
     SEMICOLON       reduce using rule 30 (read_statement -> READ id_list .)
-    COMMA           shift and go to state 26
-
-
-state 60
-
-    (31) write_statement -> WRITE write_list .
-    (32) write_list -> write_list . COMMA expression
-
-    SEMICOLON       reduce using rule 31 (write_statement -> WRITE write_list .)
-    COMMA           shift and go to state 79
-
-
-state 61
-
-    (34) write_list -> expression .
-    (39) expression -> expression . PLUS term
-    (40) expression -> expression . MINUS term
-
-    COMMA           reduce using rule 34 (write_list -> expression .)
-    SEMICOLON       reduce using rule 34 (write_list -> expression .)
-    PLUS            shift and go to state 80
-    MINUS           shift and go to state 81
+    COMMA           shift and go to state 25
 
 
 state 62
 
-    (33) write_list -> STRING .
-    (42) expression -> STRING .
+    (31) write_statement -> WRITE LPAREN . write_list RPAREN
+    (32) write_list -> . write_list COMMA expression
+    (33) write_list -> . STRING
+    (34) write_list -> . ID COMMA expression
 
-  ! reduce/reduce conflict for COMMA resolved using rule 33 (write_list -> STRING .)
-  ! reduce/reduce conflict for SEMICOLON resolved using rule 33 (write_list -> STRING .)
-    COMMA           reduce using rule 33 (write_list -> STRING .)
-    SEMICOLON       reduce using rule 33 (write_list -> STRING .)
-    PLUS            reduce using rule 42 (expression -> STRING .)
-    MINUS           reduce using rule 42 (expression -> STRING .)
+    STRING          shift and go to state 80
+    ID              shift and go to state 81
 
-  ! COMMA           [ reduce using rule 42 (expression -> STRING .) ]
-  ! SEMICOLON       [ reduce using rule 42 (expression -> STRING .) ]
-
+    write_list                     shift and go to state 79
 
 state 63
-
-    (41) expression -> term .
-    (43) term -> term . TIMES factor
-    (44) term -> term . DIVIDE factor
-
-    PLUS            reduce using rule 41 (expression -> term .)
-    MINUS           reduce using rule 41 (expression -> term .)
-    COMMA           reduce using rule 41 (expression -> term .)
-    SEMICOLON       reduce using rule 41 (expression -> term .)
-    RBRACKET        reduce using rule 41 (expression -> term .)
-    RPAREN          reduce using rule 41 (expression -> term .)
-    TO              reduce using rule 41 (expression -> term .)
-    TIMES           shift and go to state 82
-    DIVIDE          shift and go to state 83
-
-
-state 64
-
-    (45) term -> factor .
-
-    TIMES           reduce using rule 45 (term -> factor .)
-    DIVIDE          reduce using rule 45 (term -> factor .)
-    PLUS            reduce using rule 45 (term -> factor .)
-    MINUS           reduce using rule 45 (term -> factor .)
-    COMMA           reduce using rule 45 (term -> factor .)
-    SEMICOLON       reduce using rule 45 (term -> factor .)
-    RBRACKET        reduce using rule 45 (term -> factor .)
-    RPAREN          reduce using rule 45 (term -> factor .)
-    TO              reduce using rule 45 (term -> factor .)
-
-
-state 65
-
-    (46) factor -> LPAREN . expression RPAREN
-    (39) expression -> . expression PLUS term
-    (40) expression -> . expression MINUS term
-    (41) expression -> . term
-    (42) expression -> . STRING
-    (43) term -> . term TIMES factor
-    (44) term -> . term DIVIDE factor
-    (45) term -> . factor
-    (46) factor -> . LPAREN expression RPAREN
-    (47) factor -> . ID
-    (48) factor -> . ID LBRACKET expression RBRACKET
-    (49) factor -> . INTEGER
-    (50) factor -> . FLOATING_POINT
-
-    STRING          shift and go to state 75
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
-
-    expression                     shift and go to state 84
-    term                           shift and go to state 63
-    factor                         shift and go to state 64
-
-state 66
-
-    (47) factor -> ID .
-    (48) factor -> ID . LBRACKET expression RBRACKET
-
-    TIMES           reduce using rule 47 (factor -> ID .)
-    DIVIDE          reduce using rule 47 (factor -> ID .)
-    PLUS            reduce using rule 47 (factor -> ID .)
-    MINUS           reduce using rule 47 (factor -> ID .)
-    COMMA           reduce using rule 47 (factor -> ID .)
-    SEMICOLON       reduce using rule 47 (factor -> ID .)
-    RBRACKET        reduce using rule 47 (factor -> ID .)
-    RPAREN          reduce using rule 47 (factor -> ID .)
-    TO              reduce using rule 47 (factor -> ID .)
-    LBRACKET        shift and go to state 85
-
-
-state 67
-
-    (49) factor -> INTEGER .
-
-    TIMES           reduce using rule 49 (factor -> INTEGER .)
-    DIVIDE          reduce using rule 49 (factor -> INTEGER .)
-    PLUS            reduce using rule 49 (factor -> INTEGER .)
-    MINUS           reduce using rule 49 (factor -> INTEGER .)
-    COMMA           reduce using rule 49 (factor -> INTEGER .)
-    SEMICOLON       reduce using rule 49 (factor -> INTEGER .)
-    RBRACKET        reduce using rule 49 (factor -> INTEGER .)
-    RPAREN          reduce using rule 49 (factor -> INTEGER .)
-    TO              reduce using rule 49 (factor -> INTEGER .)
-
-
-state 68
-
-    (50) factor -> FLOATING_POINT .
-
-    TIMES           reduce using rule 50 (factor -> FLOATING_POINT .)
-    DIVIDE          reduce using rule 50 (factor -> FLOATING_POINT .)
-    PLUS            reduce using rule 50 (factor -> FLOATING_POINT .)
-    MINUS           reduce using rule 50 (factor -> FLOATING_POINT .)
-    COMMA           reduce using rule 50 (factor -> FLOATING_POINT .)
-    SEMICOLON       reduce using rule 50 (factor -> FLOATING_POINT .)
-    RBRACKET        reduce using rule 50 (factor -> FLOATING_POINT .)
-    RPAREN          reduce using rule 50 (factor -> FLOATING_POINT .)
-    TO              reduce using rule 50 (factor -> FLOATING_POINT .)
-
-
-state 69
 
     (35) if_statement -> IF LPAREN . expression RPAREN LBRACE statement_list RBRACE
     (36) if_statement -> IF LPAREN . expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE
@@ -1037,17 +896,17 @@ state 69
     (49) factor -> . INTEGER
     (50) factor -> . FLOATING_POINT
 
-    STRING          shift and go to state 75
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
+    STRING          shift and go to state 71
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
 
-    expression                     shift and go to state 86
-    term                           shift and go to state 63
-    factor                         shift and go to state 64
+    expression                     shift and go to state 82
+    term                           shift and go to state 70
+    factor                         shift and go to state 72
 
-state 70
+state 64
 
     (37) while_statement -> WHILE LPAREN . expression RPAREN DO LBRACE statement_list RBRACE
     (39) expression -> . expression PLUS term
@@ -1063,51 +922,85 @@ state 70
     (49) factor -> . INTEGER
     (50) factor -> . FLOATING_POINT
 
-    STRING          shift and go to state 75
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
+    STRING          shift and go to state 71
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
 
-    expression                     shift and go to state 87
-    term                           shift and go to state 63
-    factor                         shift and go to state 64
+    expression                     shift and go to state 83
+    term                           shift and go to state 70
+    factor                         shift and go to state 72
 
-state 71
+state 65
 
     (38) for_statement -> FOR ID . LBRACKET expression TO expression RBRACKET DO LBRACE statement_list RBRACE
 
-    LBRACKET        shift and go to state 88
+    LBRACKET        shift and go to state 84
 
 
-state 72
+state 66
 
     (12) function -> FUNCTION type ID LPAREN param_list RPAREN SEMICOLON . vars statement_list RBRACE
     (2) vars -> . VARS var_list
 
     VARS            shift and go to state 6
 
-    vars                           shift and go to state 89
+    vars                           shift and go to state 85
 
-state 73
+state 67
 
     (13) param_list -> param_list COMMA type . ID
 
-    ID              shift and go to state 90
+    ID              shift and go to state 86
 
 
-state 74
+state 68
+
+    (47) factor -> ID .
+    (48) factor -> ID . LBRACKET expression RBRACKET
+
+    TIMES           reduce using rule 47 (factor -> ID .)
+    DIVIDE          reduce using rule 47 (factor -> ID .)
+    PLUS            reduce using rule 47 (factor -> ID .)
+    MINUS           reduce using rule 47 (factor -> ID .)
+    SEMICOLON       reduce using rule 47 (factor -> ID .)
+    RBRACKET        reduce using rule 47 (factor -> ID .)
+    RPAREN          reduce using rule 47 (factor -> ID .)
+    COMMA           reduce using rule 47 (factor -> ID .)
+    TO              reduce using rule 47 (factor -> ID .)
+    LBRACKET        shift and go to state 87
+
+
+state 69
 
     (25) assignment -> ID ASSIGN expression .
     (39) expression -> expression . PLUS term
     (40) expression -> expression . MINUS term
 
     SEMICOLON       reduce using rule 25 (assignment -> ID ASSIGN expression .)
-    PLUS            shift and go to state 80
-    MINUS           shift and go to state 81
+    PLUS            shift and go to state 88
+    MINUS           shift and go to state 89
 
 
-state 75
+state 70
+
+    (41) expression -> term .
+    (43) term -> term . TIMES factor
+    (44) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 41 (expression -> term .)
+    MINUS           reduce using rule 41 (expression -> term .)
+    SEMICOLON       reduce using rule 41 (expression -> term .)
+    RBRACKET        reduce using rule 41 (expression -> term .)
+    RPAREN          reduce using rule 41 (expression -> term .)
+    COMMA           reduce using rule 41 (expression -> term .)
+    TO              reduce using rule 41 (expression -> term .)
+    TIMES           shift and go to state 90
+    DIVIDE          shift and go to state 91
+
+
+state 71
 
     (42) expression -> STRING .
 
@@ -1120,15 +1013,86 @@ state 75
     TO              reduce using rule 42 (expression -> STRING .)
 
 
+state 72
+
+    (45) term -> factor .
+
+    TIMES           reduce using rule 45 (term -> factor .)
+    DIVIDE          reduce using rule 45 (term -> factor .)
+    PLUS            reduce using rule 45 (term -> factor .)
+    MINUS           reduce using rule 45 (term -> factor .)
+    SEMICOLON       reduce using rule 45 (term -> factor .)
+    RBRACKET        reduce using rule 45 (term -> factor .)
+    RPAREN          reduce using rule 45 (term -> factor .)
+    COMMA           reduce using rule 45 (term -> factor .)
+    TO              reduce using rule 45 (term -> factor .)
+
+
+state 73
+
+    (46) factor -> LPAREN . expression RPAREN
+    (39) expression -> . expression PLUS term
+    (40) expression -> . expression MINUS term
+    (41) expression -> . term
+    (42) expression -> . STRING
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) term -> . factor
+    (46) factor -> . LPAREN expression RPAREN
+    (47) factor -> . ID
+    (48) factor -> . ID LBRACKET expression RBRACKET
+    (49) factor -> . INTEGER
+    (50) factor -> . FLOATING_POINT
+
+    STRING          shift and go to state 71
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
+
+    expression                     shift and go to state 92
+    term                           shift and go to state 70
+    factor                         shift and go to state 72
+
+state 74
+
+    (49) factor -> INTEGER .
+
+    TIMES           reduce using rule 49 (factor -> INTEGER .)
+    DIVIDE          reduce using rule 49 (factor -> INTEGER .)
+    PLUS            reduce using rule 49 (factor -> INTEGER .)
+    MINUS           reduce using rule 49 (factor -> INTEGER .)
+    SEMICOLON       reduce using rule 49 (factor -> INTEGER .)
+    RBRACKET        reduce using rule 49 (factor -> INTEGER .)
+    RPAREN          reduce using rule 49 (factor -> INTEGER .)
+    COMMA           reduce using rule 49 (factor -> INTEGER .)
+    TO              reduce using rule 49 (factor -> INTEGER .)
+
+
+state 75
+
+    (50) factor -> FLOATING_POINT .
+
+    TIMES           reduce using rule 50 (factor -> FLOATING_POINT .)
+    DIVIDE          reduce using rule 50 (factor -> FLOATING_POINT .)
+    PLUS            reduce using rule 50 (factor -> FLOATING_POINT .)
+    MINUS           reduce using rule 50 (factor -> FLOATING_POINT .)
+    SEMICOLON       reduce using rule 50 (factor -> FLOATING_POINT .)
+    RBRACKET        reduce using rule 50 (factor -> FLOATING_POINT .)
+    RPAREN          reduce using rule 50 (factor -> FLOATING_POINT .)
+    COMMA           reduce using rule 50 (factor -> FLOATING_POINT .)
+    TO              reduce using rule 50 (factor -> FLOATING_POINT .)
+
+
 state 76
 
     (26) assignment -> ID LBRACKET expression . RBRACKET ASSIGN expression
     (39) expression -> expression . PLUS term
     (40) expression -> expression . MINUS term
 
-    RBRACKET        shift and go to state 91
-    PLUS            shift and go to state 80
-    MINUS           shift and go to state 81
+    RBRACKET        shift and go to state 93
+    PLUS            shift and go to state 88
+    MINUS           shift and go to state 89
 
 
 state 77
@@ -1136,8 +1100,8 @@ state 77
     (27) function_call -> ID LPAREN arg_list . RPAREN
     (28) arg_list -> arg_list . COMMA expression
 
-    RPAREN          shift and go to state 92
-    COMMA           shift and go to state 93
+    RPAREN          shift and go to state 94
+    COMMA           shift and go to state 95
 
 
 state 78
@@ -1148,169 +1112,58 @@ state 78
 
     RPAREN          reduce using rule 29 (arg_list -> expression .)
     COMMA           reduce using rule 29 (arg_list -> expression .)
-    PLUS            shift and go to state 80
-    MINUS           shift and go to state 81
+    PLUS            shift and go to state 88
+    MINUS           shift and go to state 89
 
 
 state 79
 
-    (32) write_list -> write_list COMMA . expression
-    (39) expression -> . expression PLUS term
-    (40) expression -> . expression MINUS term
-    (41) expression -> . term
-    (42) expression -> . STRING
-    (43) term -> . term TIMES factor
-    (44) term -> . term DIVIDE factor
-    (45) term -> . factor
-    (46) factor -> . LPAREN expression RPAREN
-    (47) factor -> . ID
-    (48) factor -> . ID LBRACKET expression RBRACKET
-    (49) factor -> . INTEGER
-    (50) factor -> . FLOATING_POINT
+    (31) write_statement -> WRITE LPAREN write_list . RPAREN
+    (32) write_list -> write_list . COMMA expression
 
-    STRING          shift and go to state 75
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
+    RPAREN          shift and go to state 96
+    COMMA           shift and go to state 97
 
-    expression                     shift and go to state 94
-    term                           shift and go to state 63
-    factor                         shift and go to state 64
 
 state 80
 
-    (39) expression -> expression PLUS . term
-    (43) term -> . term TIMES factor
-    (44) term -> . term DIVIDE factor
-    (45) term -> . factor
-    (46) factor -> . LPAREN expression RPAREN
-    (47) factor -> . ID
-    (48) factor -> . ID LBRACKET expression RBRACKET
-    (49) factor -> . INTEGER
-    (50) factor -> . FLOATING_POINT
+    (33) write_list -> STRING .
 
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
+    RPAREN          reduce using rule 33 (write_list -> STRING .)
+    COMMA           reduce using rule 33 (write_list -> STRING .)
 
-    term                           shift and go to state 95
-    factor                         shift and go to state 64
 
 state 81
 
-    (40) expression -> expression MINUS . term
-    (43) term -> . term TIMES factor
-    (44) term -> . term DIVIDE factor
-    (45) term -> . factor
-    (46) factor -> . LPAREN expression RPAREN
-    (47) factor -> . ID
-    (48) factor -> . ID LBRACKET expression RBRACKET
-    (49) factor -> . INTEGER
-    (50) factor -> . FLOATING_POINT
+    (34) write_list -> ID . COMMA expression
 
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
+    COMMA           shift and go to state 98
 
-    term                           shift and go to state 96
-    factor                         shift and go to state 64
 
 state 82
-
-    (43) term -> term TIMES . factor
-    (46) factor -> . LPAREN expression RPAREN
-    (47) factor -> . ID
-    (48) factor -> . ID LBRACKET expression RBRACKET
-    (49) factor -> . INTEGER
-    (50) factor -> . FLOATING_POINT
-
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
-
-    factor                         shift and go to state 97
-
-state 83
-
-    (44) term -> term DIVIDE . factor
-    (46) factor -> . LPAREN expression RPAREN
-    (47) factor -> . ID
-    (48) factor -> . ID LBRACKET expression RBRACKET
-    (49) factor -> . INTEGER
-    (50) factor -> . FLOATING_POINT
-
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
-
-    factor                         shift and go to state 98
-
-state 84
-
-    (46) factor -> LPAREN expression . RPAREN
-    (39) expression -> expression . PLUS term
-    (40) expression -> expression . MINUS term
-
-    RPAREN          shift and go to state 99
-    PLUS            shift and go to state 80
-    MINUS           shift and go to state 81
-
-
-state 85
-
-    (48) factor -> ID LBRACKET . expression RBRACKET
-    (39) expression -> . expression PLUS term
-    (40) expression -> . expression MINUS term
-    (41) expression -> . term
-    (42) expression -> . STRING
-    (43) term -> . term TIMES factor
-    (44) term -> . term DIVIDE factor
-    (45) term -> . factor
-    (46) factor -> . LPAREN expression RPAREN
-    (47) factor -> . ID
-    (48) factor -> . ID LBRACKET expression RBRACKET
-    (49) factor -> . INTEGER
-    (50) factor -> . FLOATING_POINT
-
-    STRING          shift and go to state 75
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
-
-    expression                     shift and go to state 100
-    term                           shift and go to state 63
-    factor                         shift and go to state 64
-
-state 86
 
     (35) if_statement -> IF LPAREN expression . RPAREN LBRACE statement_list RBRACE
     (36) if_statement -> IF LPAREN expression . RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE
     (39) expression -> expression . PLUS term
     (40) expression -> expression . MINUS term
 
-    RPAREN          shift and go to state 101
-    PLUS            shift and go to state 80
-    MINUS           shift and go to state 81
+    RPAREN          shift and go to state 99
+    PLUS            shift and go to state 88
+    MINUS           shift and go to state 89
 
 
-state 87
+state 83
 
     (37) while_statement -> WHILE LPAREN expression . RPAREN DO LBRACE statement_list RBRACE
     (39) expression -> expression . PLUS term
     (40) expression -> expression . MINUS term
 
-    RPAREN          shift and go to state 102
-    PLUS            shift and go to state 80
-    MINUS           shift and go to state 81
+    RPAREN          shift and go to state 100
+    PLUS            shift and go to state 88
+    MINUS           shift and go to state 89
 
 
-state 88
+state 84
 
     (38) for_statement -> FOR ID LBRACKET . expression TO expression RBRACKET DO LBRACE statement_list RBRACE
     (39) expression -> . expression PLUS term
@@ -1326,17 +1179,17 @@ state 88
     (49) factor -> . INTEGER
     (50) factor -> . FLOATING_POINT
 
-    STRING          shift and go to state 75
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
+    STRING          shift and go to state 71
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
 
-    expression                     shift and go to state 103
-    term                           shift and go to state 63
-    factor                         shift and go to state 64
+    expression                     shift and go to state 101
+    term                           shift and go to state 70
+    factor                         shift and go to state 72
 
-state 89
+state 85
 
     (12) function -> FUNCTION type ID LPAREN param_list RPAREN SEMICOLON vars . statement_list RBRACE
     (16) statement_list -> . statement_list statement
@@ -1351,10 +1204,10 @@ state 89
     WHILE           reduce using rule 51 (empty -> .)
     FOR             reduce using rule 51 (empty -> .)
 
-    statement_list                 shift and go to state 104
-    empty                          shift and go to state 31
+    statement_list                 shift and go to state 102
+    empty                          shift and go to state 33
 
-state 90
+state 86
 
     (13) param_list -> param_list COMMA type ID .
 
@@ -1362,21 +1215,130 @@ state 90
     COMMA           reduce using rule 13 (param_list -> param_list COMMA type ID .)
 
 
+state 87
+
+    (48) factor -> ID LBRACKET . expression RBRACKET
+    (39) expression -> . expression PLUS term
+    (40) expression -> . expression MINUS term
+    (41) expression -> . term
+    (42) expression -> . STRING
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) term -> . factor
+    (46) factor -> . LPAREN expression RPAREN
+    (47) factor -> . ID
+    (48) factor -> . ID LBRACKET expression RBRACKET
+    (49) factor -> . INTEGER
+    (50) factor -> . FLOATING_POINT
+
+    STRING          shift and go to state 71
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
+
+    expression                     shift and go to state 103
+    term                           shift and go to state 70
+    factor                         shift and go to state 72
+
+state 88
+
+    (39) expression -> expression PLUS . term
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) term -> . factor
+    (46) factor -> . LPAREN expression RPAREN
+    (47) factor -> . ID
+    (48) factor -> . ID LBRACKET expression RBRACKET
+    (49) factor -> . INTEGER
+    (50) factor -> . FLOATING_POINT
+
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
+
+    term                           shift and go to state 104
+    factor                         shift and go to state 72
+
+state 89
+
+    (40) expression -> expression MINUS . term
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) term -> . factor
+    (46) factor -> . LPAREN expression RPAREN
+    (47) factor -> . ID
+    (48) factor -> . ID LBRACKET expression RBRACKET
+    (49) factor -> . INTEGER
+    (50) factor -> . FLOATING_POINT
+
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
+
+    term                           shift and go to state 105
+    factor                         shift and go to state 72
+
+state 90
+
+    (43) term -> term TIMES . factor
+    (46) factor -> . LPAREN expression RPAREN
+    (47) factor -> . ID
+    (48) factor -> . ID LBRACKET expression RBRACKET
+    (49) factor -> . INTEGER
+    (50) factor -> . FLOATING_POINT
+
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
+
+    factor                         shift and go to state 106
+
 state 91
+
+    (44) term -> term DIVIDE . factor
+    (46) factor -> . LPAREN expression RPAREN
+    (47) factor -> . ID
+    (48) factor -> . ID LBRACKET expression RBRACKET
+    (49) factor -> . INTEGER
+    (50) factor -> . FLOATING_POINT
+
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
+
+    factor                         shift and go to state 107
+
+state 92
+
+    (46) factor -> LPAREN expression . RPAREN
+    (39) expression -> expression . PLUS term
+    (40) expression -> expression . MINUS term
+
+    RPAREN          shift and go to state 108
+    PLUS            shift and go to state 88
+    MINUS           shift and go to state 89
+
+
+state 93
 
     (26) assignment -> ID LBRACKET expression RBRACKET . ASSIGN expression
 
-    ASSIGN          shift and go to state 105
+    ASSIGN          shift and go to state 109
 
 
-state 92
+state 94
 
     (27) function_call -> ID LPAREN arg_list RPAREN .
 
     SEMICOLON       reduce using rule 27 (function_call -> ID LPAREN arg_list RPAREN .)
 
 
-state 93
+state 95
 
     (28) arg_list -> arg_list COMMA . expression
     (39) expression -> . expression PLUS term
@@ -1392,145 +1354,102 @@ state 93
     (49) factor -> . INTEGER
     (50) factor -> . FLOATING_POINT
 
-    STRING          shift and go to state 75
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
+    STRING          shift and go to state 71
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
 
-    expression                     shift and go to state 106
-    term                           shift and go to state 63
-    factor                         shift and go to state 64
-
-state 94
-
-    (32) write_list -> write_list COMMA expression .
-    (39) expression -> expression . PLUS term
-    (40) expression -> expression . MINUS term
-
-    COMMA           reduce using rule 32 (write_list -> write_list COMMA expression .)
-    SEMICOLON       reduce using rule 32 (write_list -> write_list COMMA expression .)
-    PLUS            shift and go to state 80
-    MINUS           shift and go to state 81
-
-
-state 95
-
-    (39) expression -> expression PLUS term .
-    (43) term -> term . TIMES factor
-    (44) term -> term . DIVIDE factor
-
-    PLUS            reduce using rule 39 (expression -> expression PLUS term .)
-    MINUS           reduce using rule 39 (expression -> expression PLUS term .)
-    COMMA           reduce using rule 39 (expression -> expression PLUS term .)
-    SEMICOLON       reduce using rule 39 (expression -> expression PLUS term .)
-    RBRACKET        reduce using rule 39 (expression -> expression PLUS term .)
-    RPAREN          reduce using rule 39 (expression -> expression PLUS term .)
-    TO              reduce using rule 39 (expression -> expression PLUS term .)
-    TIMES           shift and go to state 82
-    DIVIDE          shift and go to state 83
-
+    expression                     shift and go to state 110
+    term                           shift and go to state 70
+    factor                         shift and go to state 72
 
 state 96
 
-    (40) expression -> expression MINUS term .
-    (43) term -> term . TIMES factor
-    (44) term -> term . DIVIDE factor
+    (31) write_statement -> WRITE LPAREN write_list RPAREN .
 
-    PLUS            reduce using rule 40 (expression -> expression MINUS term .)
-    MINUS           reduce using rule 40 (expression -> expression MINUS term .)
-    COMMA           reduce using rule 40 (expression -> expression MINUS term .)
-    SEMICOLON       reduce using rule 40 (expression -> expression MINUS term .)
-    RBRACKET        reduce using rule 40 (expression -> expression MINUS term .)
-    RPAREN          reduce using rule 40 (expression -> expression MINUS term .)
-    TO              reduce using rule 40 (expression -> expression MINUS term .)
-    TIMES           shift and go to state 82
-    DIVIDE          shift and go to state 83
+    SEMICOLON       reduce using rule 31 (write_statement -> WRITE LPAREN write_list RPAREN .)
 
 
 state 97
 
-    (43) term -> term TIMES factor .
+    (32) write_list -> write_list COMMA . expression
+    (39) expression -> . expression PLUS term
+    (40) expression -> . expression MINUS term
+    (41) expression -> . term
+    (42) expression -> . STRING
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) term -> . factor
+    (46) factor -> . LPAREN expression RPAREN
+    (47) factor -> . ID
+    (48) factor -> . ID LBRACKET expression RBRACKET
+    (49) factor -> . INTEGER
+    (50) factor -> . FLOATING_POINT
 
-    TIMES           reduce using rule 43 (term -> term TIMES factor .)
-    DIVIDE          reduce using rule 43 (term -> term TIMES factor .)
-    PLUS            reduce using rule 43 (term -> term TIMES factor .)
-    MINUS           reduce using rule 43 (term -> term TIMES factor .)
-    COMMA           reduce using rule 43 (term -> term TIMES factor .)
-    SEMICOLON       reduce using rule 43 (term -> term TIMES factor .)
-    RBRACKET        reduce using rule 43 (term -> term TIMES factor .)
-    RPAREN          reduce using rule 43 (term -> term TIMES factor .)
-    TO              reduce using rule 43 (term -> term TIMES factor .)
+    STRING          shift and go to state 71
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
 
+    expression                     shift and go to state 111
+    term                           shift and go to state 70
+    factor                         shift and go to state 72
 
 state 98
 
-    (44) term -> term DIVIDE factor .
+    (34) write_list -> ID COMMA . expression
+    (39) expression -> . expression PLUS term
+    (40) expression -> . expression MINUS term
+    (41) expression -> . term
+    (42) expression -> . STRING
+    (43) term -> . term TIMES factor
+    (44) term -> . term DIVIDE factor
+    (45) term -> . factor
+    (46) factor -> . LPAREN expression RPAREN
+    (47) factor -> . ID
+    (48) factor -> . ID LBRACKET expression RBRACKET
+    (49) factor -> . INTEGER
+    (50) factor -> . FLOATING_POINT
 
-    TIMES           reduce using rule 44 (term -> term DIVIDE factor .)
-    DIVIDE          reduce using rule 44 (term -> term DIVIDE factor .)
-    PLUS            reduce using rule 44 (term -> term DIVIDE factor .)
-    MINUS           reduce using rule 44 (term -> term DIVIDE factor .)
-    COMMA           reduce using rule 44 (term -> term DIVIDE factor .)
-    SEMICOLON       reduce using rule 44 (term -> term DIVIDE factor .)
-    RBRACKET        reduce using rule 44 (term -> term DIVIDE factor .)
-    RPAREN          reduce using rule 44 (term -> term DIVIDE factor .)
-    TO              reduce using rule 44 (term -> term DIVIDE factor .)
+    STRING          shift and go to state 71
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
 
+    expression                     shift and go to state 112
+    term                           shift and go to state 70
+    factor                         shift and go to state 72
 
 state 99
-
-    (46) factor -> LPAREN expression RPAREN .
-
-    TIMES           reduce using rule 46 (factor -> LPAREN expression RPAREN .)
-    DIVIDE          reduce using rule 46 (factor -> LPAREN expression RPAREN .)
-    PLUS            reduce using rule 46 (factor -> LPAREN expression RPAREN .)
-    MINUS           reduce using rule 46 (factor -> LPAREN expression RPAREN .)
-    COMMA           reduce using rule 46 (factor -> LPAREN expression RPAREN .)
-    SEMICOLON       reduce using rule 46 (factor -> LPAREN expression RPAREN .)
-    RBRACKET        reduce using rule 46 (factor -> LPAREN expression RPAREN .)
-    RPAREN          reduce using rule 46 (factor -> LPAREN expression RPAREN .)
-    TO              reduce using rule 46 (factor -> LPAREN expression RPAREN .)
-
-
-state 100
-
-    (48) factor -> ID LBRACKET expression . RBRACKET
-    (39) expression -> expression . PLUS term
-    (40) expression -> expression . MINUS term
-
-    RBRACKET        shift and go to state 107
-    PLUS            shift and go to state 80
-    MINUS           shift and go to state 81
-
-
-state 101
 
     (35) if_statement -> IF LPAREN expression RPAREN . LBRACE statement_list RBRACE
     (36) if_statement -> IF LPAREN expression RPAREN . LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE
 
-    LBRACE          shift and go to state 108
+    LBRACE          shift and go to state 113
 
 
-state 102
+state 100
 
     (37) while_statement -> WHILE LPAREN expression RPAREN . DO LBRACE statement_list RBRACE
 
-    DO              shift and go to state 109
+    DO              shift and go to state 114
 
 
-state 103
+state 101
 
     (38) for_statement -> FOR ID LBRACKET expression . TO expression RBRACKET DO LBRACE statement_list RBRACE
     (39) expression -> expression . PLUS term
     (40) expression -> expression . MINUS term
 
-    TO              shift and go to state 110
-    PLUS            shift and go to state 80
-    MINUS           shift and go to state 81
+    TO              shift and go to state 115
+    PLUS            shift and go to state 88
+    MINUS           shift and go to state 89
 
 
-state 104
+state 102
 
     (12) function -> FUNCTION type ID LPAREN param_list RPAREN SEMICOLON vars statement_list . RBRACE
     (16) statement_list -> statement_list . statement
@@ -1545,30 +1464,120 @@ state 104
     (26) assignment -> . ID LBRACKET expression RBRACKET ASSIGN expression
     (27) function_call -> . ID LPAREN arg_list RPAREN
     (30) read_statement -> . READ id_list
-    (31) write_statement -> . WRITE write_list
+    (31) write_statement -> . WRITE LPAREN write_list RPAREN
     (35) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
     (36) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE
     (37) while_statement -> . WHILE LPAREN expression RPAREN DO LBRACE statement_list RBRACE
     (38) for_statement -> . FOR ID LBRACKET expression TO expression RBRACKET DO LBRACE statement_list RBRACE
 
-    RBRACE          shift and go to state 111
-    ID              shift and go to state 43
-    READ            shift and go to state 44
-    WRITE           shift and go to state 45
-    IF              shift and go to state 46
-    WHILE           shift and go to state 47
-    FOR             shift and go to state 48
+    RBRACE          shift and go to state 116
+    ID              shift and go to state 45
+    READ            shift and go to state 46
+    WRITE           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    FOR             shift and go to state 50
 
-    statement                      shift and go to state 35
-    assignment                     shift and go to state 36
-    function_call                  shift and go to state 37
-    read_statement                 shift and go to state 38
-    write_statement                shift and go to state 39
-    if_statement                   shift and go to state 40
-    while_statement                shift and go to state 41
-    for_statement                  shift and go to state 42
+    statement                      shift and go to state 37
+    assignment                     shift and go to state 38
+    function_call                  shift and go to state 39
+    read_statement                 shift and go to state 40
+    write_statement                shift and go to state 41
+    if_statement                   shift and go to state 42
+    while_statement                shift and go to state 43
+    for_statement                  shift and go to state 44
+
+state 103
+
+    (48) factor -> ID LBRACKET expression . RBRACKET
+    (39) expression -> expression . PLUS term
+    (40) expression -> expression . MINUS term
+
+    RBRACKET        shift and go to state 117
+    PLUS            shift and go to state 88
+    MINUS           shift and go to state 89
+
+
+state 104
+
+    (39) expression -> expression PLUS term .
+    (43) term -> term . TIMES factor
+    (44) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 39 (expression -> expression PLUS term .)
+    MINUS           reduce using rule 39 (expression -> expression PLUS term .)
+    SEMICOLON       reduce using rule 39 (expression -> expression PLUS term .)
+    RBRACKET        reduce using rule 39 (expression -> expression PLUS term .)
+    RPAREN          reduce using rule 39 (expression -> expression PLUS term .)
+    COMMA           reduce using rule 39 (expression -> expression PLUS term .)
+    TO              reduce using rule 39 (expression -> expression PLUS term .)
+    TIMES           shift and go to state 90
+    DIVIDE          shift and go to state 91
+
 
 state 105
+
+    (40) expression -> expression MINUS term .
+    (43) term -> term . TIMES factor
+    (44) term -> term . DIVIDE factor
+
+    PLUS            reduce using rule 40 (expression -> expression MINUS term .)
+    MINUS           reduce using rule 40 (expression -> expression MINUS term .)
+    SEMICOLON       reduce using rule 40 (expression -> expression MINUS term .)
+    RBRACKET        reduce using rule 40 (expression -> expression MINUS term .)
+    RPAREN          reduce using rule 40 (expression -> expression MINUS term .)
+    COMMA           reduce using rule 40 (expression -> expression MINUS term .)
+    TO              reduce using rule 40 (expression -> expression MINUS term .)
+    TIMES           shift and go to state 90
+    DIVIDE          shift and go to state 91
+
+
+state 106
+
+    (43) term -> term TIMES factor .
+
+    TIMES           reduce using rule 43 (term -> term TIMES factor .)
+    DIVIDE          reduce using rule 43 (term -> term TIMES factor .)
+    PLUS            reduce using rule 43 (term -> term TIMES factor .)
+    MINUS           reduce using rule 43 (term -> term TIMES factor .)
+    SEMICOLON       reduce using rule 43 (term -> term TIMES factor .)
+    RBRACKET        reduce using rule 43 (term -> term TIMES factor .)
+    RPAREN          reduce using rule 43 (term -> term TIMES factor .)
+    COMMA           reduce using rule 43 (term -> term TIMES factor .)
+    TO              reduce using rule 43 (term -> term TIMES factor .)
+
+
+state 107
+
+    (44) term -> term DIVIDE factor .
+
+    TIMES           reduce using rule 44 (term -> term DIVIDE factor .)
+    DIVIDE          reduce using rule 44 (term -> term DIVIDE factor .)
+    PLUS            reduce using rule 44 (term -> term DIVIDE factor .)
+    MINUS           reduce using rule 44 (term -> term DIVIDE factor .)
+    SEMICOLON       reduce using rule 44 (term -> term DIVIDE factor .)
+    RBRACKET        reduce using rule 44 (term -> term DIVIDE factor .)
+    RPAREN          reduce using rule 44 (term -> term DIVIDE factor .)
+    COMMA           reduce using rule 44 (term -> term DIVIDE factor .)
+    TO              reduce using rule 44 (term -> term DIVIDE factor .)
+
+
+state 108
+
+    (46) factor -> LPAREN expression RPAREN .
+
+    TIMES           reduce using rule 46 (factor -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 46 (factor -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 46 (factor -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 46 (factor -> LPAREN expression RPAREN .)
+    SEMICOLON       reduce using rule 46 (factor -> LPAREN expression RPAREN .)
+    RBRACKET        reduce using rule 46 (factor -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 46 (factor -> LPAREN expression RPAREN .)
+    COMMA           reduce using rule 46 (factor -> LPAREN expression RPAREN .)
+    TO              reduce using rule 46 (factor -> LPAREN expression RPAREN .)
+
+
+state 109
 
     (26) assignment -> ID LBRACKET expression RBRACKET ASSIGN . expression
     (39) expression -> . expression PLUS term
@@ -1584,17 +1593,17 @@ state 105
     (49) factor -> . INTEGER
     (50) factor -> . FLOATING_POINT
 
-    STRING          shift and go to state 75
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
+    STRING          shift and go to state 71
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
 
-    expression                     shift and go to state 112
-    term                           shift and go to state 63
-    factor                         shift and go to state 64
+    expression                     shift and go to state 118
+    term                           shift and go to state 70
+    factor                         shift and go to state 72
 
-state 106
+state 110
 
     (28) arg_list -> arg_list COMMA expression .
     (39) expression -> expression . PLUS term
@@ -1602,26 +1611,35 @@ state 106
 
     RPAREN          reduce using rule 28 (arg_list -> arg_list COMMA expression .)
     COMMA           reduce using rule 28 (arg_list -> arg_list COMMA expression .)
-    PLUS            shift and go to state 80
-    MINUS           shift and go to state 81
+    PLUS            shift and go to state 88
+    MINUS           shift and go to state 89
 
 
-state 107
+state 111
 
-    (48) factor -> ID LBRACKET expression RBRACKET .
+    (32) write_list -> write_list COMMA expression .
+    (39) expression -> expression . PLUS term
+    (40) expression -> expression . MINUS term
 
-    TIMES           reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
-    DIVIDE          reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
-    PLUS            reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
-    MINUS           reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
-    COMMA           reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
-    SEMICOLON       reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
-    RBRACKET        reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
-    RPAREN          reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
-    TO              reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
+    RPAREN          reduce using rule 32 (write_list -> write_list COMMA expression .)
+    COMMA           reduce using rule 32 (write_list -> write_list COMMA expression .)
+    PLUS            shift and go to state 88
+    MINUS           shift and go to state 89
 
 
-state 108
+state 112
+
+    (34) write_list -> ID COMMA expression .
+    (39) expression -> expression . PLUS term
+    (40) expression -> expression . MINUS term
+
+    RPAREN          reduce using rule 34 (write_list -> ID COMMA expression .)
+    COMMA           reduce using rule 34 (write_list -> ID COMMA expression .)
+    PLUS            shift and go to state 88
+    MINUS           shift and go to state 89
+
+
+state 113
 
     (35) if_statement -> IF LPAREN expression RPAREN LBRACE . statement_list RBRACE
     (36) if_statement -> IF LPAREN expression RPAREN LBRACE . statement_list RBRACE ELSE LBRACE statement_list RBRACE
@@ -1637,17 +1655,17 @@ state 108
     WHILE           reduce using rule 51 (empty -> .)
     FOR             reduce using rule 51 (empty -> .)
 
-    statement_list                 shift and go to state 113
-    empty                          shift and go to state 31
+    statement_list                 shift and go to state 119
+    empty                          shift and go to state 33
 
-state 109
+state 114
 
     (37) while_statement -> WHILE LPAREN expression RPAREN DO . LBRACE statement_list RBRACE
 
-    LBRACE          shift and go to state 114
+    LBRACE          shift and go to state 120
 
 
-state 110
+state 115
 
     (38) for_statement -> FOR ID LBRACKET expression TO . expression RBRACKET DO LBRACE statement_list RBRACE
     (39) expression -> . expression PLUS term
@@ -1663,17 +1681,17 @@ state 110
     (49) factor -> . INTEGER
     (50) factor -> . FLOATING_POINT
 
-    STRING          shift and go to state 75
-    LPAREN          shift and go to state 65
-    ID              shift and go to state 66
-    INTEGER         shift and go to state 67
-    FLOATING_POINT  shift and go to state 68
+    STRING          shift and go to state 71
+    LPAREN          shift and go to state 73
+    ID              shift and go to state 68
+    INTEGER         shift and go to state 74
+    FLOATING_POINT  shift and go to state 75
 
-    expression                     shift and go to state 115
-    term                           shift and go to state 63
-    factor                         shift and go to state 64
+    expression                     shift and go to state 121
+    term                           shift and go to state 70
+    factor                         shift and go to state 72
 
-state 111
+state 116
 
     (12) function -> FUNCTION type ID LPAREN param_list RPAREN SEMICOLON vars statement_list RBRACE .
 
@@ -1681,18 +1699,33 @@ state 111
     FUNCTION        reduce using rule 12 (function -> FUNCTION type ID LPAREN param_list RPAREN SEMICOLON vars statement_list RBRACE .)
 
 
-state 112
+state 117
+
+    (48) factor -> ID LBRACKET expression RBRACKET .
+
+    TIMES           reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
+    DIVIDE          reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
+    PLUS            reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
+    MINUS           reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
+    SEMICOLON       reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
+    RBRACKET        reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
+    RPAREN          reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
+    COMMA           reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
+    TO              reduce using rule 48 (factor -> ID LBRACKET expression RBRACKET .)
+
+
+state 118
 
     (26) assignment -> ID LBRACKET expression RBRACKET ASSIGN expression .
     (39) expression -> expression . PLUS term
     (40) expression -> expression . MINUS term
 
     SEMICOLON       reduce using rule 26 (assignment -> ID LBRACKET expression RBRACKET ASSIGN expression .)
-    PLUS            shift and go to state 80
-    MINUS           shift and go to state 81
+    PLUS            shift and go to state 88
+    MINUS           shift and go to state 89
 
 
-state 113
+state 119
 
     (35) if_statement -> IF LPAREN expression RPAREN LBRACE statement_list . RBRACE
     (36) if_statement -> IF LPAREN expression RPAREN LBRACE statement_list . RBRACE ELSE LBRACE statement_list RBRACE
@@ -1708,30 +1741,30 @@ state 113
     (26) assignment -> . ID LBRACKET expression RBRACKET ASSIGN expression
     (27) function_call -> . ID LPAREN arg_list RPAREN
     (30) read_statement -> . READ id_list
-    (31) write_statement -> . WRITE write_list
+    (31) write_statement -> . WRITE LPAREN write_list RPAREN
     (35) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
     (36) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE
     (37) while_statement -> . WHILE LPAREN expression RPAREN DO LBRACE statement_list RBRACE
     (38) for_statement -> . FOR ID LBRACKET expression TO expression RBRACKET DO LBRACE statement_list RBRACE
 
-    RBRACE          shift and go to state 116
-    ID              shift and go to state 43
-    READ            shift and go to state 44
-    WRITE           shift and go to state 45
-    IF              shift and go to state 46
-    WHILE           shift and go to state 47
-    FOR             shift and go to state 48
+    RBRACE          shift and go to state 122
+    ID              shift and go to state 45
+    READ            shift and go to state 46
+    WRITE           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    FOR             shift and go to state 50
 
-    statement                      shift and go to state 35
-    assignment                     shift and go to state 36
-    function_call                  shift and go to state 37
-    read_statement                 shift and go to state 38
-    write_statement                shift and go to state 39
-    if_statement                   shift and go to state 40
-    while_statement                shift and go to state 41
-    for_statement                  shift and go to state 42
+    statement                      shift and go to state 37
+    assignment                     shift and go to state 38
+    function_call                  shift and go to state 39
+    read_statement                 shift and go to state 40
+    write_statement                shift and go to state 41
+    if_statement                   shift and go to state 42
+    while_statement                shift and go to state 43
+    for_statement                  shift and go to state 44
 
-state 114
+state 120
 
     (37) while_statement -> WHILE LPAREN expression RPAREN DO LBRACE . statement_list RBRACE
     (16) statement_list -> . statement_list statement
@@ -1746,21 +1779,21 @@ state 114
     WHILE           reduce using rule 51 (empty -> .)
     FOR             reduce using rule 51 (empty -> .)
 
-    statement_list                 shift and go to state 117
-    empty                          shift and go to state 31
+    statement_list                 shift and go to state 123
+    empty                          shift and go to state 33
 
-state 115
+state 121
 
     (38) for_statement -> FOR ID LBRACKET expression TO expression . RBRACKET DO LBRACE statement_list RBRACE
     (39) expression -> expression . PLUS term
     (40) expression -> expression . MINUS term
 
-    RBRACKET        shift and go to state 118
-    PLUS            shift and go to state 80
-    MINUS           shift and go to state 81
+    RBRACKET        shift and go to state 124
+    PLUS            shift and go to state 88
+    MINUS           shift and go to state 89
 
 
-state 116
+state 122
 
     (35) if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE .
     (36) if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE . ELSE LBRACE statement_list RBRACE
@@ -1772,10 +1805,10 @@ state 116
     IF              reduce using rule 35 (if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE .)
     WHILE           reduce using rule 35 (if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE .)
     FOR             reduce using rule 35 (if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE .)
-    ELSE            shift and go to state 119
+    ELSE            shift and go to state 125
 
 
-state 117
+state 123
 
     (37) while_statement -> WHILE LPAREN expression RPAREN DO LBRACE statement_list . RBRACE
     (16) statement_list -> statement_list . statement
@@ -1790,44 +1823,44 @@ state 117
     (26) assignment -> . ID LBRACKET expression RBRACKET ASSIGN expression
     (27) function_call -> . ID LPAREN arg_list RPAREN
     (30) read_statement -> . READ id_list
-    (31) write_statement -> . WRITE write_list
+    (31) write_statement -> . WRITE LPAREN write_list RPAREN
     (35) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
     (36) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE
     (37) while_statement -> . WHILE LPAREN expression RPAREN DO LBRACE statement_list RBRACE
     (38) for_statement -> . FOR ID LBRACKET expression TO expression RBRACKET DO LBRACE statement_list RBRACE
 
-    RBRACE          shift and go to state 120
-    ID              shift and go to state 43
-    READ            shift and go to state 44
-    WRITE           shift and go to state 45
-    IF              shift and go to state 46
-    WHILE           shift and go to state 47
-    FOR             shift and go to state 48
+    RBRACE          shift and go to state 126
+    ID              shift and go to state 45
+    READ            shift and go to state 46
+    WRITE           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    FOR             shift and go to state 50
 
-    statement                      shift and go to state 35
-    assignment                     shift and go to state 36
-    function_call                  shift and go to state 37
-    read_statement                 shift and go to state 38
-    write_statement                shift and go to state 39
-    if_statement                   shift and go to state 40
-    while_statement                shift and go to state 41
-    for_statement                  shift and go to state 42
+    statement                      shift and go to state 37
+    assignment                     shift and go to state 38
+    function_call                  shift and go to state 39
+    read_statement                 shift and go to state 40
+    write_statement                shift and go to state 41
+    if_statement                   shift and go to state 42
+    while_statement                shift and go to state 43
+    for_statement                  shift and go to state 44
 
-state 118
+state 124
 
     (38) for_statement -> FOR ID LBRACKET expression TO expression RBRACKET . DO LBRACE statement_list RBRACE
 
-    DO              shift and go to state 121
+    DO              shift and go to state 127
 
 
-state 119
+state 125
 
     (36) if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE . LBRACE statement_list RBRACE
 
-    LBRACE          shift and go to state 122
+    LBRACE          shift and go to state 128
 
 
-state 120
+state 126
 
     (37) while_statement -> WHILE LPAREN expression RPAREN DO LBRACE statement_list RBRACE .
 
@@ -1840,14 +1873,14 @@ state 120
     FOR             reduce using rule 37 (while_statement -> WHILE LPAREN expression RPAREN DO LBRACE statement_list RBRACE .)
 
 
-state 121
+state 127
 
     (38) for_statement -> FOR ID LBRACKET expression TO expression RBRACKET DO . LBRACE statement_list RBRACE
 
-    LBRACE          shift and go to state 123
+    LBRACE          shift and go to state 129
 
 
-state 122
+state 128
 
     (36) if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE . statement_list RBRACE
     (16) statement_list -> . statement_list statement
@@ -1862,10 +1895,10 @@ state 122
     WHILE           reduce using rule 51 (empty -> .)
     FOR             reduce using rule 51 (empty -> .)
 
-    statement_list                 shift and go to state 124
-    empty                          shift and go to state 31
+    statement_list                 shift and go to state 130
+    empty                          shift and go to state 33
 
-state 123
+state 129
 
     (38) for_statement -> FOR ID LBRACKET expression TO expression RBRACKET DO LBRACE . statement_list RBRACE
     (16) statement_list -> . statement_list statement
@@ -1880,10 +1913,10 @@ state 123
     WHILE           reduce using rule 51 (empty -> .)
     FOR             reduce using rule 51 (empty -> .)
 
-    statement_list                 shift and go to state 125
-    empty                          shift and go to state 31
+    statement_list                 shift and go to state 131
+    empty                          shift and go to state 33
 
-state 124
+state 130
 
     (36) if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list . RBRACE
     (16) statement_list -> statement_list . statement
@@ -1898,30 +1931,30 @@ state 124
     (26) assignment -> . ID LBRACKET expression RBRACKET ASSIGN expression
     (27) function_call -> . ID LPAREN arg_list RPAREN
     (30) read_statement -> . READ id_list
-    (31) write_statement -> . WRITE write_list
+    (31) write_statement -> . WRITE LPAREN write_list RPAREN
     (35) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
     (36) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE
     (37) while_statement -> . WHILE LPAREN expression RPAREN DO LBRACE statement_list RBRACE
     (38) for_statement -> . FOR ID LBRACKET expression TO expression RBRACKET DO LBRACE statement_list RBRACE
 
-    RBRACE          shift and go to state 126
-    ID              shift and go to state 43
-    READ            shift and go to state 44
-    WRITE           shift and go to state 45
-    IF              shift and go to state 46
-    WHILE           shift and go to state 47
-    FOR             shift and go to state 48
+    RBRACE          shift and go to state 132
+    ID              shift and go to state 45
+    READ            shift and go to state 46
+    WRITE           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    FOR             shift and go to state 50
 
-    statement                      shift and go to state 35
-    assignment                     shift and go to state 36
-    function_call                  shift and go to state 37
-    read_statement                 shift and go to state 38
-    write_statement                shift and go to state 39
-    if_statement                   shift and go to state 40
-    while_statement                shift and go to state 41
-    for_statement                  shift and go to state 42
+    statement                      shift and go to state 37
+    assignment                     shift and go to state 38
+    function_call                  shift and go to state 39
+    read_statement                 shift and go to state 40
+    write_statement                shift and go to state 41
+    if_statement                   shift and go to state 42
+    while_statement                shift and go to state 43
+    for_statement                  shift and go to state 44
 
-state 125
+state 131
 
     (38) for_statement -> FOR ID LBRACKET expression TO expression RBRACKET DO LBRACE statement_list . RBRACE
     (16) statement_list -> statement_list . statement
@@ -1936,30 +1969,30 @@ state 125
     (26) assignment -> . ID LBRACKET expression RBRACKET ASSIGN expression
     (27) function_call -> . ID LPAREN arg_list RPAREN
     (30) read_statement -> . READ id_list
-    (31) write_statement -> . WRITE write_list
+    (31) write_statement -> . WRITE LPAREN write_list RPAREN
     (35) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE
     (36) if_statement -> . IF LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE
     (37) while_statement -> . WHILE LPAREN expression RPAREN DO LBRACE statement_list RBRACE
     (38) for_statement -> . FOR ID LBRACKET expression TO expression RBRACKET DO LBRACE statement_list RBRACE
 
-    RBRACE          shift and go to state 127
-    ID              shift and go to state 43
-    READ            shift and go to state 44
-    WRITE           shift and go to state 45
-    IF              shift and go to state 46
-    WHILE           shift and go to state 47
-    FOR             shift and go to state 48
+    RBRACE          shift and go to state 133
+    ID              shift and go to state 45
+    READ            shift and go to state 46
+    WRITE           shift and go to state 47
+    IF              shift and go to state 48
+    WHILE           shift and go to state 49
+    FOR             shift and go to state 50
 
-    statement                      shift and go to state 35
-    assignment                     shift and go to state 36
-    function_call                  shift and go to state 37
-    read_statement                 shift and go to state 38
-    write_statement                shift and go to state 39
-    if_statement                   shift and go to state 40
-    while_statement                shift and go to state 41
-    for_statement                  shift and go to state 42
+    statement                      shift and go to state 37
+    assignment                     shift and go to state 38
+    function_call                  shift and go to state 39
+    read_statement                 shift and go to state 40
+    write_statement                shift and go to state 41
+    if_statement                   shift and go to state 42
+    while_statement                shift and go to state 43
+    for_statement                  shift and go to state 44
 
-state 126
+state 132
 
     (36) if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE .
 
@@ -1972,7 +2005,7 @@ state 126
     FOR             reduce using rule 36 (if_statement -> IF LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE .)
 
 
-state 127
+state 133
 
     (38) for_statement -> FOR ID LBRACKET expression TO expression RBRACKET DO LBRACE statement_list RBRACE .
 
@@ -1984,8 +2017,3 @@ state 127
     WHILE           reduce using rule 38 (for_statement -> FOR ID LBRACKET expression TO expression RBRACKET DO LBRACE statement_list RBRACE .)
     FOR             reduce using rule 38 (for_statement -> FOR ID LBRACKET expression TO expression RBRACKET DO LBRACE statement_list RBRACE .)
 
-WARNING: 
-WARNING: Conflicts:
-WARNING: 
-WARNING: reduce/reduce conflict in state 62 resolved using rule (write_list -> STRING)
-WARNING: rejected rule (expression -> STRING) in state 62

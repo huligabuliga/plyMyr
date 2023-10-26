@@ -16,11 +16,11 @@ def p_vars(p):
 
 def p_var_list(p):
     '''var_list : var_list type id_list SEMICOLON
-                | empty'''
+                | type id_list SEMICOLON'''
     if len(p) == 5:
         p[0] = p[1] + [(p[2], p[3])]
     else:
-        p[0] = []
+        p[0] = [(p[1], p[2])]
 
 
 def p_type(p):
@@ -116,18 +116,18 @@ def p_read_statement(p):
 
 
 def p_write_statement(p):
-    '''write_statement : WRITE write_list'''
-    p[0] = ('write', p[2])
+    '''write_statement : WRITE LPAREN write_list RPAREN'''
+    p[0] = ('write', p[3])
 
 
 def p_write_list(p):
     '''write_list : write_list COMMA expression
                   | STRING
-                  | expression'''
+                  | ID COMMA expression'''
     if len(p) == 4:
-        p[0] = p[1] + [p[3]]
+        p[0] = p[1] + [(p[3],)]
     else:
-        p[0] = [p[1]]
+        p[0] = [(p[1],)]
 
 
 def p_if_statement(p):
