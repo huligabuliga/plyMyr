@@ -2,6 +2,7 @@
 from MyR_parser import parser
 from MyR_lexer import tokens
 
+
 # Define the symbol table
 symbol_table = {}
 
@@ -63,109 +64,75 @@ semantic_cube = {
     ('bool', 'bool', '!='): 'bool',
 }
 
+# Define a helper function for checking types
 
-def check_types_ast(ast, symbol_table=symbol_table, semantic_cube=semantic_cube):
-    """
-    Check the types of the AST nodes recursively.
-    """
-    node_type = ast[0]
+
+def check_types(node):
+    if node is None:
+        return
+    print('Processing node:', node)
+    node_type = node[0]
+    if isinstance(node, int):
+        return 'int'
 
     if node_type == 'program':
-        # Check types of vars and main
-        check_types_ast(ast[2], symbol_table, semantic_cube)
-        check_types_ast(ast[4], symbol_table, semantic_cube)
+        # Check the types of the global variables, functions, and main
+        for child in node[2:]:
+            check_types(child)
 
+    # vars
     elif node_type == 'vars':
-        # Add variables to symbol table
-        for var in ast[1]:
-            var_type, var_names = var
+        # Add the variables to the symbol table
+        for var_declaration in node[1]:
+            var_type, var_names = var_declaration
             for var_name in var_names:
                 symbol_table[var_name] = var_type
+        print('Finished processing node:', node)
+        print('Symbol table:', symbol_table)
 
-    elif node_type == 'main':
-        # Check types of statements in main
-        for statement in ast[1]:
-            check_types_ast(statement, symbol_table, semantic_cube)
+    # function
+    elif node_type == 'function':
+        if node and len(node) > 1:
+            # Add the parameters to the symbol table
+            for function in node[1]:
+                if len(function) >= 2:
+                    function_type, function_name = function
+                    symbol_table[function_name] = function_type
+            print('Finished processing node:', node)
 
     elif node_type == 'assignment':
-        # Check types of expression and variable
-        var_name = ast[1]
-        var_type = symbol_table.get(var_name)
-        expr_type = check_types_ast(ast[2], symbol_table, semantic_cube)
-
-        if var_type is None:
-            # Variable not defined
-            print(f"Error: Variable '{var_name}' not defined.")
-        elif var_type != expr_type:
-            # Type mismatch
-            print(
-                f"Error: Type mismatch in assignment to variable '{var_name}'.")
-
-    elif node_type == 'write':
-        # Check types of expression
-        check_types_ast(ast[1], symbol_table, semantic_cube)
+        # Check that the type of the expression matches the type of the variable
+        var_name = node[1]
+        expression = node[2]
+        if check_types(expression) != symbol_table[var_name]:
+            raise TypeError('Type mismatch in assignment')
+        # Return the type of the variable
+        return symbol_table[var_name]
 
     elif node_type == 'binop':
-        # Check types of left and right expressions
-        left_type = check_types_ast(ast[2], symbol_table, semantic_cube)
-        right_type = check_types_ast(ast[3], symbol_table, semantic_cube)
-        op = ast[1]
-        result_type = semantic_cube.get((left_type, right_type, op))
-
+        # Check that the operation is valid for the types of the operands
+        operator = node[1]
+        left = node[2]
+        right = node[3]
+        left_type = check_types(left)
+        right_type = check_types(right)
+        result_type = semantic_cube.get((left_type, right_type, operator))
         if result_type is None:
-            # Invalid operation
-            print(
-                f"Error: Invalid operation '{op}' between types '{left_type}' and '{right_type}'.")
-            return None
-        else:
-            return result_type
+            raise TypeError('Invalid operation for types')
+        return result_type
 
-    elif node_type == 'unop':
-        # Check type of expression
-        expr_type = check_types_ast(ast[2], symbol_table, semantic_cube)
-        op = ast[1]
+    elif node_type == 'variable':
+        # Check that the variable is in the symbol table
+        var_name = node[1]
+        if var_name not in symbol_table:
+            raise NameError('Undefined variable')
+        return symbol_table[var_name]
 
-        if op == '-':
-            if expr_type not in ['int', 'float']:
-                # Invalid operation
-                print(
-                    f"Error: Invalid operation '{op}' on type '{expr_type}'.")
-                return None
-            else:
-                return expr_type
-        elif op == '!':
-            if expr_type != 'bool':
-                # Invalid operation
-                print(
-                    f"Error: Invalid operation '{op}' on type '{expr_type}'.")
-                return None
-            else:
-                return 'bool'
-
-    elif node_type == 'var':
-        # Check if variable is defined
-        var_name = ast[1]
-        var_type = symbol_table.get(var_name)
-
-        if var_type is None:
-            # Variable not defined
-            print(f"Error: Variable '{var_name}' not defined.")
-            return None
-        else:
-            return var_type
-
-    elif node_type == 'const':
-        # Return type of constant
-        const_type = ast[1]
-
-        if const_type in ['int', 'float', 'bool', 'string']:
-            return const_type
-        else:
-            # Invalid constant type
-            print(f"Error: Invalid constant type '{const_type}'.")
-            return None
+    elif node_type == 'constant':
+        # Return the type of the constant
+        return node[1]
 
     else:
-        # Invalid node type
-        print(f"Error: Invalid node type '{node_type}'.")
-        return None
+        # Recursively check the types of the children of the node
+        for child in node[1:]:
+            check_types(child)

@@ -5,8 +5,13 @@ from MyR_lexer import tokens
 
 
 def p_program(p):
-    '''program : PROGRAM ID SEMICOLON vars function_list main_function'''
-    p[0] = ('program', p[2], p[4], p[5], p[6])
+    '''program : PROGRAM ID SEMICOLON vars function_list main_function
+               | PROGRAM ID SEMICOLON vars empty main_function'''
+    if len(p) == 7:
+        p[0] = ('program', p[2], p[4], p[5], p[6])
+    else:
+        # Replace empty function_list with []
+        p[0] = ('program', p[2], p[4], [], p[6])
 
 
 def p_vars(p):
