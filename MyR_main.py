@@ -1,9 +1,10 @@
 from MyR_lexer import lexer
 from MyR_parser import parser
 from semantic_analysis import check_types
+from semantic_analysis import symbol_table
 
 # Initialize the symbol table
-symbol_table = {}
+# symbol_table = {}
 
 # Read input from file
 with open('sample1.myr', 'r') as f:

@@ -70,10 +70,10 @@ semantic_cube = {
 def check_types(node):
     if node is None:
         return
-    print('Processing node:', node)
-    node_type = node[0]
     if isinstance(node, int):
         return 'int'
+    print('Processing node:', node)
+    node_type = node[0]
 
     if node_type == 'program':
         # Check the types of the global variables, functions, and main
@@ -104,7 +104,11 @@ def check_types(node):
         # Check that the type of the expression matches the type of the variable
         var_name = node[1]
         expression = node[2]
-        if check_types(expression) != symbol_table[var_name]:
+        if isinstance(expression, str) and expression.isdigit():  # Modify this line
+            expression_type = 'int'  # Add this line
+        else:
+            expression_type = check_types(expression)
+        if expression_type != symbol_table[var_name]:
             raise TypeError('Type mismatch in assignment')
         # Return the type of the variable
         return symbol_table[var_name]
