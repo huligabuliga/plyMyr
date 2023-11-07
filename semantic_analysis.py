@@ -64,6 +64,17 @@ semantic_cube = {
     ('bool', 'bool', '!='): 'bool',
 }
 
+# Define a helper function for checking if a string is a float
+
+
+def is_float(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
+
+
 # Define a helper function for checking types
 
 
@@ -104,8 +115,15 @@ def check_types(node):
         # Check that the type of the expression matches the type of the variable
         var_name = node[1]
         expression = node[2]
-        if isinstance(expression, str) and expression.isdigit():  # Modify this line
-            expression_type = 'int'  # Add this line
+        if isinstance(expression, str):
+            if expression.isdigit():
+                expression_type = 'int'
+            elif is_float(expression):
+                expression_type = 'float'
+            elif expression.lower() in ['true', 'false']:
+                expression_type = 'bool'
+            else:
+                expression_type = check_types(expression)
         else:
             expression_type = check_types(expression)
         if expression_type != symbol_table[var_name]:
@@ -114,15 +132,18 @@ def check_types(node):
         return symbol_table[var_name]
 
     elif node_type == 'binop':
-        # Check that the operation is valid for the types of the operands
         operator = node[1]
-        left = node[2]
-        right = node[3]
-        left_type = check_types(left)
-        right_type = check_types(right)
-        result_type = semantic_cube.get((left_type, right_type, operator))
+        operand1 = node[2]
+        operand2 = node[3]
+        # Get the types of the operands from the symbol table
+        operand1_type = symbol_table[operand1]
+        operand2_type = symbol_table[operand2]
+        # Use the semantic cube to determine the type of the result
+        result_type = semantic_cube.get(
+            (operand1_type, operand2_type, operator))
         if result_type is None:
             raise TypeError('Invalid operation for types')
+        print(f"Generated code: {operand1} {operator} {operand2}")
         return result_type
 
     elif node_type == 'variable':

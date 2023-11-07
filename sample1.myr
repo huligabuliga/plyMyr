@@ -1,9 +1,14 @@
 program my_program;
 vars
-    int x, y;
+    int x, y, d;
+    float i, k;
+    bool z;
 
 main(){
     x = 10;
     y = 10;
-    write("string", x + y);
+    i = 1.02;
+    k = 1.05;
+    
+    d = x + y;
 }

@@ -2,6 +2,7 @@ from MyR_lexer import lexer
 from MyR_parser import parser
 from semantic_analysis import check_types
 from semantic_analysis import symbol_table
+from code_generation import generate_code
 
 # Initialize the symbol table
 # symbol_table = {}
@@ -19,6 +20,11 @@ if parse_tree is not None:
         check_types(parse_tree)
         print('Semantic analysis successful!')
         print('Symbol table:', symbol_table)
+
+        # Perform code generation
+        code = generate_code(parse_tree)
+        print('generated code:')
+        print(code)
     except Exception as e:
         print('Semantic error detected:', str(e))
 else:

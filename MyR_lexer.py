@@ -47,7 +47,7 @@ tokens = [
     'ID', 'SEMICOLON',
     'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'COMMA', 'ASSIGN', 'PLUS', 'MINUS',
     'TIMES', 'DIVIDE', 'AND', 'OR', 'NOT', 'EQ', 'NE', 'LT', 'LE', 'GT', 'GE',
-    'STRING', 'INTEGER', 'FLOATING_POINT', 'BOOLEAN',
+    'STRING', 'INTEGER', 'FLOATING_POINT',
 ]
 
 tokens += reserved.values()
@@ -60,7 +60,6 @@ t_VARS = r'VARS'
 t_INT = r'int'
 t_FLOAT = r'float'
 t_CHAR = r'char'
-t_BOOL = r'bool'
 t_FUNCTION = r'function'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
@@ -104,7 +103,7 @@ t_THICKNESS = r'THICKNESS'
 # t_STRING = r'"[^"]*"'
 t_INTEGER = r'\d+'
 t_FLOATING_POINT = r'\d+\.\d+'
-t_BOOLEAN = r'true|false'
+t_BOOL = r'true|false'
 t_MAIN = r'main'
 
 # define id with reserved words

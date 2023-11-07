@@ -31,6 +31,7 @@ def p_var_list(p):
 def p_type(p):
     '''type : INT
             | FLOAT
+            | BOOL
             | CHAR'''
     p[0] = p[1]
 
@@ -130,9 +131,9 @@ def p_write_list(p):
                   | STRING
                   | ID COMMA expression'''
     if len(p) == 4:
-        p[0] = p[1] + [(p[3],)]
+        p[0] = p[1] + [(p[3])]
     else:
-        p[0] = [(p[1],)]
+        p[0] = [(p[1])]
 
 
 def p_if_statement(p):
