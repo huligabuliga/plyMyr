@@ -47,22 +47,14 @@ def generate_code(node):
         return code
 
     elif node_type == 'write':
-        codes = []  # Initialize list to hold generated code for each subnode
-        for subnode in node[1:]:
-            if isinstance(subnode, str):
-                code = subnode
-            elif isinstance(subnode, tuple) and subnode[0] == 'binop':
-                operator = subnode[1]
-                operand1 = subnode[2]
-                operand2 = subnode[3]
-                code = f'{operand1} {operator} {operand2}'
-            else:
-                code = generate_code(subnode)  # Generate code for the subnode
-            codes.append(code)  # Append generated code to list
-        # Construct the print statement
-        print_statement = 'print(' + ', '.join(codes) + ')'
-        print(f"Generated code: {print_statement}")
-        return print_statement
+        # Get the list of arguments
+        args = node[1]
+        # Generate code for each argument
+        generated_args = [generate_code(arg) for arg in args]
+        # Join the generated code for the arguments with commas
+        args_code = ', '.join(generated_args)
+        # Return the generated code for the write statement
+        return f"print({args_code})"
 
     elif node_type == 'vars':
         vars = node[1]

@@ -1,7 +1,7 @@
 program my_program;
 vars
     int x, y, d;
-    float i, k;
+    float i, k, game;
     bool z;
 
 main(){
@@ -9,6 +9,9 @@ main(){
     y = 10;
     i = 1.02;
     k = 1.05;
-    
+    z = false;
+    game = k * i;
     d = x + y;
+
+    write("string", "string2", d);
 }

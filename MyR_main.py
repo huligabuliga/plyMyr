@@ -25,6 +25,7 @@ if parse_tree is not None:
         code = generate_code(parse_tree)
         print('generated code:')
         print(code)
+        exec(code)
     except Exception as e:
         print('Semantic error detected:', str(e))
 else:

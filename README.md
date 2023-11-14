@@ -10,3 +10,9 @@ Lexer and Parser working, seems promising, can do sample 1 parse successful and 
 
 # 2nd avance 24 oct- 4 nov
 Semantic analysis working, functions will be added later... saves variables in a symbol table working in MyR format. Syntax errors happens as well :) 
+
+# 3rd avance 4-nov - 7 nov
+code generation at 80%. working missing functions, and loops. 
+
+
+
