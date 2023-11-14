@@ -14,5 +14,6 @@ Semantic analysis working, functions will be added later... saves variables in a
 # 3rd avance 4-nov - 7 nov
 code generation at 80%. working missing functions, and loops. 
 
-
+# 4th avance 7-nov 13nov 
+updated code gen, more testing needed, will start on virt machine tomorrow, looks promising... 
 
