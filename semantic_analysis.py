@@ -135,9 +135,25 @@ def check_types(node):
         operator = node[1]
         operand1 = node[2]
         operand2 = node[3]
-        # Get the types of the operands from the symbol table
-        operand1_type = symbol_table[operand1]
-        operand2_type = symbol_table[operand2]
+        # Get the types of the operands
+        if isinstance(operand1, str):
+            if operand1.isdigit():
+                operand1_type = 'int'
+            elif is_float(operand1):
+                operand1_type = 'float'
+            elif operand1.lower() in ['true', 'false']:
+                operand1_type = 'bool'
+            else:
+                operand1_type = symbol_table[operand1]
+        if isinstance(operand2, str):
+            if operand2.isdigit():
+                operand2_type = 'int'
+            elif is_float(operand2):
+                operand2_type = 'float'
+            elif operand2.lower() in ['true', 'false']:
+                operand2_type = 'bool'
+            else:
+                operand2_type = symbol_table[operand2]
         # Use the semantic cube to determine the type of the result
         result_type = semantic_cube.get(
             (operand1_type, operand2_type, operator))
@@ -156,6 +172,16 @@ def check_types(node):
     elif node_type == 'constant':
         # Return the type of the constant
         return node[1]
+
+    elif node_type == 'if':
+        # Check the types of the condition and the body
+        condition = node[1]
+        body = node[2]
+        condition_type = check_types(condition)
+        if condition_type != 'bool':
+            raise TypeError('Condition in if statement must be boolean')
+        for statement in body:
+            check_types(statement)
 
     else:
         # Recursively check the types of the children of the node

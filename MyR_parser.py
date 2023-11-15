@@ -137,12 +137,12 @@ def p_write_list(p):
 
 
 def p_if_statement(p):
-    '''if_statement : IF LPAREN expression RPAREN LBRACE statement_list RBRACE
-                    | IF LPAREN expression RPAREN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE'''
-    if len(p) == 8:
-        p[0] = ('if', p[3], p[6])
+    '''if_statement : IF LPAREN expression RPAREN THEN LBRACE statement_list RBRACE
+                    | IF LPAREN expression RPAREN THEN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE'''
+    if len(p) == 9:
+        p[0] = ('if', p[3], p[7])
     else:
-        p[0] = ('if_else', p[3], p[6], p[10])
+        p[0] = ('if_else', p[3], p[7], p[11])
 
 
 def p_while_statement(p):
@@ -158,6 +158,14 @@ def p_for_statement(p):
 def p_expression(p):
     '''expression : expression PLUS term
                   | expression MINUS term
+                  | expression EQ term
+                  | expression NE term
+                  | expression LT term
+                  | expression LE term
+                  | expression GT term
+                  | expression GE term
+                  | expression AND term
+                  | expression OR term
                   | term
                   | STRING'''
     if len(p) == 4:

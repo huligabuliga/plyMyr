@@ -12,6 +12,11 @@ main(){
     z = false;
     game = k * i;
     d = x + y;
-
-    write("string", "string2", d);
+    
+    if (x == 20) then { 
+        write("string", "string2", d, "string3"); 
+    }
+    else {
+       write("2001");
+    }
 }
