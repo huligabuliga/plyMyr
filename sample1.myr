@@ -7,16 +7,24 @@ vars
 main(){
     x = 10;
     y = 10;
-    i = 1.02;
+    i = 1.023;
     k = 1.05;
     z = false;
     game = k * i;
     d = x + y;
+    d = d + y;
     
-    if (x == 20) then { 
+    for i [1 to 10] do {
+        write("for loop iteration", i);
+        i = i + 3;
+    }
+
+    if (x == 10) then { 
         write("string", "string2", d, "string3"); 
     }
     else {
        write("2001");
     }
+
+    write("hello world", game, z);
 }

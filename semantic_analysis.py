@@ -173,6 +173,7 @@ def check_types(node):
         # Return the type of the constant
         return node[1]
 
+    # if statement
     elif node_type == 'if':
         # Check the types of the condition and the body
         condition = node[1]
@@ -182,6 +183,25 @@ def check_types(node):
             raise TypeError('Condition in if statement must be boolean')
         for statement in body:
             check_types(statement)
+
+    # for statement
+    elif node_type == 'for':
+        # The loop variable is a temporary variable used only inside the for loop
+        var_name = node[1]
+        symbol_table[var_name] = 'int'
+
+        # Check that the start and end expressions are integers
+        start_expr = node[2]
+        end_expr = node[3]
+        if not start_expr.isdigit() or not end_expr.isdigit():
+            raise TypeError(f"Invalid loop range {start_expr} to {end_expr}")
+
+        # Check that the statements inside the loop are valid and well-formed
+        for statement in node[4]:
+            check_types(statement)
+
+        # Remove the loop variable from the symbol table after the loop
+        del symbol_table[var_name]
 
     else:
         # Recursively check the types of the children of the node

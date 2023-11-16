@@ -11,6 +11,8 @@ temp_counter = 0
 def generate_code(node):
     global label_counter
     global temp_counter
+
+    temp_var_counter = 0  # Initialize temp_var_counter
     code = []
 
     if isinstance(node, str):
@@ -98,6 +100,38 @@ def generate_code(node):
             code.append(statement_code)
         code.append(f"L{label_counter+3}:")
         label_counter += 3
+
+    # for loops
+    elif node_type == 'for':
+        var_name, start_expr, end_expr, statements = node[1:]
+        start_label = label_counter
+        end_label = label_counter + 1
+        label_counter += 2
+
+        # Initialize the loop variable
+        code.append(f"{var_name} = {start_expr}")
+
+        # Start label
+        code.append(f"L{start_label}:")
+
+        # Generate code for the loop condition
+        temp_var = f"T{temp_var_counter}"
+        temp_var_counter += 1
+        code.append(f"{temp_var} = {var_name} > {end_expr}")
+
+        # Check the loop condition
+        code.append(f"if {temp_var} goto L{end_label}")
+
+        # Generate code for the statements inside the loop
+        for statement in statements:
+            statement_code = generate_code(statement)
+            code.append(statement_code)
+
+        # Go back to the start label
+        code.append(f"goto L{start_label}")
+
+        # End label
+        code.append(f"L{end_label}:")
 
     elif node_type == 'write':
         _, args = node

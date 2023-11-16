@@ -1,0 +1,11 @@
+# to do 
+
+for loops
+
+while do loops
+
+functions 
+
+Arrays
+
+LINEA, PUNTO, CIRCULO, ARCO, PENUP, PENDOWN, COLOR, GROSOR, LIMPIAR, etc
