@@ -6,6 +6,9 @@ from MyR_lexer import tokens
 # Define the symbol table
 symbol_table = {}
 
+# define function table
+function_table = {}
+
 # Define the semantic cube
 semantic_cube = {
     ('int', 'int', '+'): 'int',
@@ -87,9 +90,53 @@ def check_types(node):
     node_type = node[0]
 
     if node_type == 'program':
-        # Check the types of the global variables, functions, and main
-        for child in node[2:]:
-            check_types(child)
+        # Check the types of all nodes
+        for child in node[1:]:
+            if isinstance(child, tuple):
+                if child[0] == 'function':
+                    # Process function nodes
+                    check_types(child)
+                elif child[0] == 'vars':
+                    # Process variable nodes
+                    check_types(child)
+                elif child[0] == 'main':
+                    # Process the main part
+                    check_types(child)
+            elif isinstance(child, list):
+                # Process lists of function declarations
+                for function in child:
+                    check_types(function)
+
+        # Process variables after functions
+        for child in node[1:]:
+            if isinstance(child, tuple) and child[0] == 'vars':
+                # Process variable nodes
+                check_types(child)
+
+        # Process the main part after functions and variables
+        for child in node[1:]:
+            if isinstance(child, tuple) and child[0] == 'main':
+                # Process the main part
+                check_types(child)
+
+    elif node_type == 'function':
+        print(f"Processing function node: {node}")
+        if node and len(node) > 1:
+            print(f"Processing function node: {node}")
+            # Add the function to the function table
+            _, return_type, function_name, params, vars, body, return_stmt = node
+            param_types = [param[0] for param in params]
+            function_table[function_name] = {
+                'return_type': return_type,
+                'param_types': param_types
+            }
+            # Add the parameters to the symbol table
+            for param in params:
+                param_type, param_name = param
+                symbol_table[param_name] = param_type
+            print('Finished processing node:', node)
+            # print function table
+            print('Function table:', function_table)
 
     # vars
     elif node_type == 'vars':
@@ -101,21 +148,32 @@ def check_types(node):
         print('Finished processing node:', node)
         print('Symbol table:', symbol_table)
 
-    # function
-    elif node_type == 'function':
-        if node and len(node) > 1:
-            # Add the parameters to the symbol table
-            for function in node[1]:
-                if len(function) >= 2:
-                    function_type, function_name = function
-                    symbol_table[function_name] = function_type
-            print('Finished processing node:', node)
-
     elif node_type == 'assignment':
         # Check that the type of the expression matches the type of the variable
         var_name = node[1]
         expression = node[2]
-        if isinstance(expression, str):
+        if isinstance(expression, tuple) and expression[0] == 'function_call':
+            # Handle function calls
+            function_name = expression[1]
+            function_args = expression[2]
+            # Look up the function in the function table and check the arguments
+            # Check if the function has been declared
+            if function_name not in function_table:
+                raise NameError(f"Function '{function_name}' not declared")
+            function_info = function_table[function_name]
+            expected_param_types = function_info['param_types']
+            if len(function_args) != len(expected_param_types):
+                raise TypeError(
+                    'Incorrect number of arguments in function call')
+            for arg, expected_type in zip(function_args, expected_param_types):
+                if arg not in symbol_table:
+                    raise TypeError(f"Variable '{arg}' not defined")
+                arg_type = symbol_table[arg]
+                if arg_type != expected_type:
+                    raise TypeError('Type mismatch in function call')
+            # The type of the expression is the return type of the function
+            expression_type = function_info['return_type']
+        elif isinstance(expression, str):
             if expression.isdigit():
                 expression_type = 'int'
             elif is_float(expression):

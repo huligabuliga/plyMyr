@@ -17,12 +17,20 @@ main(){
     for i [1 to 10] do {
         write("for loop iteration", i);
         i = i + 3;
-
+        for j [1 to 20] do {
+            write("second for loop", j);
+            j = j + 3;
+        }
     }
 
     while (y < 20) do {
         write("while loop number:", y);
         y = y + 2;
+
+        while (x < 20) do {
+            write("while loop 2", x);
+            x = x + 10;
+        }
     }
 
     if (x == 10) then { 

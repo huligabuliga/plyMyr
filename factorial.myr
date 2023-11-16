@@ -2,7 +2,7 @@ program factorial;
 vars 
     int n;
 
-function int factorial(n) {
+function int factorial(n){
     if (n == 0) {
         return 1;
     } else {

@@ -1,0 +1,19 @@
+program functiontest;
+vars
+    int x, y, s;
+    
+
+function int add (int a, int b)
+vars
+    int result; 
+{      
+        result = a + b;
+        return (result);
+}
+
+main() {
+        x = 20;
+        y = 30;
+        s = add(x, y);
+        write("sum is", s);
+}

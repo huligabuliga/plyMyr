@@ -49,14 +49,20 @@ def p_function_list(p):
     '''function_list : function_list function
                      | empty'''
     if len(p) == 3:
-        p[0] = p[1] + [p[2]]
+        # If p[1] is a list of functions, extend it with the new function
+        if isinstance(p[1], list):
+            p[1].extend([p[2]])
+            p[0] = p[1]
+        # If p[1] is a single function, create a new list with p[1] and p[2]
+        else:
+            p[0] = [p[1], p[2]]
     else:
         p[0] = []
 
 
 def p_function(p):
-    '''function : FUNCTION type ID LPAREN param_list RPAREN SEMICOLON vars statement_list RBRACE'''
-    p[0] = ('function', p[2], p[3], p[5], p[8], p[9])
+    '''function : FUNCTION type ID LPAREN param_list RPAREN vars LBRACE statement_list return_statement RBRACE'''
+    p[0] = ('function', p[2], p[3], p[5], p[7], p[9], p[10])
 
 
 def p_param_list(p):
@@ -89,7 +95,8 @@ def p_statement(p):
                  | write_statement SEMICOLON
                  | if_statement
                  | while_statement
-                 | for_statement'''
+                 | for_statement
+                 | return_statement SEMICOLON'''
     p[0] = p[1]
 
 
@@ -155,6 +162,11 @@ def p_for_statement(p):
     p[0] = ('for', p[2], p[4], p[6], p[10])
 
 
+def p_return_statement(p):
+    '''return_statement : RETURN LPAREN expression RPAREN SEMICOLON'''
+    p[0] = ('return', p[3])
+
+
 def p_expression(p):
     '''expression : expression PLUS term
                   | expression MINUS term
@@ -177,6 +189,7 @@ def p_expression(p):
 def p_term(p):
     '''term : term TIMES factor
             | term DIVIDE factor
+            | function_call
             | factor'''
     if len(p) == 4:
         p[0] = ('binop', p[2], p[1], p[3])
@@ -203,8 +216,14 @@ def p_empty(p):
 
 def p_error(p):
     if p:
-        print("Syntax error at line %d, column %d: Unexpected token %s" %
-              (p.lineno, find_column(p), p.value))
+        line_start = max(p.lexer.lexdata.rfind('\n', 0, p.lexpos), 0)
+        line_end = p.lexer.lexdata.find('\n', p.lexpos, len(p.lexer.lexdata))
+        if line_end < 0:
+            line_end = len(p.lexer.lexdata)
+        line = p.lexer.lexdata[line_start:line_end]
+        print("Syntax error at line %d, column %d: Unexpected token %s of type %s" %
+              (p.lineno, find_column(p), p.value, type(p.value).__name__))
+        print("Line of input: %s" % line.strip())
     else:
         print("Syntax error: Unexpected end of input")
 
