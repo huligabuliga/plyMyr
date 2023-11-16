@@ -1,8 +1,8 @@
 # to do 
 
-for loops
+for loops // done, need test nested for loops
 
-while do loops
+while do loops //done, need test nested while loops
 
 functions 
 

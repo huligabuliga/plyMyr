@@ -133,6 +133,31 @@ def generate_code(node):
         # End label
         code.append(f"L{end_label}:")
 
+    elif node_type == 'while':
+        condition, statements = node[1], node[2]
+        start_label = label_counter
+        end_label = label_counter + 1
+        label_counter += 2
+
+        # Start label
+        code.append(f"L{start_label}:")
+
+        # Generate code for the loop condition
+        condition_code, condition_var = generate_code(condition)
+        code.append(condition_code)
+        code.append(f"if not {condition_var} goto L{end_label}")
+
+        # Generate code for the statements inside the loop
+        for statement in statements:
+            statement_code = generate_code(statement)
+            code.append(statement_code)
+
+        # Go back to the start label
+        code.append(f"goto L{start_label}")
+
+        # End label
+        code.append(f"L{end_label}:")
+
     elif node_type == 'write':
         _, args = node
         for arg in args:

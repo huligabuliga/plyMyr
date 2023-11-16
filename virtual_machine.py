@@ -17,10 +17,17 @@ class VirtualMachine:
                     self.vars[var] = eval(
                         expr, {'true': True, 'false': False}, self.vars)
                 elif line.startswith('if'):
-                    _, condition, _, label = line.split()
-                    if eval(condition, {'true': True, 'false': False}, self.vars):
-                        self.pc = self.find_label(label)
-                        continue
+                    parts = line.split()
+                    if 'not' in parts:
+                        _, _, condition, _, label = parts
+                        if not eval(condition, {'true': True, 'false': False}, self.vars):
+                            self.pc = self.find_label(label)
+                            continue
+                    else:
+                        _, condition, _, label = parts
+                        if eval(condition, {'true': True, 'false': False}, self.vars):
+                            self.pc = self.find_label(label)
+                            continue
                 elif line.startswith('goto'):
                     _, label = line.split()
                     self.pc = self.find_label(label)
