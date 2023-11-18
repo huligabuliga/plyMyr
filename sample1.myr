@@ -1,6 +1,6 @@
 program my_program;
 vars
-    int x, y, d;
+    int x, y, d, f, g, l, u;
     float i, k, game;
     bool z;
 
@@ -13,6 +13,10 @@ main(){
     game = k * i;
     d = x + y;
     d = d + y;
+    g = 20;
+    l = 30;
+    u = 70
+    f = g + l + u;
     
     for i [1 to 10] do {
         write("for loop iteration", i);
@@ -33,7 +37,7 @@ main(){
         }
     }
 
-    if (x == 10) then { 
+    if (k == 1.05) then { 
         write("string", "string2", d, "string3"); 
     }
     else {

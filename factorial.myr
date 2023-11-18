@@ -1,8 +1,11 @@
 program factorial;
 vars 
-    int n;
+    int num;
 
-function int factorial(n){
+function int factorial(int n)
+vars
+    int result;
+{
     if (n == 0) {
         return 1;
     } else {

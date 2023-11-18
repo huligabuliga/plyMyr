@@ -1,8 +1,10 @@
 # to do 
 
-for loops // done, need test nested for loops
+multiple assignation left factor etc... 
 
-while do loops //done, need test nested while loops
+for loops // done, need test nested for loops check
+
+while do loops //done, need test nested while loops check
 
 functions 
 

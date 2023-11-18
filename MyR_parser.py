@@ -61,8 +61,12 @@ def p_function_list(p):
 
 
 def p_function(p):
-    '''function : FUNCTION type ID LPAREN param_list RPAREN vars LBRACE statement_list return_statement RBRACE'''
-    p[0] = ('function', p[2], p[3], p[5], p[7], p[9], p[10])
+    '''function : FUNCTION type ID LPAREN param_list RPAREN vars LBRACE statement_list return_statement RBRACE
+                | FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list return_statement RBRACE'''
+    if len(p) == 12:
+        p[0] = ('function', p[2], p[3], p[5], p[7], p[9], p[10])
+    else:
+        p[0] = ('function', p[2], p[3], p[5], None, p[8], p[9])
 
 
 def p_param_list(p):

@@ -1,6 +1,6 @@
 program functiontest;
 vars
-    int x, y, s;
+    int x, y, s, c, f;
     
 
 function int add (int a, int b)
@@ -11,9 +11,26 @@ vars
         return (result);
 }
 
+function int subtract (int a, int b)
+vars 
+    int result; 
+{
+    result = a - b;
+    return (result);
+}
+
+function int giveA (int a) 
+{
+    return (a);
+}
+
 main() {
         x = 20;
         y = 30;
-        s = add(x, y);
-        write("sum is", s);
+        c = add(x, y);
+        s = subtract(x, y);
+        f = giveA(x);
+        write("sum is", c);
+        write("subtract is", s);
+        write("a is", f);
 }

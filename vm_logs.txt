@@ -1,0 +1,213 @@
+Processing function definition: FUNCTION int add(DECLARE int a, DECLARE int b)
+Extracted parameter names: ['a', 'b']
+Updated self.functions: {'add': {'return_type': 'int', 'start_pc': 6, 'params': ['a', 'b']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}}
+Processing function definition: FUNCTION int subtract(DECLARE int a, DECLARE int b)
+Extracted parameter names: ['a', 'b']
+Updated self.functions: {'add': {'return_type': 'int', 'start_pc': 6, 'params': ['a', 'b']}, 'subtract': {'return_type': 'int', 'start_pc': 12, 'params': ['a', 'b']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}}
+Processing function definition: FUNCTION int giveA(DECLARE int a)
+Extracted parameter names: ['a']
+Updated self.functions: {'add': {'return_type': 'int', 'start_pc': 6, 'params': ['a', 'b']}, 'subtract': {'return_type': 'int', 'start_pc': 12, 'params': ['a', 'b']}, 'giveA': {'return_type': 'int', 'start_pc': 18, 'params': ['a']}}
+Processing assignment: x = 20
+Processing assignment: y = 30
+Processing assignment: T3 = callfunc add 2
+Processing function call: callfunc add 2
+Pushing 2 parameters onto the stack
+Popping parameter from the stack
+Popping parameter from the stack
+Setting program counter to 6
+Executing function add
+Reversed parameters: [20, 30]
+Assigned a = 20
+Assigned b = 30
+Function's argument names: ['a', 'b']
+Function's variables: {'a': 20, 'b': 30}
+Assigned result = 20
+Current vars after parameter assignment: {'a': 20, 'b': 30, 'result': 20}
+Assigned result = 30
+Processing assignment: c = T3
+Processing assignment: T4 = callfunc subtract 2
+Processing function call: callfunc subtract 2
+Pushing 2 parameters onto the stack
+Popping parameter from the stack
+Popping parameter from the stack
+Setting program counter to 12
+Executing function subtract
+Reversed parameters: [20, 30]
+Assigned a = 20
+Assigned b = 30
+Function's argument names: ['a', 'b']
+Function's variables: {'a': 20, 'b': 30}
+Assigned result = 20
+Current vars after parameter assignment: {'a': 20, 'b': 30, 'result': 20}
+Assigned result = 30
+Processing assignment: s = T4
+Processing assignment: T5 = callfunc giveA 1
+Processing function call: callfunc giveA 1
+Pushing 1 parameters onto the stack
+Popping parameter from the stack
+Setting program counter to 18
+Executing function giveA
+Reversed parameters: [20]
+Assigned a = 20
+Function's argument names: ['a']
+Function's variables: {'a': 20}
+Current vars after parameter assignment: {'a': 20}
+Processing function definition: FUNCTION int add(DECLARE int a, DECLARE int b)
+Extracted parameter names: ['a', 'b']
+Updated self.functions: {'add': {'return_type': 'int', 'start_pc': 6, 'params': ['a', 'b']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}}
+Processing function definition: FUNCTION int subtract(DECLARE int a, DECLARE int b)
+Extracted parameter names: ['a', 'b']
+Updated self.functions: {'add': {'return_type': 'int', 'start_pc': 6, 'params': ['a', 'b']}, 'subtract': {'return_type': 'int', 'start_pc': 12, 'params': ['a', 'b']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}}
+Processing function definition: FUNCTION int giveA(DECLARE int a)
+Extracted parameter names: ['a']
+Updated self.functions: {'add': {'return_type': 'int', 'start_pc': 6, 'params': ['a', 'b']}, 'subtract': {'return_type': 'int', 'start_pc': 12, 'params': ['a', 'b']}, 'giveA': {'return_type': 'int', 'start_pc': 18, 'params': ['a']}}
+Processing assignment: x = 20
+Processing assignment: y = 30
+Processing assignment: T3 = callfunc add 2
+Processing function call: callfunc add 2
+Pushing 2 parameters onto the stack
+Popping parameter from the stack
+Popping parameter from the stack
+Setting program counter to 6
+Executing function add
+Reversed parameters: [20, 30]
+Assigned a = 20
+Assigned b = 30
+Function's argument names: ['a', 'b']
+Function's variables: {'a': 20, 'b': 30}
+Assigned result = 20
+Current vars after parameter assignment: {'a': 20, 'b': 30, 'result': 20}
+Processing assignment: c = T3
+Processing assignment: T4 = callfunc subtract 2
+Processing function call: callfunc subtract 2
+Pushing 2 parameters onto the stack
+Popping parameter from the stack
+Popping parameter from the stack
+Setting program counter to 12
+Executing function subtract
+Reversed parameters: [20, 30]
+Assigned a = 20
+Assigned b = 30
+Function's argument names: ['a', 'b']
+Function's variables: {'a': 20, 'b': 30}
+Assigned result = 20
+Current vars after parameter assignment: {'a': 20, 'b': 30, 'result': 20}
+Processing assignment: s = T4
+Processing assignment: T5 = callfunc giveA 1
+Processing function call: callfunc giveA 1
+Pushing 1 parameters onto the stack
+Popping parameter from the stack
+Setting program counter to 18
+Executing function giveA
+Reversed parameters: [20]
+Assigned a = 20
+Function's argument names: ['a']
+Function's variables: {'a': 20}
+Current vars after parameter assignment: {'a': 20}
+Processing assignment: f = T5
+Processing function definition: FUNCTION int add(DECLARE int a, DECLARE int b)
+Extracted parameter names: ['a', 'b']
+Updated self.functions: {'add': {'return_type': 'int', 'start_pc': 6, 'params': ['a', 'b']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}}
+Processing function definition: FUNCTION int subtract(DECLARE int a, DECLARE int b)
+Extracted parameter names: ['a', 'b']
+Updated self.functions: {'add': {'return_type': 'int', 'start_pc': 6, 'params': ['a', 'b']}, 'subtract': {'return_type': 'int', 'start_pc': 12, 'params': ['a', 'b']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}}
+Processing function definition: FUNCTION int giveA(DECLARE int a)
+Extracted parameter names: ['a']
+Updated self.functions: {'add': {'return_type': 'int', 'start_pc': 6, 'params': ['a', 'b']}, 'subtract': {'return_type': 'int', 'start_pc': 12, 'params': ['a', 'b']}, 'giveA': {'return_type': 'int', 'start_pc': 18, 'params': ['a']}}
+Processing assignment: x = 20
+Processing assignment: y = 30
+Processing assignment: T3 = callfunc add 2
+Processing function call: callfunc add 2
+Pushing 2 parameters onto the stack
+Popping parameter from the stack
+Popping parameter from the stack
+Setting program counter to 6
+Executing function add
+Reversed parameters: [20, 30]
+Assigned a = 20
+Assigned b = 30
+Function's argument names: ['a', 'b']
+Function's variables: {'a': 20, 'b': 30}
+Assigned result = 20
+Current vars after parameter assignment: {'a': 20, 'b': 30, 'result': 20}
+Processing assignment: c = T3
+Processing assignment: T4 = callfunc subtract 2
+Processing function call: callfunc subtract 2
+Pushing 2 parameters onto the stack
+Popping parameter from the stack
+Popping parameter from the stack
+Setting program counter to 12
+Executing function subtract
+Reversed parameters: [20, 30]
+Assigned a = 20
+Assigned b = 30
+Function's argument names: ['a', 'b']
+Function's variables: {'a': 20, 'b': 30}
+Assigned result = 20
+Current vars after parameter assignment: {'a': 20, 'b': 30, 'result': 20}
+Processing assignment: s = T4
+Processing assignment: T5 = callfunc giveA 1
+Processing function call: callfunc giveA 1
+Pushing 1 parameters onto the stack
+Popping parameter from the stack
+Setting program counter to 18
+Executing function giveA
+Reversed parameters: [20]
+Assigned a = 20
+Function's argument names: ['a']
+Function's variables: {'a': 20}
+Current vars after parameter assignment: {'a': 20}
+Processing assignment: f = T5
+Processing function definition: FUNCTION int add(DECLARE int a, DECLARE int b)
+Extracted parameter names: ['a', 'b']
+Updated self.functions: {'add': {'return_type': 'int', 'start_pc': 6, 'params': ['a', 'b']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}}
+Processing function definition: FUNCTION int subtract(DECLARE int a, DECLARE int b)
+Extracted parameter names: ['a', 'b']
+Updated self.functions: {'add': {'return_type': 'int', 'start_pc': 6, 'params': ['a', 'b']}, 'subtract': {'return_type': 'int', 'start_pc': 12, 'params': ['a', 'b']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}}
+Processing function definition: FUNCTION int giveA(DECLARE int a)
+Extracted parameter names: ['a']
+Updated self.functions: {'add': {'return_type': 'int', 'start_pc': 6, 'params': ['a', 'b']}, 'subtract': {'return_type': 'int', 'start_pc': 12, 'params': ['a', 'b']}, 'giveA': {'return_type': 'int', 'start_pc': 18, 'params': ['a']}}
+Processing assignment: x = 20
+Processing assignment: y = 30
+Processing assignment: T3 = callfunc add 2
+Processing function call: callfunc add 2
+Pushing 2 parameters onto the stack
+Popping parameter from the stack
+Popping parameter from the stack
+Setting program counter to 6
+Executing function add
+Reversed parameters: [20, 30]
+Assigned a = 20
+Assigned b = 30
+Function's argument names: ['a', 'b']
+Function's variables: {'a': 20, 'b': 30}
+Assigned result = 20
+Current vars after parameter assignment: {'a': 20, 'b': 30, 'result': 20}
+Processing assignment: c = T3
+Processing assignment: T4 = callfunc subtract 2
+Processing function call: callfunc subtract 2
+Pushing 2 parameters onto the stack
+Popping parameter from the stack
+Popping parameter from the stack
+Setting program counter to 12
+Executing function subtract
+Reversed parameters: [20, 30]
+Assigned a = 20
+Assigned b = 30
+Function's argument names: ['a', 'b']
+Function's variables: {'a': 20, 'b': 30}
+Assigned result = 20
+Current vars after parameter assignment: {'a': 20, 'b': 30, 'result': 20}
+Processing assignment: s = T4
+Processing assignment: T5 = callfunc giveA 1
+Processing function call: callfunc giveA 1
+Pushing 1 parameters onto the stack
+Popping parameter from the stack
+Setting program counter to 18
+Executing function giveA
+Reversed parameters: [20]
+Assigned a = 20
+Function's argument names: ['a']
+Function's variables: {'a': 20}
+Current vars after parameter assignment: {'a': 20}
+Processing assignment: f = T5

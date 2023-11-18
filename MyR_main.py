@@ -32,7 +32,7 @@ if parse_tree is not None:
         print(code)
         # Run the generated code on the virtual machine
         print('Running the generated code on the virtual machine:')
-        vm = VirtualMachine(code)
+        vm = VirtualMachine(code, symbol_table, function_table)
         vm.run()
     except Exception as e:
         print('Semantic error detected:', str(e))

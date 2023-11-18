@@ -27,8 +27,12 @@ def generate_code(node):
             _, _, vars_node, functions_node, main_node = node
             if vars_node is not None:
                 code.append(generate_code(vars_node))
+            # code.append("goto L1")
             if functions_node is not None:
-                code.append(generate_code(functions_node))
+                for function_node in functions_node:
+                    function_code = generate_code(function_node)
+                    if function_code is not None:
+                        code.append(function_code)
             code.append(generate_code(main_node))
             return "\n".join(code)
 
@@ -48,30 +52,47 @@ def generate_code(node):
             return_code, return_var = generate_code(return_node)
             function_code = [
                 f"FUNCTION {return_type} {function_name}({', '.join(param_declarations)})",
-                generate_code(vars_node),
-                *body_code,
-                return_code,
-                f"RETURN {return_var}",
-                "END FUNCTION"
             ]
+            if vars_node is not None:
+                vars_code = generate_code(vars_node)
+                if vars_code:  # Check if vars_code is not an empty string
+                    function_code.append(vars_code)
+            function_code.extend(body_code)
+            function_code.append(return_code)
+            function_code.append("END FUNCTION")
             return "\n".join(function_code)
+
+        elif node_type == 'return':
+            _, return_var = node
+            return f"RETURN {return_var}", return_var
 
         elif node_type == 'main':
             _, statements = node
+            label_counter += 1  # Increment label counter
+            # Use label counter to create label
+            # code.append(f"L{label_counter}:")
             for statement in statements:
                 statement_code = generate_code(statement)
                 if isinstance(statement_code, tuple):
                     code.extend(statement_code[0].split('\n'))
                 else:
                     code.append(statement_code)
+            label_counter += 1  # Increment label counter
+            # Use label counter to create label
+            code.append(f"END PROGRAM")
 
         elif node_type == 'function_call':
             function_name, args = node[1], node[2]
             for arg in args:
                 arg_code = generate_code(arg)
-                code.append(arg_code)
-            code.append(f"call {function_name}, {len(args)}")
-            return "\n".join(code), function_name
+                if isinstance(arg_code, tuple):
+                    code.extend(arg_code[0].split('\n'))
+                else:
+                    code.append(f"param {arg_code}")
+            temp_counter += 1  # Increment temp counter
+            temp_var = f"T{temp_counter}"  # Create temp variable
+            code.append(f"{temp_var} = callfunc {function_name} {len(args)}")
+            return "\n".join(code), temp_var
 
         elif node_type == 'assignment':
             var_name, expr = node[1], node[2]
