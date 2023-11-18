@@ -194,7 +194,9 @@ def check_types(node):
         operand1 = node[2]
         operand2 = node[3]
         # Get the types of the operands
-        if isinstance(operand1, str):
+        if isinstance(operand1, tuple):
+            operand1_type = check_types(operand1)
+        elif isinstance(operand1, str):
             if operand1.isdigit():
                 operand1_type = 'int'
             elif is_float(operand1):
@@ -203,7 +205,9 @@ def check_types(node):
                 operand1_type = 'bool'
             else:
                 operand1_type = symbol_table[operand1]
-        if isinstance(operand2, str):
+        if isinstance(operand2, tuple):
+            operand2_type = check_types(operand2)
+        elif isinstance(operand2, str):
             if operand2.isdigit():
                 operand2_type = 'int'
             elif is_float(operand2):

@@ -15,8 +15,8 @@ main(){
     d = d + y;
     g = 20;
     l = 30;
-    u = 70
-    f = g + l + u;
+    u = 70;
+    f = g * l + u;
     
     for i [1 to 10] do {
         write("for loop iteration", i);
@@ -45,4 +45,6 @@ main(){
     }
 
     write("hello world", game, z);
+
+    write("value of f: ", f);
 }

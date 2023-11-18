@@ -3,6 +3,17 @@ from MyR_lexer import tokens
 
 # Define the grammar rules for the MyR language
 
+# precedence
+precedence = (
+    ('left', 'OR'),
+    ('left', 'AND'),
+    ('left', 'EQ', 'NE'),
+    ('left', 'LT', 'LE', 'GT', 'GE'),
+    ('left', 'PLUS', 'MINUS'),
+    ('left', 'TIMES', 'DIVIDE'),
+    # ('right', 'UMINUS'),  # Unary minus operator
+)
+
 
 def p_program(p):
     '''program : PROGRAM ID SEMICOLON vars function_list main_function

@@ -12,7 +12,7 @@ import traceback
 # symbol_table = {}
 
 # Read input from file
-with open('sample3.myr', 'r') as f:
+with open('sample1.myr', 'r') as f:
     input_str = f.read()
 
 # Parse input
