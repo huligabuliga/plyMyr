@@ -1,99 +1,177 @@
-python MyR_main.py
-WARNING: Token 'ARC' defined, but not used
-WARNING: Token 'CIRCLE' defined, but not used
-WARNING: Token 'COLOR' defined, but not used
-WARNING: Token 'LINE' defined, but not used
-WARNING: Token 'NOT' defined, but not used
-WARNING: Token 'PENDOWN' defined, but not used
-WARNING: Token 'PENUP' defined, but not used
-WARNING: Token 'POINT' defined, but not used
-WARNING: Token 'THICKNESS' defined, but not used
-WARNING: Token 'VOID' defined, but not used
-WARNING: There are 10 unused tokens
-Generating LALR tables
-WARNING: 1 shift/reduce conflict
-Processing node: ('program', 'functiontest', ('vars', [('int', ['x', 'y', 's', 'c', 'f'])]), [('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b'))], ('return', 'result')), ('function', 
-'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b'))], ('return', 'result')), ('function', 'int', 'giveA', [('int', 'a')], [], '{', [])], ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('function_call', 'add', ['x', 'y'])), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's'])]))
+Processing node: ('program', 'functiontest', ('vars', [('int', ['x', 'y', 's', 'c', 'f'])]), [('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b')), ('return', 'result')]), ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b')), ('return', 'result')]), ('function', 'int', 'giveA', [('int', 'a')], None, [('return', 'a')]), ('function', 'int', 'giveOne', [], None, [('return', '1')]), ('function', 'int', 'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')]), ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))]), ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])]), ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')]), ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))]), ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])], ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])]))
 Processing node: ('vars', [('int', ['x', 'y', 's', 'c', 'f'])])
 Finished processing node: ('vars', [('int', ['x', 'y', 's', 'c', 'f'])])
 Symbol table: {'x': 'int', 'y': 'int', 's': 'int', 'c': 'int', 'f': 'int'}
-Processing node: ('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b'))], ('return', 'result'))
-Processing function node: ('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b'))], ('return', 'result'))
-Processing function node: ('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b'))], ('return', 'result'))
-Finished processing node: ('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b'))], ('return', 'result'))
+Processing node: ('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b')), ('return', 'result')])
+Processing function node: ('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b')), ('return', 'result')])
+Processing function node: ('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b')), ('return', 'result')])
+Finished processing node: ('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b')), ('return', 'result')])
 Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}}
-Processing node: ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b'))], ('return', 'result'))
-Processing function node: ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 
-'result', ('binop', '-', 'a', 'b'))], ('return', 'result'))
-Processing function node: ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 
-'result', ('binop', '-', 'a', 'b'))], ('return', 'result'))
-Finished processing node: ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 
-'result', ('binop', '-', 'a', 'b'))], ('return', 'result'))
-Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 
-'int']}}
-Processing node: ('function', 'int', 'giveA', [('int', 'a')], [], '{', [])
-Processing function node: ('function', 'int', 'giveA', [('int', 'a')], [], '{', [])
-Processing function node: ('function', 'int', 'giveA', [('int', 'a')], [], '{', [])
-Finished processing node: ('function', 'int', 'giveA', [('int', 'a')], [], '{', [])
-Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 
-'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}}
-Processing node: ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('function_call', 'add', ['x', 'y'])), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's'])])
-Processing node: [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('function_call', 'add', ['x', 'y'])), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('write', ['"sum is"', 
-'c']), ('write', ['"subtract is"', 's'])]
+Processing node: ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b')), ('return', 'result')])
+Processing function node: ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b')), ('return', 'result')])
+Processing function node: ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b')), ('return', 'result')])
+Finished processing node: ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b')), ('return', 'result')])
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}}
+Processing node: ('function', 'int', 'giveA', [('int', 'a')], None, [('return', 'a')])
+Processing function node: ('function', 'int', 'giveA', [('int', 'a')], None, [('return', 'a')])
+Processing function node: ('function', 'int', 'giveA', [('int', 'a')], None, [('return', 'a')])
+Finished processing node: ('function', 'int', 'giveA', [('int', 'a')], None, [('return', 'a')])
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}}
+Processing node: ('function', 'int', 'giveOne', [], None, [('return', '1')])
+Processing function node: ('function', 'int', 'giveOne', [], None, [('return', '1')])
+Processing function node: ('function', 'int', 'giveOne', [], None, [('return', '1')])
+Finished processing node: ('function', 'int', 'giveOne', [], None, [('return', '1')])
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}}
+Processing node: ('function', 'int', 'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')])
+Processing function node: ('function', 'int', 'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')])
+Processing function node: ('function', 'int', 'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')])
+Finished processing node: ('function', 'int', 'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')])
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}}
+Processing node: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))])
+Processing function node: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))])
+Processing function node: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))])
+Finished processing node: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))])
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 'int', 'param_types': ['int', 'int']}}
+Processing node: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])])
+Processing function node: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])])
+Processing function node: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])])
+Finished processing node: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])])
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}}
+Processing node: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])
+Processing function node: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])
+Processing function node: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])
+Finished processing node: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}, 'returnFloat': {'return_type': 'float', 'param_types': ['float']}}
+Processing node: ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))])
+Processing function node: ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))])
+Processing function node: ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))])
+Finished processing node: ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))])
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}, 'returnFloat': {'return_type': 'float', 'param_types': ['float']}, 'isGreaterThanTen': {'return_type': 'bool', 'param_types': ['int']}}
+Processing node: ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])
+Processing function node: ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])
+Processing function node: ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])
+Finished processing node: ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}, 'returnFloat': {'return_type': 'float', 'param_types': ['float']}, 'isGreaterThanTen': {'return_type': 'bool', 'param_types': ['int']}, 'printMessage': {'return_type': 'void', 'param_types': []}}
+Processing node: ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 
+'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])])
+Processing node: [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])]
 Processing node: ('assignment', 'y', '30')
-Processing node: ('assignment', 'c', ('function_call', 'add', ['x', 'y']))
+Processing node: ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y'])))
+Processing node: ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))
+Generated code: 5 + ('function_call', 'add', ['x', 'y'])
 Processing node: ('assignment', 's', ('function_call', 'subtract', ['x', 'y']))
 Processing node: ('assignment', 'f', ('function_call', 'giveA', ['x']))
+Processing node: ('assignment', 'f', ('function_call', 'factorial', ['x']))
 Processing node: ('write', ['"sum is"', 'c'])
 Processing node: ['"sum is"', 'c']
 Processing node: c
 Processing node: ('write', ['"subtract is"', 's'])
 Processing node: ['"subtract is"', 's']
 Processing node: s
+Processing node: ('write', ['"a is"', 'f'])
+Processing node: ['"a is"', 'f']
+Processing node: f
 Processing node: ('vars', [('int', ['x', 'y', 's', 'c', 'f'])])
 Finished processing node: ('vars', [('int', ['x', 'y', 's', 'c', 'f'])])
-Symbol table: {'x': 'int', 'y': 'int', 's': 'int', 'c': 'int', 'f': 'int', 'a': 'int', 'b': 'int'}
-Processing node: ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('function_call', 'add', ['x', 'y'])), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's'])])
-Processing node: [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('function_call', 'add', ['x', 'y'])), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('write', ['"sum is"', 
-'c']), ('write', ['"subtract is"', 's'])]
+Symbol table: {'x': 'int', 'y': 'int', 's': 'int', 'c': 'int', 'f': 'int', 'a': 'int', 'b': 'int', 'n': 'int', 'num': 'int'}
+Processing node: ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 
+'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])])
+Processing node: [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])]
 Processing node: ('assignment', 'y', '30')
-Processing node: ('assignment', 'c', ('function_call', 'add', ['x', 'y']))
+Processing node: ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y'])))
+Processing node: ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))
+Generated code: 5 + ('function_call', 'add', ['x', 'y'])
 Processing node: ('assignment', 's', ('function_call', 'subtract', ['x', 'y']))
 Processing node: ('assignment', 'f', ('function_call', 'giveA', ['x']))
+Processing node: ('assignment', 'f', ('function_call', 'factorial', ['x']))
 Processing node: ('write', ['"sum is"', 'c'])
 Processing node: ['"sum is"', 'c']
 Processing node: c
 Processing node: ('write', ['"subtract is"', 's'])
 Processing node: ['"subtract is"', 's']
 Processing node: s
+Processing node: ('write', ['"a is"', 'f'])
+Processing node: ['"a is"', 'f']
+Processing node: f
 Semantic analysis successful!
-Symbol table: {'x': 'int', 'y': 'int', 's': 'int', 'c': 'int', 'f': 'int', 'a': 'int', 'b': 'int'}
-Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 
-'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}}
-Processing node in generation: ('program', 'functiontest', ('vars', [('int', ['x', 'y', 's', 'c', 'f'])]), [('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b'))], ('return', 'result')), ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 
-'a', 'b'))], ('return', 'result')), ('function', 'int', 'giveA', [('int', 'a')], [], '{', [])], ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('function_call', 'add', ['x', 'y'])), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's'])]))      
+Symbol table: {'x': 'int', 'y': 'int', 's': 'int', 'c': 'int', 'f': 'int', 'a': 'int', 'b': 'int', 'n': 'int', 'num': 'int'}
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}, 'returnFloat': {'return_type': 'float', 'param_types': ['float']}, 'isGreaterThanTen': {'return_type': 'bool', 'param_types': ['int']}, 'printMessage': {'return_type': 'void', 'param_types': []}}
+Processing node in generation: ('program', 'functiontest', ('vars', [('int', ['x', 'y', 's', 'c', 'f'])]), [('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b')), ('return', 'result')]), ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b')), ('return', 'result')]), ('function', 'int', 'giveA', [('int', 'a')], None, [('return', 'a')]), ('function', 'int', 'giveOne', [], None, [('return', '1')]), ('function', 'int', 'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')]), ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))]), ('function', 
+'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', 
+'1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])]), ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')]), ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))]), ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])], ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])]))
 Processing node in generation: ('vars', [('int', ['x', 'y', 's', 'c', 'f'])])
-Processing node in generation: ('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 
-'result', ('binop', '+', 'a', 'b'))], ('return', 'result'))
+Processing node in generation: ('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b')), ('return', 'result')])
+Processing node in generation: ('return', 'result')
 Processing node in generation: ('assignment', 'result', ('binop', '+', 'a', 'b'))
 Processing node in generation: ('binop', '+', 'a', 'b')
-Processing node in generation: ('return', 'result')
+Processing node in generation: a
+Processing node in generation: b
 Processing node in generation: ('vars', [('int', ['result'])])
-Processing node in generation: ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b'))], ('return', 'result'))
+Processing node in generation: ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b')), ('return', 'result')])
+Processing node in generation: ('return', 'result')
 Processing node in generation: ('assignment', 'result', ('binop', '-', 'a', 'b'))
 Processing node in generation: ('binop', '-', 'a', 'b')
-Processing node in generation: ('return', 'result')
+Processing node in generation: a
+Processing node in generation: b
 Processing node in generation: ('vars', [('int', ['result'])])
-Processing node in generation: ('function', 'int', 'giveA', [('int', 'a')], [], '{', [])
-Processing node in generation: {
-Processing node in generation: []
-Error occurred during code generation: list index out of range
-Error occurred during code generation: cannot unpack non-iterable NoneType object
-Processing node in generation: ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('function_call', 'add', ['x', 'y'])), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), 
-('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's'])])
+Processing node in generation: ('function', 'int', 'giveA', [('int', 'a')], None, [('return', 'a')])
+Processing node in generation: ('return', 'a')
+Processing node in generation: ('function', 'int', 'giveOne', [], None, [('return', '1')])
+Processing node in generation: ('return', '1')
+Processing node in generation: ('function', 'int', 'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')])
+Processing node in generation: ('return', 'result')
+Processing node in generation: ('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')])
+Processing node in generation: ('binop', '>', 'a', 'b')
+Processing node in generation: a
+Processing node in generation: b
+Processing node in generation: ('assignment', 'result', '1')
+Processing node in generation: ('assignment', 'result', '0')
+Processing node in generation: ('vars', [('int', ['result'])])
+Processing node in generation: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))])
+Processing node in generation: ('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))
+Processing node in generation: ('binop', '>', 'a', 'b')
+Processing node in generation: a
+Processing node in generation: b
+Processing node in generation: return
+Processing node in generation: a
+Processing node in generation: return
+Processing node in generation: b
+Processing node in generation: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])])
+Processing node in generation: ('if_else', ('binop', '==', 'n', '0'), ('return', '1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])
+Processing node in generation: ('binop', '==', 'n', '0')
+Processing node in generation: n
+Processing node in generation: 0
+Processing node in generation: return
+Processing node in generation: 1
+Processing node in generation: ('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')])))
+Processing node in generation: ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))
+Processing node in generation: n
+Processing node in generation: ('function_call', 'factorial', [('binop', '-', 'n', '1')])
+Processing node in generation: ('binop', '-', 'n', '1')
+Processing node in generation: n
+Processing node in generation: 1
+Processing node in generation: ('return', 'result')
+Error occurred during code generation: sequence item 9: expected str instance, tuple found
+Processing node in generation: ('vars', [('int', ['result'])])
+Processing node in generation: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])      
+Processing node in generation: ('return', 'num')
+Processing node in generation: ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))])
+Processing node in generation: ('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))        
+Processing node in generation: ('binop', '>', 'num', '10')
+Processing node in generation: num
+Processing node in generation: 10
+Processing node in generation: return
+Processing node in generation: true
+Processing node in generation: return
+Processing node in generation: false
+Processing node in generation: ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])
+Processing node in generation: ('write', ['"Hello, World!"'])
+Processing node in generation: ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])])
 Processing node in generation: ('assignment', 'x', '20')
 Processing node in generation: ('assignment', 'y', '30')
-Processing node in generation: ('assignment', 'c', ('function_call', 'add', ['x', 'y']))
+Processing node in generation: ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y'])))
+Processing node in generation: ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))
+Processing node in generation: 5
 Processing node in generation: ('function_call', 'add', ['x', 'y'])
 Processing node in generation: x
 Processing node in generation: y
@@ -104,9 +182,13 @@ Processing node in generation: y
 Processing node in generation: ('assignment', 'f', ('function_call', 'giveA', ['x']))
 Processing node in generation: ('function_call', 'giveA', ['x'])
 Processing node in generation: x
+Processing node in generation: ('assignment', 'f', ('function_call', 'factorial', ['x']))
+Processing node in generation: ('function_call', 'factorial', ['x'])
+Processing node in generation: x
 Processing node in generation: ('write', ['"sum is"', 'c'])
 Processing node in generation: ('write', ['"subtract is"', 's'])
-generated code:
+Processing node in generation: ('write', ['"a is"', 'f'])
+Generated code:
 DECLARE int x
 DECLARE int y
 DECLARE int s
@@ -124,32 +206,89 @@ T2 = a - b
 result = T2
 RETURN result
 END FUNCTION
+FUNCTION int giveA(DECLARE int a)
+RETURN a
+END FUNCTION
+FUNCTION int giveOne()
+RETURN 1
+END FUNCTION
+FUNCTION int checkGreater(DECLARE int a, DECLARE int b)
+DECLARE int result
+T3 = a > b
+if T3 goto L1
+goto L2
+L1:
+result = 1
+goto L3
+L2:
+result = 0
+L3:
+RETURN result
+END FUNCTION
+FUNCTION int max(DECLARE int a, DECLARE int b)
+T4 = a > b
+if T4 goto L4
+goto L5
+L4:
+return
+a
+goto L6
+L5:
+return
+b
+L6:
+
+END FUNCTION
+FUNCTION int factorial(DECLARE int n)
+DECLARE int result
+
+END FUNCTION
+FUNCTION float returnFloat(DECLARE float num)
+RETURN num
+END FUNCTION
+FUNCTION bool isGreaterThanTen(DECLARE int num)
+T9 = num > 10
+if T9 goto L10
+goto L11
+L10:
+return
+true
+goto L12
+L11:
+return
+false
+L12:
+
+END FUNCTION
+FUNCTION void printMessage()
+param "Hello, World!"
+call print, 1
+
+END FUNCTION
 x = 20
 y = 30
 param x
 param y
-T3 = callfunc add 2
-c = T3
+T10 = callfunc add 2
+T11 = 5 + T10
+c = T11
 param x
 param y
-T4 = callfunc subtract 2
-s = T4
+T12 = callfunc subtract 2
+s = T12
 param x
-T5 = callfunc giveA 1
-f = T5
+T13 = callfunc giveA 1
+f = T13
+param x
+T14 = callfunc factorial 1
+f = T14
 param "sum is"
 param c
 call print, 2
 param "subtract is"
 param s
 call print, 2
+param "a is"
+param f
+call print, 2
 END PROGRAM
-Running the generated code on the virtual machine:
-Semantic error detected: 'start_pc'
-Traceback (most recent call last):
-  File "C:\Users\hulig\Documents\github\plyMyr\MyR_main.py", line 36, in <module>
-    vm.run()
-  File "C:\Users\hulig\Documents\github\plyMyr\virtual_machine.py", line 66, in run
-    f"Setting program counter to {self.functions[func_name]['start_pc']}")
-                                  ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
-KeyError: 'start_pc'

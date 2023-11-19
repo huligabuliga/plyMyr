@@ -1,0 +1,453 @@
+State  : 0
+Stack  : . LexToken(PROGRAM,'program',1,0)
+Action : Shift and goto state 2
+
+State  : 2
+Stack  : PROGRAM . LexToken(ID,'functiontest',1,8)
+Action : Shift and goto state 3
+
+State  : 3
+Stack  : PROGRAM ID . LexToken(SEMICOLON,';',1,20)
+Action : Shift and goto state 4
+
+State  : 4
+Stack  : PROGRAM ID SEMICOLON . LexToken(VARS,'vars',1,22)
+Action : Shift and goto state 6
+
+State  : 6
+Stack  : PROGRAM ID SEMICOLON VARS . LexToken(INT,'int',1,31)
+Action : Shift and goto state 11
+
+State  : 11
+Defaulted state 11: Reduce using 6
+Stack  : PROGRAM ID SEMICOLON VARS INT . None
+Action : Reduce rule [type -> INT] with ['int'] and goto state 10
+Result : <str @ 0x24bf339cfb0> ('int')
+
+State  : 10
+Stack  : PROGRAM ID SEMICOLON VARS type . LexToken(ID,'x',1,35)
+Action : Shift and goto state 22
+
+State  : 22
+Stack  : PROGRAM ID SEMICOLON VARS type ID . LexToken(COMMA,',',1,36)
+Action : Reduce rule [id_list -> ID] with ['x'] and goto state 21
+Result : <list @ 0x24bf33629c0> (['x'])
+
+State  : 21
+Stack  : PROGRAM ID SEMICOLON VARS type id_list . LexToken(COMMA,',',1,36)
+Action : Shift and goto state 27
+
+State  : 27
+Stack  : PROGRAM ID SEMICOLON VARS type id_list COMMA . LexToken(ID,'y',1,38)
+Action : Shift and goto state 31
+
+State  : 31
+Stack  : PROGRAM ID SEMICOLON VARS type id_list COMMA ID . LexToken(SEMICOLON,';',1,39) 
+Action : Reduce rule [id_list -> id_list COMMA ID] with [['x'],',','y'] and goto state 21
+Result : <list @ 0x24bf32dcfc0> (['x', 'y'])
+
+State  : 21
+Stack  : PROGRAM ID SEMICOLON VARS type id_list . LexToken(SEMICOLON,';',1,39)
+Action : Shift and goto state 26
+
+State  : 26
+Stack  : PROGRAM ID SEMICOLON VARS type id_list SEMICOLON . LexToken(FUNCTION,'function',1,43)
+Action : Reduce rule [var_list -> type id_list SEMICOLON] with ['int',['x', 'y'],';'] and goto state 9
+Result : <list @ 0x24bf32dd3c0> ([('int', ['x', 'y'])])
+
+State  : 9
+Stack  : PROGRAM ID SEMICOLON VARS var_list . LexToken(FUNCTION,'function',1,43)        
+Action : Reduce rule [vars -> VARS var_list] with ['vars',<list @ 0x24bf32dd3c0>] and goto state 5
+Result : <tuple @ 0x24bf32d8680> (('vars', [('int', ['x', 'y'])]))
+
+State  : 5
+Stack  : PROGRAM ID SEMICOLON vars . LexToken(FUNCTION,'function',1,43)
+Action : Reduce rule [empty -> <empty>] with [] and goto state 8
+Result : <NoneType @ 0x7ff988b76cc8> (None)
+
+State  : 8
+Stack  : PROGRAM ID SEMICOLON vars empty . LexToken(FUNCTION,'function',1,43)
+Action : Reduce rule [function_list -> empty] with [None] and goto state 7
+Result : <list @ 0x24bf3362800> ([])
+
+State  : 7
+Stack  : PROGRAM ID SEMICOLON vars function_list . LexToken(FUNCTION,'function',1,43)   
+Action : Shift and goto state 18
+
+State  : 18
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION . LexToken(INT,'int',1,52)    
+Action : Shift and goto state 11
+
+State  : 11
+Defaulted state 11: Reduce using 6
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION INT . None
+Action : Reduce rule [type -> INT] with ['int'] and goto state 24
+Result : <str @ 0x24bf339d230> ('int')
+
+State  : 24
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type . LexToken(ID,'ifstatement',1,56)
+Action : Shift and goto state 29
+
+State  : 29
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID . LexToken(LPAREN,'(',1,67)
+Action : Shift and goto state 33
+
+State  : 33
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN . LexToken(INT,'int',1,68)
+Action : Shift and goto state 11
+
+State  : 11
+Defaulted state 11: Reduce using 6
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN INT . None     
+Action : Reduce rule [type -> INT] with ['int'] and goto state 36
+Result : <str @ 0x24bf339cf70> ('int')
+
+State  : 36
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN type . LexToken(ID,'a',1,72)
+Action : Shift and goto state 56
+
+State  : 56
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN type ID . LexToken(RPAREN,')',1,73)
+Action : Reduce rule [param_list -> type ID] with ['int','a'] and goto state 37
+Result : <list @ 0x24bf32dc900> ([('int', 'a')])
+
+State  : 37
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list . LexToken(RPAREN,')',1,73)
+Action : Shift and goto state 57
+
+State  : 57
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN . LexToken(LBRACE,'{',1,74)
+Action : Shift and goto state 76
+
+State  : 76
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE . LexToken(IF,'if',1,80)
+Action : Reduce rule [empty -> <empty>] with [] and goto state 35
+Result : <NoneType @ 0x7ff988b76cc8> (None)
+
+State  : 35
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE empty . LexToken(IF,'if',1,80)
+Action : Reduce rule [statement_list -> empty] with [None] and goto state 101
+Result : <list @ 0x24bf32dcf00> ([])
+
+State  : 101
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list . LexToken(IF,'if',1,80)
+Action : Shift and goto state 52
+
+State  : 52
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF . LexToken(LPAREN,'(',1,82)
+Action : Shift and goto state 71
+
+State  : 71
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN . LexToken(ID,'a',1,83)
+Action : Shift and goto state 80
+
+State  : 80
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN ID . LexToken(EQ,'==',1,85)
+Action : Reduce rule [factor -> ID] with ['a'] and goto state 84
+Result : <str @ 0x7ff988ce9700> ('a')
+
+State  : 84
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN factor . LexToken(EQ,'==',1,85)
+Action : Reduce rule [term -> factor] with ['a'] and goto state 82
+Result : <str @ 0x7ff988ce9700> ('a')
+
+State  : 82
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN term . LexToken(EQ,'==',1,85)
+Action : Reduce rule [expression -> term] with ['a'] and goto state 96
+Result : <str @ 0x7ff988ce9700> ('a')
+
+State  : 96
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression . LexToken(EQ,'==',1,85)
+Action : Shift and goto state 108
+
+State  : 108
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression EQ . LexToken(INTEGER,'1',1,88)
+Action : Shift and goto state 87
+
+State  : 87
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression EQ INTEGER . LexToken(RPAREN,')',1,89)    
+Action : Reduce rule [factor -> INTEGER] with ['1'] and goto state 84
+Result : <str @ 0x7ff988ce8c80> ('1')
+
+State  : 84
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression EQ factor . LexToken(RPAREN,')',1,89)     
+Action : Reduce rule [term -> factor] with ['1'] and goto state 136
+Result : <str @ 0x7ff988ce8c80> ('1')
+
+State  : 136
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression EQ term . LexToken(RPAREN,')',1,89)       
+Action : Reduce rule [expression -> expression EQ term] with ['a','==','1'] and goto state 96
+Result : <tuple @ 0x24bf32d2de0> (('binop', '==', 'a', '1'))
+
+State  : 96
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression . LexToken(RPAREN,')',1,89)
+Action : Shift and goto state 125
+
+State  : 125
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN . LexToken(THEN,'then',1,91)       
+Action : Shift and goto state 152
+
+State  : 152
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN . LexToken(LBRACE,'{',1,96)   
+Action : Shift and goto state 161
+
+State  : 161
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE . LexToken(RETURN,'return',1,106)
+Action : Reduce rule [empty -> <empty>] with [] and goto state 35
+Result : <NoneType @ 0x7ff988b76cc8> (None)
+
+State  : 35
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE empty . LexToken(RETURN,'return',1,106)
+Action : Reduce rule [statement_list -> empty] with [None] and goto state 165
+Result : <list @ 0x24bf3362a40> ([])
+
+State  : 165
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list . LexToken(RETURN,'return',1,106)
+Action : Shift and goto state 55
+
+State  : 55
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list RETURN . LexToken(LPAREN,'(',1,112)
+Action : Shift and goto state 74
+
+State  : 74
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list RETURN LPAREN . LexToken(INTEGER,'1',1,113)
+Action : Shift and goto state 87
+
+State  : 87
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list RETURN LPAREN INTEGER . LexToken(RPAREN,')',1,114)
+Action : Reduce rule [factor -> INTEGER] with ['1'] and goto state 84
+Result : <str @ 0x7ff988ce8c80> ('1')
+
+State  : 84
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list RETURN LPAREN factor . LexToken(RPAREN,')',1,114)
+Action : Reduce rule [term -> factor] with ['1'] and goto state 82
+Result : <str @ 0x7ff988ce8c80> ('1')
+
+State  : 82
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list RETURN LPAREN term . LexToken(RPAREN,')',1,114)
+Action : Reduce rule [expression -> term] with ['1'] and goto state 99
+Result : <str @ 0x7ff988ce8c80> ('1')
+
+State  : 99
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list RETURN LPAREN expression . LexToken(RPAREN,')',1,114)
+Action : Shift and goto state 128
+
+State  : 128
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list RETURN LPAREN expression RPAREN . LexToken(SEMICOLON,';',1,115)
+Action : Shift and goto state 155
+
+State  : 155
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list RETURN LPAREN expression RPAREN SEMICOLON . LexToken(RBRACE,'}',1,121)
+Action : Reduce rule [return_statement -> RETURN LPAREN expression RPAREN SEMICOLON] with ['return','(','1',')',';'] and goto state 48
+Result : <tuple @ 0x24bf32dcac0> (('return', '1'))
+
+State  : 48
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list return_statement . LexToken(RBRACE,'}',1,121)
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list return_statement . LexToken(RBRACE,'}',1,121)
+Syntax error at line 1, column 6: Unexpected token } of type str
+Line of input: }
+
+State  : 48
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list return_statement . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list return_statement . error
+
+State  : 165
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list . error 
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE statement_list . error
+
+State  : 161
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN LBRACE . error
+
+State  : 152
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN THEN . error
+
+State  : 125
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression RPAREN . error
+
+State  : 96
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN expression . error
+
+State  : 71
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF LPAREN . error
+
+State  : 52
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list IF . error
+
+State  : 101
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list . error
+
+State  : 76
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN LBRACE . error
+
+State  : 57
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list RPAREN . error
+
+State  : 37
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN param_list . error
+
+State  : 33
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN . error        
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID LPAREN . error 
+
+State  : 29
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type ID . error        
+
+State  : 24
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION type . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION type . error
+
+State  : 18
+Stack  : PROGRAM ID SEMICOLON vars function_list FUNCTION . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list FUNCTION . error
+
+State  : 7
+Stack  : PROGRAM ID SEMICOLON vars function_list . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars function_list . error
+
+State  : 5
+Stack  : PROGRAM ID SEMICOLON vars . error
+ERROR: Error  : PROGRAM ID SEMICOLON vars . error
+
+State  : 4
+Stack  : PROGRAM ID SEMICOLON . error
+ERROR: Error  : PROGRAM ID SEMICOLON . error
+
+State  : 3
+Stack  : PROGRAM ID . error
+ERROR: Error  : PROGRAM ID . error
+
+State  : 2
+Stack  : PROGRAM . error
+ERROR: Error  : PROGRAM . error
+
+State  : 0
+Stack  : . error
+ERROR: Error  : . error
+
+State  : 0
+Stack  : . LexToken(ELSE,'else',1,128)
+ERROR: Error  : . LexToken(ELSE,'else',1,128)
+
+State  : 0
+Stack  : . LexToken(LBRACE,'{',1,133)
+ERROR: Error  : . LexToken(LBRACE,'{',1,133)
+
+State  : 0
+Stack  : . LexToken(RETURN,'return',1,143)
+ERROR: Error  : . LexToken(RETURN,'return',1,143)
+
+State  : 0
+Stack  : . LexToken(LPAREN,'(',1,149)
+ERROR: Error  : . LexToken(LPAREN,'(',1,149)
+
+State  : 0
+Stack  : . LexToken(INTEGER,'0',1,150)
+ERROR: Error  : . LexToken(INTEGER,'0',1,150)
+
+State  : 0
+Stack  : . LexToken(RPAREN,')',1,151)
+ERROR: Error  : . LexToken(RPAREN,')',1,151)
+
+State  : 0
+Stack  : . LexToken(SEMICOLON,';',1,152)
+ERROR: Error  : . LexToken(SEMICOLON,';',1,152)
+
+State  : 0
+Stack  : . LexToken(RBRACE,'}',1,158)
+ERROR: Error  : . LexToken(RBRACE,'}',1,158)
+
+State  : 0
+Stack  : . LexToken(RBRACE,'}',1,160)
+ERROR: Error  : . LexToken(RBRACE,'}',1,160)
+
+State  : 0
+Stack  : . LexToken(MAIN,'main',1,163)
+ERROR: Error  : . LexToken(MAIN,'main',1,163)
+
+State  : 0
+Stack  : . LexToken(LPAREN,'(',1,167)
+ERROR: Error  : . LexToken(LPAREN,'(',1,167)
+
+State  : 0
+Stack  : . LexToken(RPAREN,')',1,168)
+ERROR: Error  : . LexToken(RPAREN,')',1,168)
+
+State  : 0
+Stack  : . LexToken(LBRACE,'{',1,170)
+ERROR: Error  : . LexToken(LBRACE,'{',1,170)
+
+State  : 0
+Stack  : . LexToken(ID,'y',1,176)
+ERROR: Error  : . LexToken(ID,'y',1,176)
+
+State  : 0
+Stack  : . LexToken(ASSIGN,'=',1,178)
+ERROR: Error  : . LexToken(ASSIGN,'=',1,178)
+
+State  : 0
+Stack  : . LexToken(ID,'ifstatement',1,180)
+ERROR: Error  : . LexToken(ID,'ifstatement',1,180)
+
+State  : 0
+Stack  : . LexToken(LPAREN,'(',1,191)
+ERROR: Error  : . LexToken(LPAREN,'(',1,191)
+
+State  : 0
+Stack  : . LexToken(ID,'x',1,192)
+ERROR: Error  : . LexToken(ID,'x',1,192)
+
+State  : 0
+Stack  : . LexToken(RPAREN,')',1,193)
+ERROR: Error  : . LexToken(RPAREN,')',1,193)
+
+State  : 0
+Stack  : . LexToken(SEMICOLON,';',1,194)
+ERROR: Error  : . LexToken(SEMICOLON,';',1,194)
+
+State  : 0
+Stack  : . LexToken(WRITE,'write',1,200)
+ERROR: Error  : . LexToken(WRITE,'write',1,200)
+
+State  : 0
+Stack  : . LexToken(LPAREN,'(',1,205)
+ERROR: Error  : . LexToken(LPAREN,'(',1,205)
+
+State  : 0
+Stack  : . LexToken(STRING,'"y is"',1,206)
+ERROR: Error  : . LexToken(STRING,'"y is"',1,206)
+
+State  : 0
+Stack  : . LexToken(COMMA,',',1,212)
+ERROR: Error  : . LexToken(COMMA,',',1,212)
+
+State  : 0
+Stack  : . LexToken(ID,'y',1,214)
+ERROR: Error  : . LexToken(ID,'y',1,214)
+
+State  : 0
+Stack  : . LexToken(RPAREN,')',1,215)
+ERROR: Error  : . LexToken(RPAREN,')',1,215)
+
+State  : 0
+Stack  : . LexToken(SEMICOLON,';',1,216)
+ERROR: Error  : . LexToken(SEMICOLON,';',1,216)
+
+State  : 0
+Stack  : . LexToken(RBRACE,'}',1,218)
+ERROR: Error  : . LexToken(RBRACE,'}',1,218)
+
+State  : 0
+Stack  : . $end
+ERROR: Error  : . $end
+Syntax error detected.

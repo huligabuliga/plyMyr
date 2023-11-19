@@ -137,3 +137,13 @@ def t_error(t):
 
 # Build the lexer
 lexer = lex.lex()
+
+# Test it out
+
+# Function to print tokens
+
+
+def print_tokens(lexer, data):
+    lexer.input(data)
+    for token in lexer:
+        print(token)

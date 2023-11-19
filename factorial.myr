@@ -6,14 +6,17 @@ function int factorial(int n)
 vars
     int result;
 {
-    if (n == 0) {
-        return 1;
-    } else {
-        return n * factorial(n - 1);
+    if (n == 0) then {
+        return (1);
+    } 
+    else {
+        write("iteration factorial:", n);
+        return (n * factorial(n - 1));
     }
 }
    
 main(){
-  int num = 5;
-  write(factorial(num));
+  num = 5;
+  factorial(num);
+  write("factorial is", num);
 }

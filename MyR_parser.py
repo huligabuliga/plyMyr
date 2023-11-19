@@ -72,21 +72,26 @@ def p_function_list(p):
 
 
 def p_function(p):
-    '''function : FUNCTION type ID LPAREN param_list RPAREN vars LBRACE statement_list return_statement RBRACE
-                | FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list return_statement RBRACE'''
-    if len(p) == 12:
-        p[0] = ('function', p[2], p[3], p[5], p[7], p[9], p[10])
+    '''function : FUNCTION type ID LPAREN param_list RPAREN vars LBRACE statement_list RBRACE
+                | FUNCTION type ID LPAREN param_list RPAREN LBRACE statement_list RBRACE
+                | FUNCTION VOID ID LPAREN param_list RPAREN vars LBRACE statement_list RBRACE
+                | FUNCTION VOID ID LPAREN param_list RPAREN LBRACE statement_list RBRACE'''
+    if len(p) == 11:
+        p[0] = ('function', p[2], p[3], p[5], p[7], p[9])
     else:
-        p[0] = ('function', p[2], p[3], p[5], None, p[8], p[9])
+        p[0] = ('function', p[2], p[3], p[5], None, p[8])
 
 
 def p_param_list(p):
     '''param_list : param_list COMMA type ID
-                  | type ID'''
+                  | type ID
+                  | empty'''
     if len(p) == 5:
         p[0] = p[1] + [(p[3], p[4])]
-    else:
+    elif len(p) == 3:
         p[0] = [(p[1], p[2])]
+    else:
+        p[0] = []
 
 
 def p_main_function(p):
@@ -96,9 +101,14 @@ def p_main_function(p):
 
 def p_statement_list(p):
     '''statement_list : statement_list statement
+                      | statement_list return_statement
+                      | statement
+                      | return_statement
                       | empty'''
     if len(p) == 3:
         p[0] = p[1] + [p[2]]
+    elif len(p) == 2:
+        p[0] = [p[1]]
     else:
         p[0] = []
 
@@ -110,8 +120,7 @@ def p_statement(p):
                  | write_statement SEMICOLON
                  | if_statement
                  | while_statement
-                 | for_statement
-                 | return_statement SEMICOLON'''
+                 | for_statement'''
     p[0] = p[1]
 
 
@@ -160,10 +169,14 @@ def p_write_list(p):
 
 def p_if_statement(p):
     '''if_statement : IF LPAREN expression RPAREN THEN LBRACE statement_list RBRACE
-                    | IF LPAREN expression RPAREN THEN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE'''
+                    | IF LPAREN expression RPAREN THEN LBRACE return_statement RBRACE
+                    | IF LPAREN expression RPAREN THEN LBRACE statement_list RBRACE ELSE LBRACE statement_list RBRACE
+                    | IF LPAREN expression RPAREN THEN LBRACE return_statement RBRACE ELSE LBRACE statement_list RBRACE
+                    | IF LPAREN expression RPAREN THEN LBRACE statement_list RBRACE ELSE LBRACE return_statement RBRACE
+                    | IF LPAREN expression RPAREN THEN LBRACE return_statement RBRACE ELSE LBRACE return_statement RBRACE'''
     if len(p) == 9:
         p[0] = ('if', p[3], p[7])
-    else:
+    elif len(p) == 13:
         p[0] = ('if_else', p[3], p[7], p[11])
 
 
@@ -194,6 +207,7 @@ def p_expression(p):
                   | expression AND term
                   | expression OR term
                   | term
+                  | function_call
                   | STRING'''
     if len(p) == 4:
         p[0] = ('binop', p[2], p[1], p[3])
@@ -217,6 +231,7 @@ def p_factor(p):
               | ID
               | ID LBRACKET expression RBRACKET
               | INTEGER
+              | function_call
               | FLOATING_POINT'''
     if len(p) == 4:
         p[0] = ('array', p[1], p[3])
@@ -239,6 +254,8 @@ def p_error(p):
         print("Syntax error at line %d, column %d: Unexpected token %s of type %s" %
               (p.lineno, find_column(p), p.value, type(p.value).__name__))
         print("Line of input: %s" % line.strip())
+        print("Input up until the point of error: ",
+              p.lexer.lexdata[:p.lexpos])
     else:
         print("Syntax error: Unexpected end of input")
 

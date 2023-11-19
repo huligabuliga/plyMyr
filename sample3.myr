@@ -24,12 +24,67 @@ function int giveA (int a)
     return (a);
 }
 
+function int giveOne(){
+    return (1);
+}
+
+function int checkGreater(int a, int b)
+vars
+    int result;
+{
+    if (a > b) then {
+        result = 1;
+    } else {
+        result = 0;
+    }
+    return (result);
+}
+
+function int max(int a, int b)
+{
+    if (a > b) then {
+        return (a);
+    } else {
+        return (b);
+    }
+}
+
+function int factorial(int n)
+vars
+    int result;
+{
+    if (n == 0) then {
+        return (1);
+    } else {
+        return (n * factorial(n - 1));
+    }
+}
+
+function float returnFloat(float num)
+{
+    return (num);
+}
+
+function bool isGreaterThanTen(int num)
+{
+    if (num > 10) then {
+        return (true);
+    } else {
+        return (false);
+    }
+}
+function void printMessage()
+{
+    write("Hello, World!");
+}
+
 main() {
         x = 20;
         y = 30;
-        c = add(x, y);
+        c = 5 + add(x, y);
         s = subtract(x, y);
         f = giveA(x);
+        f = factorial(x);
         write("sum is", c);
         write("subtract is", s);
         write("a is", f);

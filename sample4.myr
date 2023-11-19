@@ -1,0 +1,20 @@
+program functiontest;
+vars
+    int x, y;
+
+
+function int ifstatement(int a){
+    if(a == 1) then {
+        write("hello", 1);
+        return(1);
+    } 
+    else {
+        write("hello", 1);
+        return(0);
+    }
+}
+
+main() {
+    y = ifstatement(x);
+    write("y is", y);
+}

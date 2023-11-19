@@ -124,7 +124,7 @@ def check_types(node):
         if node and len(node) > 1:
             print(f"Processing function node: {node}")
             # Add the function to the function table
-            _, return_type, function_name, params, vars, body, return_stmt = node
+            (_, return_type, function_name, params, vars, body) = node
             param_types = [param[0] for param in params]
             function_table[function_name] = {
                 'return_type': return_type,
@@ -195,7 +195,11 @@ def check_types(node):
         operand2 = node[3]
         # Get the types of the operands
         if isinstance(operand1, tuple):
-            operand1_type = check_types(operand1)
+            if operand1[0] == 'function_call':
+                function_name = operand1[1]
+                operand1_type = function_table[function_name]['return_type']
+            else:
+                operand1_type = check_types(operand1)
         elif isinstance(operand1, str):
             if operand1.isdigit():
                 operand1_type = 'int'
@@ -206,7 +210,11 @@ def check_types(node):
             else:
                 operand1_type = symbol_table[operand1]
         if isinstance(operand2, tuple):
-            operand2_type = check_types(operand2)
+            if operand2[0] == 'function_call':
+                function_name = operand2[1]
+                operand2_type = function_table[function_name]['return_type']
+            else:
+                operand2_type = check_types(operand2)
         elif isinstance(operand2, str):
             if operand2.isdigit():
                 operand2_type = 'int'
