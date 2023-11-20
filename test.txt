@@ -1,4 +1,345 @@
-Processing node: ('program', 'functiontest', ('vars', [('int', ['x', 'y', 's', 'c', 'f'])]), [('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b')), ('return', 'result')]), ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b')), ('return', 'result')]), ('function', 'int', 'giveA', [('int', 'a')], None, [('return', 'a')]), ('function', 'int', 'giveOne', [], None, [('return', '1')]), ('function', 'int', 'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')]), ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))]), ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])]), ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')]), ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))]), ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])], ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])]))
+PS C:\Users\hulig\Documents\github\plyMyr> python MyR_main.py
+>>
+Type: PROGRAM, Value: program, Line: 1, Position: 0
+Type: ID, Value: functiontest, Line: 1, Position: 8
+Type: SEMICOLON, Value: ;, Line: 1, Position: 20   
+Type: VARS, Value: vars, Line: 1, Position: 22     
+Type: INT, Value: int, Line: 1, Position: 31       
+Type: ID, Value: x, Line: 1, Position: 35
+Type: COMMA, Value: ,, Line: 1, Position: 36       
+Type: ID, Value: y, Line: 1, Position: 38
+Type: COMMA, Value: ,, Line: 1, Position: 39       
+Type: ID, Value: s, Line: 1, Position: 41
+Type: COMMA, Value: ,, Line: 1, Position: 42       
+Type: ID, Value: c, Line: 1, Position: 44
+Type: COMMA, Value: ,, Line: 1, Position: 45
+Type: ID, Value: f, Line: 1, Position: 47
+Type: SEMICOLON, Value: ;, Line: 1, Position: 48
+Type: FUNCTION, Value: function, Line: 1, Position: 56
+Type: INT, Value: int, Line: 1, Position: 65
+Type: ID, Value: add, Line: 1, Position: 69
+Type: LPAREN, Value: (, Line: 1, Position: 73
+Type: INT, Value: int, Line: 1, Position: 74
+Type: ID, Value: a, Line: 1, Position: 78
+Type: COMMA, Value: ,, Line: 1, Position: 79
+Type: INT, Value: int, Line: 1, Position: 81
+Type: ID, Value: b, Line: 1, Position: 85
+Type: RPAREN, Value: ), Line: 1, Position: 86
+Type: VARS, Value: vars, Line: 1, Position: 88
+Type: INT, Value: int, Line: 1, Position: 97
+Type: ID, Value: result, Line: 1, Position: 101
+Type: SEMICOLON, Value: ;, Line: 1, Position: 107
+Type: LBRACE, Value: {, Line: 1, Position: 110
+Type: ID, Value: result, Line: 1, Position: 126
+Type: ASSIGN, Value: =, Line: 1, Position: 133
+Type: ID, Value: a, Line: 1, Position: 135
+Type: PLUS, Value: +, Line: 1, Position: 137
+Type: ID, Value: b, Line: 1, Position: 139
+Type: SEMICOLON, Value: ;, Line: 1, Position: 140
+Type: RETURN, Value: return, Line: 1, Position: 150
+Type: LPAREN, Value: (, Line: 1, Position: 157
+Type: ID, Value: result, Line: 1, Position: 158
+Type: RPAREN, Value: ), Line: 1, Position: 164
+Type: SEMICOLON, Value: ;, Line: 1, Position: 165
+Type: RBRACE, Value: }, Line: 1, Position: 167
+Type: FUNCTION, Value: function, Line: 1, Position: 170
+Type: INT, Value: int, Line: 1, Position: 179
+Type: ID, Value: subtract, Line: 1, Position: 183
+Type: LPAREN, Value: (, Line: 1, Position: 192
+Type: INT, Value: int, Line: 1, Position: 193
+Type: ID, Value: a, Line: 1, Position: 197
+Type: COMMA, Value: ,, Line: 1, Position: 198
+Type: INT, Value: int, Line: 1, Position: 200
+Type: ID, Value: b, Line: 1, Position: 204
+Type: RPAREN, Value: ), Line: 1, Position: 205
+Type: VARS, Value: vars, Line: 1, Position: 207
+Type: INT, Value: int, Line: 1, Position: 217
+Type: ID, Value: result, Line: 1, Position: 221
+Type: SEMICOLON, Value: ;, Line: 1, Position: 227
+Type: LBRACE, Value: {, Line: 1, Position: 230
+Type: ID, Value: result, Line: 1, Position: 236
+Type: ASSIGN, Value: =, Line: 1, Position: 243
+Type: ID, Value: a, Line: 1, Position: 245
+Type: MINUS, Value: -, Line: 1, Position: 247
+Type: ID, Value: b, Line: 1, Position: 249
+Type: SEMICOLON, Value: ;, Line: 1, Position: 250
+Type: RETURN, Value: return, Line: 1, Position: 256
+Type: LPAREN, Value: (, Line: 1, Position: 263
+Type: ID, Value: result, Line: 1, Position: 264
+Type: RPAREN, Value: ), Line: 1, Position: 270
+Type: SEMICOLON, Value: ;, Line: 1, Position: 271
+Type: RBRACE, Value: }, Line: 1, Position: 273
+Type: FUNCTION, Value: function, Line: 1, Position: 276
+Type: INT, Value: int, Line: 1, Position: 285
+Type: ID, Value: giveA, Line: 1, Position: 289
+Type: LPAREN, Value: (, Line: 1, Position: 295
+Type: INT, Value: int, Line: 1, Position: 296
+Type: ID, Value: a, Line: 1, Position: 300
+Type: RPAREN, Value: ), Line: 1, Position: 301
+Type: LBRACE, Value: {, Line: 1, Position: 304
+Type: RETURN, Value: return, Line: 1, Position: 310
+Type: LPAREN, Value: (, Line: 1, Position: 317
+Type: ID, Value: a, Line: 1, Position: 318
+Type: RPAREN, Value: ), Line: 1, Position: 319
+Type: SEMICOLON, Value: ;, Line: 1, Position: 320
+Type: RBRACE, Value: }, Line: 1, Position: 322
+Type: FUNCTION, Value: function, Line: 1, Position: 325
+Type: INT, Value: int, Line: 1, Position: 334
+Type: ID, Value: giveOne, Line: 1, Position: 338
+Type: LPAREN, Value: (, Line: 1, Position: 345
+Type: RPAREN, Value: ), Line: 1, Position: 346
+Type: LBRACE, Value: {, Line: 1, Position: 347
+Type: RETURN, Value: return, Line: 1, Position: 353
+Type: LPAREN, Value: (, Line: 1, Position: 360
+Type: INTEGER, Value: 1, Line: 1, Position: 361
+Type: RPAREN, Value: ), Line: 1, Position: 362
+Type: SEMICOLON, Value: ;, Line: 1, Position: 363
+Type: RBRACE, Value: }, Line: 1, Position: 365
+Type: FUNCTION, Value: function, Line: 1, Position: 368
+Type: INT, Value: int, Line: 1, Position: 377
+Type: ID, Value: checkGreater, Line: 1, Position: 381
+Type: LPAREN, Value: (, Line: 1, Position: 393
+Type: INT, Value: int, Line: 1, Position: 394
+Type: ID, Value: a, Line: 1, Position: 398
+Type: COMMA, Value: ,, Line: 1, Position: 399
+Type: INT, Value: int, Line: 1, Position: 401
+Type: ID, Value: b, Line: 1, Position: 405
+Type: RPAREN, Value: ), Line: 1, Position: 406
+Type: VARS, Value: vars, Line: 1, Position: 408
+Type: INT, Value: int, Line: 1, Position: 417
+Type: ID, Value: result, Line: 1, Position: 421
+Type: SEMICOLON, Value: ;, Line: 1, Position: 427
+Type: LBRACE, Value: {, Line: 1, Position: 429
+Type: IF, Value: if, Line: 1, Position: 435
+Type: LPAREN, Value: (, Line: 1, Position: 438
+Type: ID, Value: a, Line: 1, Position: 439
+Type: GT, Value: >, Line: 1, Position: 441
+Type: ID, Value: b, Line: 1, Position: 443
+Type: RPAREN, Value: ), Line: 1, Position: 444
+Type: THEN, Value: then, Line: 1, Position: 446
+Type: LBRACE, Value: {, Line: 1, Position: 451
+Type: ID, Value: result, Line: 1, Position: 461
+Type: ASSIGN, Value: =, Line: 1, Position: 468
+Type: INTEGER, Value: 1, Line: 1, Position: 470
+Type: SEMICOLON, Value: ;, Line: 1, Position: 471
+Type: RBRACE, Value: }, Line: 1, Position: 477
+Type: ELSE, Value: else, Line: 1, Position: 479
+Type: LBRACE, Value: {, Line: 1, Position: 484
+Type: ID, Value: result, Line: 1, Position: 494
+Type: ASSIGN, Value: =, Line: 1, Position: 501
+Type: INTEGER, Value: 0, Line: 1, Position: 503
+Type: SEMICOLON, Value: ;, Line: 1, Position: 504
+Type: RBRACE, Value: }, Line: 1, Position: 510
+Type: RETURN, Value: return, Line: 1, Position: 516
+Type: LPAREN, Value: (, Line: 1, Position: 523
+Type: ID, Value: result, Line: 1, Position: 524
+Type: RPAREN, Value: ), Line: 1, Position: 530
+Type: SEMICOLON, Value: ;, Line: 1, Position: 531
+Type: RBRACE, Value: }, Line: 1, Position: 533
+Type: FUNCTION, Value: function, Line: 1, Position: 536
+Type: INT, Value: int, Line: 1, Position: 545
+Type: ID, Value: max, Line: 1, Position: 549
+Type: LPAREN, Value: (, Line: 1, Position: 552
+Type: INT, Value: int, Line: 1, Position: 553
+Type: ID, Value: a, Line: 1, Position: 557
+Type: COMMA, Value: ,, Line: 1, Position: 558
+Type: INT, Value: int, Line: 1, Position: 560
+Type: ID, Value: b, Line: 1, Position: 564
+Type: RPAREN, Value: ), Line: 1, Position: 565
+Type: LBRACE, Value: {, Line: 1, Position: 567
+Type: IF, Value: if, Line: 1, Position: 573
+Type: LPAREN, Value: (, Line: 1, Position: 576
+Type: ID, Value: a, Line: 1, Position: 577
+Type: GT, Value: >, Line: 1, Position: 579
+Type: ID, Value: b, Line: 1, Position: 581
+Type: RPAREN, Value: ), Line: 1, Position: 582
+Type: THEN, Value: then, Line: 1, Position: 584
+Type: LBRACE, Value: {, Line: 1, Position: 589
+Type: RETURN, Value: return, Line: 1, Position: 599
+Type: LPAREN, Value: (, Line: 1, Position: 606
+Type: ID, Value: a, Line: 1, Position: 607
+Type: RPAREN, Value: ), Line: 1, Position: 608
+Type: SEMICOLON, Value: ;, Line: 1, Position: 609
+Type: RBRACE, Value: }, Line: 1, Position: 615
+Type: ELSE, Value: else, Line: 1, Position: 617
+Type: LBRACE, Value: {, Line: 1, Position: 622
+Type: RETURN, Value: return, Line: 1, Position: 632
+Type: LPAREN, Value: (, Line: 1, Position: 639
+Type: ID, Value: b, Line: 1, Position: 640
+Type: RPAREN, Value: ), Line: 1, Position: 641
+Type: SEMICOLON, Value: ;, Line: 1, Position: 642
+Type: RBRACE, Value: }, Line: 1, Position: 648
+Type: RBRACE, Value: }, Line: 1, Position: 650
+Type: FUNCTION, Value: function, Line: 1, Position: 653
+Type: INT, Value: int, Line: 1, Position: 662
+Type: ID, Value: factorial, Line: 1, Position: 666
+Type: LPAREN, Value: (, Line: 1, Position: 675
+Type: INT, Value: int, Line: 1, Position: 676
+Type: ID, Value: n, Line: 1, Position: 680
+Type: RPAREN, Value: ), Line: 1, Position: 681
+Type: VARS, Value: vars, Line: 1, Position: 683
+Type: INT, Value: int, Line: 1, Position: 692
+Type: ID, Value: result, Line: 1, Position: 696
+Type: SEMICOLON, Value: ;, Line: 1, Position: 702
+Type: LBRACE, Value: {, Line: 1, Position: 704
+Type: IF, Value: if, Line: 1, Position: 710
+Type: LPAREN, Value: (, Line: 1, Position: 713
+Type: ID, Value: n, Line: 1, Position: 714
+Type: EQ, Value: ==, Line: 1, Position: 716
+Type: INTEGER, Value: 0, Line: 1, Position: 719
+Type: RPAREN, Value: ), Line: 1, Position: 720
+Type: THEN, Value: then, Line: 1, Position: 722
+Type: LBRACE, Value: {, Line: 1, Position: 727
+Type: RETURN, Value: return, Line: 1, Position: 737
+Type: LPAREN, Value: (, Line: 1, Position: 744
+Type: INTEGER, Value: 1, Line: 1, Position: 745
+Type: RPAREN, Value: ), Line: 1, Position: 746
+Type: SEMICOLON, Value: ;, Line: 1, Position: 747
+Type: RBRACE, Value: }, Line: 1, Position: 753
+Type: ELSE, Value: else, Line: 1, Position: 755
+Type: LBRACE, Value: {, Line: 1, Position: 760
+Type: RETURN, Value: return, Line: 1, Position: 770
+Type: LPAREN, Value: (, Line: 1, Position: 777
+Type: ID, Value: n, Line: 1, Position: 778
+Type: TIMES, Value: *, Line: 1, Position: 780
+Type: ID, Value: factorial, Line: 1, Position: 782
+Type: LPAREN, Value: (, Line: 1, Position: 791
+Type: ID, Value: n, Line: 1, Position: 792
+Type: MINUS, Value: -, Line: 1, Position: 794
+Type: INTEGER, Value: 1, Line: 1, Position: 796
+Type: RPAREN, Value: ), Line: 1, Position: 797
+Type: RPAREN, Value: ), Line: 1, Position: 798
+Type: SEMICOLON, Value: ;, Line: 1, Position: 799
+Type: RBRACE, Value: }, Line: 1, Position: 805
+Type: RBRACE, Value: }, Line: 1, Position: 807
+Type: FUNCTION, Value: function, Line: 1, Position: 810
+Type: FLOAT, Value: float, Line: 1, Position: 819
+Type: ID, Value: returnFloat, Line: 1, Position: 825
+Type: LPAREN, Value: (, Line: 1, Position: 836
+Type: FLOAT, Value: float, Line: 1, Position: 837
+Type: ID, Value: num, Line: 1, Position: 843
+Type: RPAREN, Value: ), Line: 1, Position: 846
+Type: LBRACE, Value: {, Line: 1, Position: 848
+Type: RETURN, Value: return, Line: 1, Position: 854
+Type: LPAREN, Value: (, Line: 1, Position: 861
+Type: ID, Value: num, Line: 1, Position: 862
+Type: RPAREN, Value: ), Line: 1, Position: 865
+Type: SEMICOLON, Value: ;, Line: 1, Position: 866
+Type: RBRACE, Value: }, Line: 1, Position: 868
+Type: FUNCTION, Value: function, Line: 1, Position: 871
+Type: BOOL, Value: bool, Line: 1, Position: 880
+Type: ID, Value: isGreaterThanTen, Line: 1, Position: 885
+Type: LPAREN, Value: (, Line: 1, Position: 901
+Type: INT, Value: int, Line: 1, Position: 902
+Type: ID, Value: num, Line: 1, Position: 906
+Type: RPAREN, Value: ), Line: 1, Position: 909
+Type: LBRACE, Value: {, Line: 1, Position: 911
+Type: IF, Value: if, Line: 1, Position: 917
+Type: LPAREN, Value: (, Line: 1, Position: 920
+Type: ID, Value: num, Line: 1, Position: 921
+Type: GT, Value: >, Line: 1, Position: 925
+Type: INTEGER, Value: 10, Line: 1, Position: 927
+Type: RPAREN, Value: ), Line: 1, Position: 929
+Type: THEN, Value: then, Line: 1, Position: 931
+Type: LBRACE, Value: {, Line: 1, Position: 936
+Type: RETURN, Value: return, Line: 1, Position: 946
+Type: LPAREN, Value: (, Line: 1, Position: 953
+Type: ID, Value: true, Line: 1, Position: 954
+Type: RPAREN, Value: ), Line: 1, Position: 958
+Type: SEMICOLON, Value: ;, Line: 1, Position: 959
+Type: RBRACE, Value: }, Line: 1, Position: 965
+Type: ELSE, Value: else, Line: 1, Position: 967
+Type: LBRACE, Value: {, Line: 1, Position: 972
+Type: RETURN, Value: return, Line: 1, Position: 982
+Type: LPAREN, Value: (, Line: 1, Position: 989
+Type: ID, Value: false, Line: 1, Position: 990
+Type: RPAREN, Value: ), Line: 1, Position: 995
+Type: SEMICOLON, Value: ;, Line: 1, Position: 996
+Type: RBRACE, Value: }, Line: 1, Position: 1002
+Type: RBRACE, Value: }, Line: 1, Position: 1004
+Type: FUNCTION, Value: function, Line: 1, Position: 1006
+Type: VOID, Value: void, Line: 1, Position: 1015
+Type: ID, Value: printMessage, Line: 1, Position: 1020
+Type: LPAREN, Value: (, Line: 1, Position: 1032
+Type: RPAREN, Value: ), Line: 1, Position: 1033
+Type: LBRACE, Value: {, Line: 1, Position: 1035
+Type: WRITE, Value: write, Line: 1, Position: 1041
+Type: LPAREN, Value: (, Line: 1, Position: 1046
+Type: STRING, Value: "Hello, World!", Line: 1, Position: 1047
+Type: RPAREN, Value: ), Line: 1, Position: 1062
+Type: SEMICOLON, Value: ;, Line: 1, Position: 1063
+Type: RBRACE, Value: }, Line: 1, Position: 1065
+Type: MAIN, Value: main, Line: 1, Position: 1068
+Type: LPAREN, Value: (, Line: 1, Position: 1072
+Type: RPAREN, Value: ), Line: 1, Position: 1073
+Type: LBRACE, Value: {, Line: 1, Position: 1075
+Type: ID, Value: x, Line: 1, Position: 1085
+Type: ASSIGN, Value: =, Line: 1, Position: 1087
+Type: INTEGER, Value: 20, Line: 1, Position: 1089
+Type: SEMICOLON, Value: ;, Line: 1, Position: 1091
+Type: ID, Value: y, Line: 1, Position: 1101
+Type: ASSIGN, Value: =, Line: 1, Position: 1103
+Type: INTEGER, Value: 30, Line: 1, Position: 1105
+Type: SEMICOLON, Value: ;, Line: 1, Position: 1107
+Type: ID, Value: c, Line: 1, Position: 1117
+Type: ASSIGN, Value: =, Line: 1, Position: 1119
+Type: INTEGER, Value: 5, Line: 1, Position: 1121
+Type: PLUS, Value: +, Line: 1, Position: 1123
+Type: ID, Value: add, Line: 1, Position: 1125
+Type: LPAREN, Value: (, Line: 1, Position: 1128
+Type: ID, Value: x, Line: 1, Position: 1129
+Type: COMMA, Value: ,, Line: 1, Position: 1130
+Type: ID, Value: y, Line: 1, Position: 1132
+Type: RPAREN, Value: ), Line: 1, Position: 1133
+Type: SEMICOLON, Value: ;, Line: 1, Position: 1134
+Type: ID, Value: s, Line: 1, Position: 1144
+Type: ASSIGN, Value: =, Line: 1, Position: 1146
+Type: ID, Value: subtract, Line: 1, Position: 1148
+Type: LPAREN, Value: (, Line: 1, Position: 1156
+Type: ID, Value: x, Line: 1, Position: 1157
+Type: COMMA, Value: ,, Line: 1, Position: 1158
+Type: ID, Value: y, Line: 1, Position: 1160
+Type: RPAREN, Value: ), Line: 1, Position: 1161
+Type: SEMICOLON, Value: ;, Line: 1, Position: 1162
+Type: ID, Value: f, Line: 1, Position: 1172
+Type: ASSIGN, Value: =, Line: 1, Position: 1174
+Type: ID, Value: giveA, Line: 1, Position: 1176
+Type: LPAREN, Value: (, Line: 1, Position: 1181
+Type: ID, Value: x, Line: 1, Position: 1182
+Type: RPAREN, Value: ), Line: 1, Position: 1183
+Type: SEMICOLON, Value: ;, Line: 1, Position: 1184
+Type: ID, Value: f, Line: 1, Position: 1194
+Type: ASSIGN, Value: =, Line: 1, Position: 1196
+Type: ID, Value: factorial, Line: 1, Position: 1198
+Type: LPAREN, Value: (, Line: 1, Position: 1207
+Type: ID, Value: x, Line: 1, Position: 1208
+Type: RPAREN, Value: ), Line: 1, Position: 1209
+Type: SEMICOLON, Value: ;, Line: 1, Position: 1210
+Type: WRITE, Value: write, Line: 1, Position: 1220
+Type: LPAREN, Value: (, Line: 1, Position: 1225
+Type: STRING, Value: "sum is", Line: 1, Position: 1226
+Type: COMMA, Value: ,, Line: 1, Position: 1234
+Type: ID, Value: c, Line: 1, Position: 1236
+Type: RPAREN, Value: ), Line: 1, Position: 1237
+Type: SEMICOLON, Value: ;, Line: 1, Position: 1238
+Type: WRITE, Value: write, Line: 1, Position: 1248
+Type: LPAREN, Value: (, Line: 1, Position: 1253
+Type: STRING, Value: "subtract is", Line: 1, Position: 1254
+Type: COMMA, Value: ,, Line: 1, Position: 1267
+Type: ID, Value: s, Line: 1, Position: 1269
+Type: RPAREN, Value: ), Line: 1, Position: 1270
+Type: SEMICOLON, Value: ;, Line: 1, Position: 1271
+Type: WRITE, Value: write, Line: 1, Position: 1281
+Type: LPAREN, Value: (, Line: 1, Position: 1286
+Type: STRING, Value: "a is", Line: 1, Position: 1287
+Type: COMMA, Value: ,, Line: 1, Position: 1293
+Type: ID, Value: f, Line: 1, Position: 1295
+Type: RPAREN, Value: ), Line: 1, Position: 1296
+Type: SEMICOLON, Value: ;, Line: 1, Position: 1297
+Type: RBRACE, Value: }, Line: 1, Position: 1299
+Processing node: ('program', 'functiontest', ('vars', [('int', ['x', 'y', 's', 'c', 'f'])]), [('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b')), ('return', 'result')]), ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b')), ('return', 'result')]), ('function', 'int', 'giveA', [('int', 'a')], None, [('return', 'a')]), ('function', 'int', 'giveOne', [], None, [('return', '1')]), ('function', 'int', 
+'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')]), ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))]), ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), ('return', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))))]), ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')]), ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))]), 
+('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])], ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])]))
 Processing node: ('vars', [('int', ['x', 'y', 's', 'c', 'f'])])
 Finished processing node: ('vars', [('int', ['x', 'y', 's', 'c', 'f'])])
 Symbol table: {'x': 'int', 'y': 'int', 's': 'int', 'c': 'int', 'f': 'int'}
@@ -28,32 +369,42 @@ Processing function node: ('function', 'int', 'checkGreater', [('int', 'a'), ('i
 Finished processing node: ('function', 'int', 'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')])
 Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}}
 Processing node: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))])
-Processing function node: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))])
-Processing function node: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))])
-Finished processing node: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))])
-Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 'int', 'param_types': ['int', 'int']}}
-Processing node: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])])
-Processing function node: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])])
-Processing function node: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])])
-Finished processing node: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])])
-Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}}
+Processing function node: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 
+'a', 'b'), ('return', 'a'), ('return', 'b'))])
+Processing function node: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 
+'a', 'b'), ('return', 'a'), ('return', 'b'))])
+Finished processing node: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 
+'a', 'b'), ('return', 'a'), ('return', 'b'))])
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 
+'int', 'param_types': ['int', 'int']}}
+Processing node: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), ('return', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 
+'n', '1')]))))])
+Processing function node: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), ('return', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))))])
+Processing function node: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), ('return', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))))])
+Finished processing node: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), ('return', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))))])
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 
+'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}}
 Processing node: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])
-Processing function node: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])
-Processing function node: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])
-Finished processing node: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])
-Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}, 'returnFloat': {'return_type': 'float', 'param_types': ['float']}}
-Processing node: ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))])
+Processing function node: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])        
+Processing function node: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])        
+Finished processing node: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])        
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 
+'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}, 'returnFloat': {'return_type': 'float', 'param_types': ['float']}}
+Processing node: ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', 
+'10'), ('return', 'true'), ('return', 'false'))])
 Processing function node: ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))])
 Processing function node: ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))])
 Finished processing node: ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))])
-Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}, 'returnFloat': {'return_type': 'float', 'param_types': ['float']}, 'isGreaterThanTen': {'return_type': 'bool', 'param_types': ['int']}}
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 
+'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}, 'returnFloat': {'return_type': 'float', 'param_types': ['float']}, 'isGreaterThanTen': {'return_type': 'bool', 'param_types': ['int']}}
 Processing node: ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])
 Processing function node: ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])
 Processing function node: ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])
 Finished processing node: ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])
-Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}, 'returnFloat': {'return_type': 'float', 'param_types': ['float']}, 'isGreaterThanTen': {'return_type': 'bool', 'param_types': ['int']}, 'printMessage': {'return_type': 'void', 'param_types': []}}
-Processing node: ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 
-'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])])
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 
+'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}, 'returnFloat': {'return_type': 'float', 'param_types': ['float']}, 'isGreaterThanTen': {'return_type': 'bool', 'param_types': ['int']}, 'printMessage': {'return_type': 'void', 'param_types': []}}
+Processing node: ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', 
+['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])])
 Processing node: [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])]
 Processing node: ('assignment', 'y', '30')
 Processing node: ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y'])))
@@ -74,8 +425,8 @@ Processing node: f
 Processing node: ('vars', [('int', ['x', 'y', 's', 'c', 'f'])])
 Finished processing node: ('vars', [('int', ['x', 'y', 's', 'c', 'f'])])
 Symbol table: {'x': 'int', 'y': 'int', 's': 'int', 'c': 'int', 'f': 'int', 'a': 'int', 'b': 'int', 'n': 'int', 'num': 'int'}
-Processing node: ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 
-'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])])
+Processing node: ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', 
+['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])])
 Processing node: [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])]
 Processing node: ('assignment', 'y', '30')
 Processing node: ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y'])))
@@ -95,86 +446,126 @@ Processing node: ['"a is"', 'f']
 Processing node: f
 Semantic analysis successful!
 Symbol table: {'x': 'int', 'y': 'int', 's': 'int', 'c': 'int', 'f': 'int', 'a': 'int', 'b': 'int', 'n': 'int', 'num': 'int'}
-Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}, 'returnFloat': {'return_type': 'float', 'param_types': ['float']}, 'isGreaterThanTen': {'return_type': 'bool', 'param_types': ['int']}, 'printMessage': {'return_type': 'void', 'param_types': []}}
-Processing node in generation: ('program', 'functiontest', ('vars', [('int', ['x', 'y', 's', 'c', 'f'])]), [('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b')), ('return', 'result')]), ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b')), ('return', 'result')]), ('function', 'int', 'giveA', [('int', 'a')], None, [('return', 'a')]), ('function', 'int', 'giveOne', [], None, [('return', '1')]), ('function', 'int', 'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')]), ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))]), ('function', 
-'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', 
-'1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])]), ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')]), ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))]), ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])], ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])]))
+Function table: {'add': {'return_type': 'int', 'param_types': ['int', 'int']}, 'subtract': {'return_type': 'int', 'param_types': ['int', 'int']}, 'giveA': {'return_type': 'int', 'param_types': ['int']}, 'giveOne': {'return_type': 'int', 'param_types': []}, 'checkGreater': {'return_type': 'int', 'param_types': ['int', 'int']}, 'max': {'return_type': 
+'int', 'param_types': ['int', 'int']}, 'factorial': {'return_type': 'int', 'param_types': ['int']}, 'returnFloat': {'return_type': 'float', 'param_types': ['float']}, 'isGreaterThanTen': {'return_type': 'bool', 'param_types': ['int']}, 'printMessage': {'return_type': 'void', 'param_types': []}}
+Processing node in generation: ('program', 'functiontest', ('vars', [('int', ['x', 'y', 's', 'c', 'f'])]), [('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', 
+'+', 'a', 'b')), ('return', 'result')]), ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b')), ('return', 'result')]), ('function', 'int', 'giveA', [('int', 'a')], None, [('return', 'a')]), ('function', 'int', 'giveOne', [], None, [('return', '1')]), ('function', 'int', 'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')]), ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))]), ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), ('return', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))))]), ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')]), ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))]), ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])], ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])]))
 Processing node in generation: ('vars', [('int', ['x', 'y', 's', 'c', 'f'])])
+Debug vars: vars_code: ['DECLARE int x', 'DECLARE int y', 'DECLARE int s', 'DECLARE int c', 'DECLARE int f']
 Processing node in generation: ('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b')), ('return', 'result')])
-Processing node in generation: ('return', 'result')
+Debug function: Function node: ('function', 'int', 'add', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '+', 'a', 'b')), ('return', 'result')])
 Processing node in generation: ('assignment', 'result', ('binop', '+', 'a', 'b'))
 Processing node in generation: ('binop', '+', 'a', 'b')
-Processing node in generation: a
-Processing node in generation: b
-Processing node in generation: ('vars', [('int', ['result'])])
-Processing node in generation: ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b')), ('return', 'result')])
+Debug binop: code:
+T1 = a + b
+Debug function: Return node in body: ('return', 'result')
 Processing node in generation: ('return', 'result')
+Debug return: Return var: result
+Processing node in generation: ('vars', [('int', ['result'])])
+Debug vars: vars_code: ['DECLARE int result']
+Processing node in generation: ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b')), ('return', 'result')])
+Debug function: Function node: ('function', 'int', 'subtract', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('assignment', 'result', ('binop', '-', 'a', 'b')), ('return', 'result')])
 Processing node in generation: ('assignment', 'result', ('binop', '-', 'a', 'b'))
 Processing node in generation: ('binop', '-', 'a', 'b')
-Processing node in generation: a
-Processing node in generation: b
-Processing node in generation: ('vars', [('int', ['result'])])
-Processing node in generation: ('function', 'int', 'giveA', [('int', 'a')], None, [('return', 'a')])
-Processing node in generation: ('return', 'a')
-Processing node in generation: ('function', 'int', 'giveOne', [], None, [('return', '1')])
-Processing node in generation: ('return', '1')
-Processing node in generation: ('function', 'int', 'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')])
+Debug binop: code:
+T2 = a - b
+Debug function: Return node in body: ('return', 'result')
 Processing node in generation: ('return', 'result')
+Debug return: Return var: result
+Processing node in generation: ('vars', [('int', ['result'])])
+Debug vars: vars_code: ['DECLARE int result']
+Processing node in generation: ('function', 'int', 'giveA', [('int', 'a')], None, [('return', 'a')])
+Debug function: Function node: ('function', 'int', 'giveA', [('int', 'a')], None, [('return', 'a')])
+Debug function: Return node in body: ('return', 'a')
+Processing node in generation: ('return', 'a')
+Debug return: Return var: a
+Processing node in generation: ('function', 'int', 'giveOne', [], None, [('return', '1')])
+Debug function: Function node: ('function', 'int', 'giveOne', [], None, [('return', '1')])
+Debug function: Return node in body: ('return', '1')
+Processing node in generation: ('return', '1')
+Debug return: Return var: 1
+Processing node in generation: ('function', 'int', 'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')])
+Debug function: Function node: ('function', 'int', 'checkGreater', [('int', 'a'), ('int', 'b')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')]), ('return', 'result')])
 Processing node in generation: ('if_else', ('binop', '>', 'a', 'b'), [('assignment', 'result', '1')], [('assignment', 'result', '0')])
 Processing node in generation: ('binop', '>', 'a', 'b')
-Processing node in generation: a
-Processing node in generation: b
+Debug binop: code:
+T3 = a > b
 Processing node in generation: ('assignment', 'result', '1')
 Processing node in generation: ('assignment', 'result', '0')
+Debug function: Return node in body: ('return', 'result')
+Processing node in generation: ('return', 'result')
+Debug return: Return var: result
 Processing node in generation: ('vars', [('int', ['result'])])
-Processing node in generation: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))])
+Debug vars: vars_code: ['DECLARE int result']
+Processing node in generation: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', 
+'>', 'a', 'b'), ('return', 'a'), ('return', 'b'))])
+Debug function: Function node: ('function', 'int', 'max', [('int', 'a'), ('int', 'b')], None, [('if_else', ('binop', 
+'>', 'a', 'b'), ('return', 'a'), ('return', 'b'))])
 Processing node in generation: ('if_else', ('binop', '>', 'a', 'b'), ('return', 'a'), ('return', 'b'))
 Processing node in generation: ('binop', '>', 'a', 'b')
-Processing node in generation: a
-Processing node in generation: b
+Debug binop: code:
+T4 = a > b
 Processing node in generation: return
 Processing node in generation: a
 Processing node in generation: return
 Processing node in generation: b
-Processing node in generation: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])])
-Processing node in generation: ('if_else', ('binop', '==', 'n', '0'), ('return', '1'), [('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))), ('return', 'result')])
+Processing node in generation: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), ('return', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))))])
+Debug function: Function node: ('function', 'int', 'factorial', [('int', 'n')], ('vars', [('int', ['result'])]), [('if_else', ('binop', '==', 'n', '0'), ('return', '1'), ('return', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))))])
+Processing node in generation: ('if_else', ('binop', '==', 'n', '0'), ('return', '1'), ('return', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))))
 Processing node in generation: ('binop', '==', 'n', '0')
-Processing node in generation: n
-Processing node in generation: 0
+Debug binop: code:
+T5 = n == 0
 Processing node in generation: return
 Processing node in generation: 1
-Processing node in generation: ('assignment', 'result', ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')])))
-Processing node in generation: ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))
-Processing node in generation: n
+Processing node in generation: return
+Processing node in generation: ('binop', '*', 'n', ('function_call', 'factorial', [('binop', '-', 'n', '1')]))       
 Processing node in generation: ('function_call', 'factorial', [('binop', '-', 'n', '1')])
 Processing node in generation: ('binop', '-', 'n', '1')
-Processing node in generation: n
-Processing node in generation: 1
-Processing node in generation: ('return', 'result')
-Error occurred during code generation: sequence item 9: expected str instance, tuple found
+Debug binop: code:
+T6 = n - 1
+Debug binop: operand2_code: T6 = n - 1
+T7 = callfunc factorial 1
+Debug binop: operand2_var: T7
+Debug binop: code:
+T6 = n - 1
+T7 = callfunc factorial 1T8 = n * T7
+Debug ifelse: ('T6 = n - 1\nT7 = callfunc factorial 1\nT8 = n * T7', 'T8')
 Processing node in generation: ('vars', [('int', ['result'])])
-Processing node in generation: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])      
+Debug vars: vars_code: ['DECLARE int result']
+Processing node in generation: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])   
+Debug function: Function node: ('function', 'float', 'returnFloat', [('float', 'num')], None, [('return', 'num')])   
+Debug function: Return node in body: ('return', 'num')
 Processing node in generation: ('return', 'num')
+Debug return: Return var: num
 Processing node in generation: ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))])
-Processing node in generation: ('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))        
+Debug function: Function node: ('function', 'bool', 'isGreaterThanTen', [('int', 'num')], None, [('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))])
+Processing node in generation: ('if_else', ('binop', '>', 'num', '10'), ('return', 'true'), ('return', 'false'))     
 Processing node in generation: ('binop', '>', 'num', '10')
-Processing node in generation: num
-Processing node in generation: 10
+Debug binop: code:
+T9 = num > 10
 Processing node in generation: return
 Processing node in generation: true
 Processing node in generation: return
 Processing node in generation: false
-Processing node in generation: ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])
+Processing node in generation: ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])      
+Debug function: Function node: ('function', 'void', 'printMessage', [], None, [('write', ['"Hello, World!"'])])      
 Processing node in generation: ('write', ['"Hello, World!"'])
 Processing node in generation: ('main', [('assignment', 'x', '20'), ('assignment', 'y', '30'), ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))), ('assignment', 's', ('function_call', 'subtract', ['x', 'y'])), ('assignment', 'f', ('function_call', 'giveA', ['x'])), ('assignment', 'f', ('function_call', 'factorial', ['x'])), ('write', ['"sum is"', 'c']), ('write', ['"subtract is"', 's']), ('write', ['"a is"', 'f'])])
 Processing node in generation: ('assignment', 'x', '20')
 Processing node in generation: ('assignment', 'y', '30')
-Processing node in generation: ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y'])))
+Processing node in generation: ('assignment', 'c', ('binop', '+', '5', ('function_call', 'add', ['x', 'y'])))        
 Processing node in generation: ('binop', '+', '5', ('function_call', 'add', ['x', 'y']))
-Processing node in generation: 5
 Processing node in generation: ('function_call', 'add', ['x', 'y'])
 Processing node in generation: x
 Processing node in generation: y
+Debug binop: operand2_code: param x
+param y
+T10 = callfunc add 2
+Debug binop: operand2_var: T10
+Debug binop: code:
+param x
+param y
+T10 = callfunc add 2T11 = 5 + T10
 Processing node in generation: ('assignment', 's', ('function_call', 'subtract', ['x', 'y']))
 Processing node in generation: ('function_call', 'subtract', ['x', 'y'])
 Processing node in generation: x
@@ -227,20 +618,33 @@ RETURN result
 END FUNCTION
 FUNCTION int max(DECLARE int a, DECLARE int b)
 T4 = a > b
-if T4 goto L4
-goto L5
-L4:
+if T4 goto L1
+goto L2
+L1:
 return
 a
-goto L6
-L5:
+goto L3
+L2:
 return
 b
-L6:
+L3:
 
 END FUNCTION
 FUNCTION int factorial(DECLARE int n)
 DECLARE int result
+T5 = n == 0
+if T5 goto L1
+goto L2
+L1:
+return
+1
+goto L3
+L2:
+return
+T6 = n - 1
+T7 = callfunc factorial 1
+T8 = n * T7
+L3:
 
 END FUNCTION
 FUNCTION float returnFloat(DECLARE float num)
@@ -248,16 +652,16 @@ RETURN num
 END FUNCTION
 FUNCTION bool isGreaterThanTen(DECLARE int num)
 T9 = num > 10
-if T9 goto L10
-goto L11
-L10:
+if T9 goto L1
+goto L2
+L1:
 return
 true
-goto L12
-L11:
+goto L3
+L2:
 return
 false
-L12:
+L3:
 
 END FUNCTION
 FUNCTION void printMessage()
@@ -292,3 +696,16 @@ param "a is"
 param f
 call print, 2
 END PROGRAM
+Running the generated code on the virtual machine:
+Error in virtual machine: list index out of range
+Traceback (most recent call last):
+  File "C:\Users\hulig\Documents\github\plyMyr\MyR_main.py", line 66, in <module>
+    vm.run()
+  File "C:\Users\hulig\Documents\github\plyMyr\virtual_machine.py", line 34, in run
+    params = [param.split()[2] for param in params]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\hulig\Documents\github\plyMyr\virtual_machine.py", line 34, in <listcomp>
+    params = [param.split()[2] for param in params]
+              ~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+PS C:\Users\hulig\Documents\github\plyMyr> 

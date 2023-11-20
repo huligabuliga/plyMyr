@@ -1,0 +1,16 @@
+program my_program;
+vars
+    int x, y, d, f, g, l, u;
+    float i, k, game;
+    bool z;
+
+main(){
+    for i [1 to 5] do {
+    write("for loop iteration", i);       
+    for j [1 to 5] do {
+        write("second for loop", j);
+        j = j + 5;
+    }
+    i = i + 5;
+    }
+}

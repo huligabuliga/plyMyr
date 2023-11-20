@@ -1,6 +1,8 @@
 import logging
 
+# logs will be written to the file vm_logs.txt
 logging.basicConfig(filename='vm_logs.txt',
+                    filemode='w',  # Overwrite the log file each time
                     level=logging.INFO, format='%(message)s')
 
 
@@ -16,8 +18,13 @@ class VirtualMachine:
         self.pc = 0
 
     def run(self):
+        logging.info(f"Initial params: {self.params}")
         while self.pc < len(self.program):
             line = self.program[self.pc]
+            if line == "":
+                self.pc += 1
+                continue
+            logging.info(f"Executing line {self.pc + 1}: {line}")
             try:
                 if line.startswith('DECLARE'):
                     _, type, var = line.split()
@@ -31,7 +38,8 @@ class VirtualMachine:
                     params = params.split(')')[0].split(
                         ',')  # Split the parameters by comma
                     # Extract the parameter names
-                    params = [param.split()[2] for param in params]
+                    params = [param.split()[2] if len(param.split())
+                              > 2 else None for param in params]
                     # Add this line
                     logging.info(f"Extracted parameter names: {params}")
                     # Find the end of the function definition
@@ -45,7 +53,31 @@ class VirtualMachine:
                     # Set the program counter to the line after the function definition
                     self.pc += 1
                     continue
-
+                elif line.startswith('param'):
+                    _, value = line.split(maxsplit=1)
+                    if value.startswith('callfunc'):
+                        _, func_name, num_params = value.split(maxsplit=2)
+                        if func_name not in self.functions:
+                            raise ValueError(
+                                f"Function '{func_name}' is not defined.")
+                        for _ in range(int(num_params)):
+                            logging.info(f"Params before pop: {self.params}")
+                            self.stack.append(self.params.pop(0))
+                            logging.info(f"Params after pop: {self.params}")
+                            logging.info(f"Stack: {self.stack}")
+                            logging.info(f"Params: {self.params}")
+                        # self.params = []
+                        return_address = self.pc
+                        self.pc = self.functions[func_name]['start_pc']
+                        return_value = self.execute_function(
+                            func_name, int(num_params))
+                        self.params.append(return_value)
+                        logging.info(f"Params after append: {self.params}")
+                        self.pc = return_address + 1
+                    else:
+                        self.params.append(
+                            eval(value, {'true': True, 'false': False}, self.vars))
+                        logging.info(f"Params after append: {self.params}")
                 elif '=' in line:
                     logging.info(f"Processing assignment: {line}")
                     var, expr = line.split(' = ')
@@ -60,7 +92,11 @@ class VirtualMachine:
                             f"Pushing {num_params} parameters onto the stack")
                         for _ in range(int(num_params)):
                             logging.info(f"Popping parameter from the stack")
+                            logging.info(f"Params before pop: {self.params}")
                             self.stack.append(self.params.pop(0))
+                            logging.info(f"Params after pop: {self.params}")
+                            logging.info(f"Stack: {self.stack}")
+                            logging.info(f"Params: {self.params}")
                         return_address = self.pc  # Save the return address
                         logging.info(
                             f"Setting program counter to {self.functions[func_name]['start_pc']}")
@@ -95,13 +131,14 @@ class VirtualMachine:
                     _, label = line.split()
                     self.pc = self.find_label(label)
                     continue
-                elif line.startswith('param'):
-                    _, value = line.split(maxsplit=1)
-                    self.params.append(
-                        eval(value, {'true': True, 'false': False}, self.vars))
+
                 elif line.startswith('call print'):
+                    # print("self.params: ", self.params)
                     print(*self.params, end=' ')
-                    self.params = []  # Clear the parameters list
+                    # pop parameters from stack
+                    pop_count = len(self.params)
+                    for _ in range(pop_count):
+                        self.params.pop(0)
                 elif line.startswith('L') and ':' in line:
                     pass  # This is a label, do nothing
             except ValueError as e:
@@ -120,6 +157,8 @@ class VirtualMachine:
             'return_type': return_type, 'param_types': param_types, 'start_pc': start_pc}
 
     def execute_function(self, func_name, num_params):
+        logging.info(f"Params at start of execute_function: {self.params}")
+        logging.info(f"Processing line {self.pc + 1}: {self.program[self.pc]}")
         # Save the current program counter and variable space
         saved_pc = self.pc
         saved_vars = self.vars.copy()
@@ -130,10 +169,19 @@ class VirtualMachine:
         # Get the start of the function from the functions dictionary
         self.pc = self.functions[func_name]['start_pc']
 
+        # get void functions
+        void_functions = [name for name, details in self.functions.items(
+        ) if details['return_type'] == 'void']
+
+        # Check if the function is void
+        is_void = func_name in void_functions
+
         # Get the parameters from the stack
         params = [self.stack.pop() for _ in range(num_params)]
         params.reverse()  # Reverse the order of the parameters
 
+        logging.info(f"Stack: {self.stack}")
+        logging.info(f"Params: {self.params}")
         # Print the reversed parameters
         logging.info(f"Reversed parameters: {params}")
 
@@ -167,20 +215,90 @@ class VirtualMachine:
         # logging.info(f"Assigned {var} = {params[i]}")
 
         # Run the function
+        # Run the function
         while not self.program[self.pc].startswith('RETURN'):
             line = self.program[self.pc]
+            logging.info(f"Executing line {self.pc}: {line}")  # Added print
             if line.startswith('DECLARE'):
                 _, type, var = line.split()
                 self.vars[var] = 0 if type == 'int' else 0.0
+                # Added print
+                logging.info(f"Declared variable {var} of type {type}")
             elif '=' in line:
                 var, expr = line.split(' = ')
-                self.vars[var] = eval(
-                    expr, {'true': True, 'false': False}, self.vars)
+                if 'callfunc' in expr:
+                    _, called_func_name, called_func_params = expr.split(
+                        maxsplit=2)
+                    if called_func_name not in self.functions:
+                        raise ValueError(
+                            f"Function '{called_func_name}' is not defined.")
+
+                    # Check if the function being called is void
+                    is_called_func_void = called_func_name in void_functions
+                    if not is_called_func_void:
+                        for _ in range(int(called_func_params)):
+                            self.stack.append(self.params.pop(0))
+                    # Added print
+                    logging.info(
+                        f"Calling function {called_func_name} with {called_func_params} parameters")
+                    return_address = self.pc
+                    self.pc = self.functions[called_func_name]['start_pc']
+                    return_value = self.execute_function(
+                        called_func_name, int(called_func_params))
+                    self.vars[var] = return_value
+                    self.pc = return_address + 1
+                else:
+                    self.vars[var] = eval(
+                        expr, {'true': True, 'false': False}, self.vars)
+                    # Added print
+                    logging.info(
+                        f"Assigned value {self.vars[var]} to variable {var}")
+            elif line.startswith('if'):
+                parts = line.split()
+                if 'not' in parts:
+                    _, _, condition, _, label = parts
+                    if not eval(condition, {'true': True, 'false': False}, self.vars):
+                        self.pc = self.find_label(label)
+                        continue
+                else:
+                    _, condition, _, label = parts
+                    if eval(condition, {'true': True, 'false': False}, self.vars):
+                        self.pc = self.find_label(label)
+                        continue
+                # Added print
+                logging.info(f"Evaluated if condition {condition}")
+            elif line.startswith('goto'):
+                _, label = line.split()
+                self.pc = self.find_label(label)
+                logging.info(f"Jumping to label {label}")  # Added print
+                continue
             self.pc += 1
 
-        # Get the return value
+         # Get the return value
         _, result_var = self.program[self.pc].split()
-        result = self.vars[result_var]
+        try:
+            # Try to convert result_var to an integer
+            result = int(result_var)
+        except ValueError:
+            try:
+                # Try to convert result_var to a float
+                result = float(result_var)
+            except ValueError:
+                # Check if result_var is a boolean
+                if result_var.lower() == 'true':
+                    result = True
+                elif result_var.lower() == 'false':
+                    result = False
+                else:
+                    # If it's not an integer, float, or boolean, it's a variable name
+                    if result_var in self.vars:
+                        result = self.vars[result_var]
+                    else:
+                        raise KeyError(
+                            f"Variable '{result_var}' is not defined.")
+
+        logging.info(f"Stack: {self.stack}")
+        logging.info(f"Params: {self.params}")
 
         # Restore the program counter and variable space
         self.pc = saved_pc

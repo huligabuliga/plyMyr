@@ -8,15 +8,16 @@ vars
 {
     if (n == 0) then {
         return (1);
+        write("factorial:", n);
+        
     } 
     else {
-        write("iteration factorial:", n);
         return (n * factorial(n - 1));
+        write("factorial:", n);
     }
 }
    
 main(){
   num = 5;
   factorial(num);
-  write("factorial is", num);
 }

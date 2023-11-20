@@ -155,7 +155,8 @@ def check_types(node):
         if isinstance(expression, tuple) and expression[0] == 'function_call':
             # Handle function calls
             function_name = expression[1]
-            function_args = expression[2]
+            function_args = expression[2] if len(
+                expression) > 2 else []  # Add this line
             # Look up the function in the function table and check the arguments
             # Check if the function has been declared
             if function_name not in function_table:
@@ -188,6 +189,27 @@ def check_types(node):
             raise TypeError('Type mismatch in assignment')
         # Return the type of the variable
         return symbol_table[var_name]
+
+    elif node_type == 'function_call':
+        function_name = node[1]
+        function_args = node[2] if len(node) > 2 else []  # Add this line
+        # Look up the function in the function table and check the arguments
+        # Check if the function has been declared
+        if function_name not in function_table:
+            raise NameError(f"Function '{function_name}' not declared")
+        function_info = function_table[function_name]
+        expected_param_types = function_info['param_types']
+        if len(function_args) != len(expected_param_types):
+            raise TypeError('Incorrect number of arguments in function call')
+        for arg, expected_type in zip(function_args, expected_param_types):
+            if arg not in symbol_table:
+                raise TypeError(f"Variable '{arg}' not defined")
+            arg_type = symbol_table[arg]
+            if arg_type != expected_type:
+                raise TypeError('Type mismatch in function call')
+        # The type of the expression is the return type of the function
+        expression_type = function_info['return_type']
+        return expression_type
 
     elif node_type == 'binop':
         operator = node[1]

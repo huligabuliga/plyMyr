@@ -1,7 +1,8 @@
 program functiontest;
 vars
-    int x, y, s, c, f;
-    
+    int x, y, s, c, f, a, b, d, g;
+    float n;
+    bool check;
 
 function int add (int a, int b)
 vars
@@ -43,26 +44,18 @@ vars
 function int max(int a, int b)
 {
     if (a > b) then {
-        return (a);
+        write("max: ");
+        return(a);
     } else {
-        return (b);
+        write("max: ");
+        return(b);
     }
 }
 
-function int factorial(int n)
-vars
-    int result;
-{
-    if (n == 0) then {
-        return (1);
-    } else {
-        return (n * factorial(n - 1));
-    }
-}
 
-function float returnFloat(float num)
+function float returnFloat(float floatnum)
 {
-    return (num);
+    return (floatnum);
 }
 
 function bool isGreaterThanTen(int num)
@@ -73,19 +66,37 @@ function bool isGreaterThanTen(int num)
         return (false);
     }
 }
-function void printMessage()
+
+function void printmessage()
 {
-    write("Hello, World!");
+    write("hello world!");
 }
 
 main() {
-        x = 20;
-        y = 30;
-        c = 5 + add(x, y);
-        s = subtract(x, y);
-        f = giveA(x);
-        f = factorial(x);
-        write("sum is", c);
-        write("subtract is", s);
-        write("a is", f);
+    a = 20;
+    b = 30;
+    n = 5.5123;
+
+    c = add(a, b);
+    write("sum is", c);
+
+    s = subtract(a, b);
+    write("subtract is", s);
+
+    f = giveA(a);
+    write("a is", f);
+
+    f = giveOne();
+    write("one is", f);
+
+    d = checkGreater(a, b);
+    write("checkGreate", d);
+
+    f = max(a, b);
+    write("max is", f);
+
+    n = returnFloat(n);
+    write("float is", n);
+    
+    printmessage();
 }

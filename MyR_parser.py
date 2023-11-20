@@ -134,8 +134,12 @@ def p_assignment(p):
 
 
 def p_function_call(p):
-    '''function_call : ID LPAREN arg_list RPAREN'''
-    p[0] = ('function_call', p[1], p[3])
+    '''function_call : ID LPAREN arg_list RPAREN
+                     | ID LPAREN RPAREN'''
+    if len(p) == 5:
+        p[0] = ('function_call', p[1], p[3])
+    else:
+        p[0] = ('function_call', p[1], [])  # No arguments
 
 
 def p_arg_list(p):

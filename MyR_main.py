@@ -11,13 +11,28 @@ import traceback
 
 def print_tokens(data):
     lexer.input(data)
-    for token in lexer:
-        print(
-            f'Type: {token.type}, Value: {token.value}, Line: {token.lineno}, Position: {token.lexpos}')
+    # for token in lexer:
+    #     print(
+    #         f'Type: {token.type}, Value: {token.value}, Line: {token.lineno}, Position: {token.lexpos}')
 
 
+print("""
+     ____    ____             _______     
+    |_   \  /   _|           |_   __ \    
+      |   \/   |     _   __    | |__) |   
+      | |\  /| |    [ \ [  ]   |  __ /    
+     _| |_\/_| |_    \ '/ /   _| |  \ \_  
+    |_____||_____| [\_:  /   |____| |___| 
+                    \__.'                 
+    """)
+
+
+# Ask the user for the filename
+filename = input("Please enter the filename: ")
+
+# filename = 'test_code.txt'
 # Read input from file
-with open('factorial.myr', 'r') as f:
+with open(filename, 'r') as f:
     input_str = f.read()
 
 try:
@@ -43,7 +58,14 @@ if parse_tree is not None:
         check_types(parse_tree)
         print('Semantic analysis successful!')
         print('Symbol table:', symbol_table)
+        # Write symbol_table to a file
+        with open('symbol_table.log', 'w') as f:
+            f.write(str(symbol_table))
         print('Function table:', function_table)
+        # Write function_table to a file
+        with open('function_table.log', 'w') as f:
+            f.write(str(function_table))
+
     except Exception as e:
         print('Error in semantic analysis:', str(e))
         traceback.print_exc()

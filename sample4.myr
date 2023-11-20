@@ -1,20 +1,20 @@
 program functiontest;
 vars
-    int x, y;
+    int x;
+    bool y;
 
 
-function int ifstatement(int a){
-    if(a == 1) then {
-        write("hello", 1);
-        return(1);
-    } 
-    else {
-        write("hello", 1);
-        return(0);
+function bool isGreaterThanTen(int num)
+{
+    if (num > 10) then {
+        return (true);
+    } else {
+        return (false);
     }
 }
 
 main() {
-    y = ifstatement(x);
+    x = 20;
+    y = isGreaterThanTen(x);
     write("y is", y);
 }
