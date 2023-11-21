@@ -152,7 +152,7 @@ def p_arg_list(p):
 
 
 def p_read_statement(p):
-    '''read_statement : READ id_list'''
+    '''read_statement : READ LPAREN id_list RPAREN'''
     p[0] = ('read', p[2])
 
 
@@ -164,6 +164,7 @@ def p_write_statement(p):
 def p_write_list(p):
     '''write_list : write_list COMMA expression
                   | STRING
+                  | function_call
                   | ID COMMA expression'''
     if len(p) == 4:
         p[0] = p[1] + [(p[3])]
@@ -210,9 +211,7 @@ def p_expression(p):
                   | expression GE term
                   | expression AND term
                   | expression OR term
-                  | term
-                  | function_call
-                  | STRING'''
+                  | term'''
     if len(p) == 4:
         p[0] = ('binop', p[2], p[1], p[3])
     else:
@@ -222,7 +221,6 @@ def p_expression(p):
 def p_term(p):
     '''term : term TIMES factor
             | term DIVIDE factor
-            | function_call
             | factor'''
     if len(p) == 4:
         p[0] = ('binop', p[2], p[1], p[3])
@@ -238,7 +236,10 @@ def p_factor(p):
               | function_call
               | FLOATING_POINT'''
     if len(p) == 4:
-        p[0] = ('array', p[1], p[3])
+        if p[1] == '(':
+            p[0] = ('paren_expression', p[2])
+        else:
+            p[0] = ('array', p[1], p[3])
     else:
         p[0] = p[1]
 

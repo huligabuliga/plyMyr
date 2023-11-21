@@ -9,6 +9,8 @@ symbol_table = {}
 # define function table
 function_table = {}
 
+# define scope of symbol table
+
 # Define the semantic cube
 semantic_cube = {
     ('int', 'int', '+'): 'int',
@@ -192,21 +194,45 @@ def check_types(node):
 
     elif node_type == 'function_call':
         function_name = node[1]
-        function_args = node[2] if len(node) > 2 else []  # Add this line
+        function_args = node[2] if len(node) > 2 else []
+
         # Look up the function in the function table and check the arguments
-        # Check if the function has been declared
         if function_name not in function_table:
             raise NameError(f"Function '{function_name}' not declared")
+
         function_info = function_table[function_name]
         expected_param_types = function_info['param_types']
+
         if len(function_args) != len(expected_param_types):
             raise TypeError('Incorrect number of arguments in function call')
+
         for arg, expected_type in zip(function_args, expected_param_types):
-            if arg not in symbol_table:
-                raise TypeError(f"Variable '{arg}' not defined")
-            arg_type = symbol_table[arg]
-            if arg_type != expected_type:
-                raise TypeError('Type mismatch in function call')
+            if isinstance(arg, tuple) and arg[0] == 'binop':
+                # Handle binary operation
+                left_operand = arg[2]
+                right_operand = arg[3]
+
+                # Check types of operands
+                left_type = symbol_table.get(left_operand)
+                right_type = symbol_table.get(right_operand)
+
+                if left_type is None or right_type is None:
+                    raise TypeError(f"Variable '{arg}' not defined")
+
+                # Check if the types of the operands match the expected type
+                if left_type != expected_type or right_type != expected_type:
+                    raise TypeError('Type mismatch in function call')
+            else:
+                # Handle variable
+                arg_type = symbol_table.get(arg)
+
+                if arg_type is None:
+                    raise TypeError(f"Variable '{arg}' not defined")
+
+                # Check if the type of the argument matches the expected type
+                if arg_type != expected_type:
+                    raise TypeError('Type mismatch in function call')
+
         # The type of the expression is the return type of the function
         expression_type = function_info['return_type']
         return expression_type

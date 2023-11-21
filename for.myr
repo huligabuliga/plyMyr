@@ -1,0 +1,14 @@
+program forloop;
+vars
+    int i, j;
+
+main(){
+    for i [1 to 10] do {
+        write("for loop iteration", i);
+        i = i + 3;
+        for j [1 to 5] do {
+            write("second for loop", j);
+            j = j + 1;
+        }
+    }
+}

@@ -1,0 +1,19 @@
+program whilemyr;
+vars
+    int x, y;
+
+main(){
+    x = 10;
+    y = 10;
+
+    
+    while (y < 20) do {
+        write("while loop number:", y);
+        y = y + 2;
+
+        while (x < 20) do {
+            write("while loop 2", x);
+            x = x + 10;
+        }
+    }
+}

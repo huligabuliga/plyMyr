@@ -39,7 +39,7 @@ main(){
 
     if (k == 1.05) then { 
         d = 500;
-        write("string", "string2", d, "string3"); 
+        write("string", d); 
     }
     else {
        write("2001");

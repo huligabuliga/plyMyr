@@ -6,14 +6,16 @@ function int uno (int j)
 vars 
     int i; 
 {
-    i = j + (k - j * 2 + j)
+    i = j + (k - j * 2 + j);
     if(j > 0) then
     {
-        return(uno(i-j))
+        write("uno if");
+        return(uno(i-j));
     }
     else
     {
-        return(i+k)
+        write("uno else");
+        return(i+k);
     }
 }
 
@@ -21,18 +23,30 @@ function void dos(int i, int j)
 vars 
     int x, y;
 {
+
     x = i + j; 
     if(x > j * k) then
     {
-      write(uno(x-k););
+        write("if statement");
+        write(uno(x-k));
     }
     else
     {
-      write(uno(j););
+        write("else statement");
+        write(uno(j));
     }
 }
 
+function int tres(int i)
+vars
+    int x;
+{
+    x = i + i;
+    return(x);
+}
+
 main(){
+    read(k);
     i = 5;
     j = i * 2 + i;
     dos(j-i, j);
