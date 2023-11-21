@@ -53,7 +53,7 @@ def generate_code(node):
         if node_type == 'program':
             _, _, vars_node, functions_node, main_node = node
             # reset temp counter
-            code = [("goto", "main", "", "")]
+            code = [("goto", "", "", "start_main")]
             temp_counter = 0
             if vars_node is not None:
                 print("p1", vars_node)
@@ -145,7 +145,8 @@ def generate_code(node):
 
             label_counter += 1  # Increment label counter
 
-            code = []  # Initialize code as an empty list
+            # Initialize code as an empty list
+            code = [("label", "", "", "start_main")]
             for statement in statements:
                 print("p18", statement)
                 statement_code = generate_code(statement)

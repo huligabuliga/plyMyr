@@ -4,6 +4,7 @@ class MemoryMap:
         self.global_vars = {}
         self.local_vars = {}
         self.stack = []
+        self.temp_vars = {}
 
     def allocate_global(self, name):
         address = len(self.global_vars)
@@ -32,3 +33,13 @@ class MemoryMap:
 
     def pop_stack(self):
         return self.stack.pop()
+
+    def declare_temp(self, name):
+        if name not in self.temp_vars:
+            address = len(self.memory)
+            self.temp_vars[name] = address
+            # Add a new slot in memory for the temporary variable
+            self.memory.append(0)
+
+    def get_temp(self, name):
+        return self.temp_vars[name]

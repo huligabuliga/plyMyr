@@ -5,6 +5,7 @@ from semantic_analysis import symbol_table
 from semantic_analysis import function_table
 from code_generation import generate_code
 from virtual_machine import VirtualMachine
+from memorymap import MemoryMap
 
 import traceback
 import pandas as pd
@@ -69,7 +70,7 @@ except Exception as e:
 if parse_tree is not None:
     try:
         # Perform semantic analysis
-        check_types(parse_tree)
+        memory_map = check_types(parse_tree)
         print('Semantic analysis successful!')
         print('Symbol table:', symbol_table)
         # Write symbol_table to a file
@@ -102,13 +103,21 @@ if parse_tree is not None:
         traceback.print_exc()
         exit()
 
-    # try:
-    #     # Run the generated code on the virtual machine
-    #     print('Running the generated code on the virtual machine:')
-    #     vm = VirtualMachine(code, symbol_table, function_table)
-    #     vm.run()
-    # except Exception as e:
-    #     print('Error in virtual machine:', str(e))
-    #     traceback.print_exc()
+    try:
+        # print local variables
+        print('Local variables:')
+        for key in memory_map.local_vars:
+            print(key, memory_map.local_vars[key])
+        # print global variables
+        print('Global variables:')
+        for key in memory_map.global_vars:
+            print(key, memory_map.global_vars[key])
+        # Run the generated code on the virtual machine
+        print('Running the generated code on the virtual machine:')
+        vm = VirtualMachine(code, memory_map, symbol_table, function_table)
+        vm.run()
+    except Exception as e:
+        print('Error in virtual machine:', str(e))
+        traceback.print_exc()
 else:
     print('Syntax error detected.')

@@ -1,7 +1,7 @@
 # Import the parser module and the parse_program function
 from MyR_parser import parser
 from MyR_lexer import tokens
-
+from memorymap import MemoryMap
 
 # Define the symbol table
 symbol_table = {}
@@ -84,6 +84,8 @@ def is_float(s):
 
 
 def check_types(node):
+    # memory map
+    memory_map = MemoryMap(100)  # Adjust the size as needed
     if node is None:
         return
     if isinstance(node, int):
@@ -147,6 +149,9 @@ def check_types(node):
             var_type, var_names = var_declaration
             for var_name in var_names:
                 symbol_table[var_name] = var_type
+                memory_map.allocate_global(var_name)
+                print(
+                    f"Allocated global variable {var_name} at address {memory_map.get_global(var_name)}")
         print('Finished processing node:', node)
         print('Symbol table:', symbol_table)
 
@@ -324,4 +329,16 @@ def check_types(node):
     else:
         # Recursively check the types of the children of the node
         for child in node[1:]:
-            check_types(child)
+            if child[0] not in ['assignment', 'vars']:
+                check_types(child)
+
+    # print whats in memory map
+    print('Memory map:', memory_map)
+    # print variables that are in the memory map
+    print('Global variables in memory map:', memory_map.global_vars)
+    print('Local variables in memory map:', memory_map.local_vars)
+
+    # Assuming symbol_table and memory_map are defined and initialized
+    for var_name, var_type in symbol_table.items():
+        memory_map.allocate_global(var_name)
+    return memory_map

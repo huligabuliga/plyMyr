@@ -1,1 +1,1 @@
-{}
+{'factorial': {'return_type': 'int', 'param_types': ['int']}}

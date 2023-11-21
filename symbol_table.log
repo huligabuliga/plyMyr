@@ -1,1 +1,1 @@
-{'i': 'int', 'j': 'int'}
+{'num': 'int', 'result': 'int', 'n': 'int'}
