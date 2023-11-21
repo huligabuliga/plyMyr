@@ -13,7 +13,7 @@ def generate_code(node):
     print(f"Processing node in generation: {node}")
     global label_counter
     global temp_counter
-    code = []
+    code = []  # quadruples
 
     try:
         if isinstance(node, str):
@@ -187,7 +187,7 @@ def generate_code(node):
                 if operand1[0] == 'paren_expression':
                     operand1_code, operand1_var = generate_code(operand1[1])
                     code.append(operand1_code)
-                    operand1_var = f"({operand1_var})"
+                    operand1_var = f"{operand1_var}"
                 else:
                     operand1_code, operand1_var = generate_code(operand1)
                     code.append(operand1_code)
@@ -199,7 +199,7 @@ def generate_code(node):
                 if operand2[0] == 'paren_expression':
                     operand2_code, operand2_var = generate_code(operand2[1])
                     code.append(operand2_code)
-                    operand2_var = f"({operand2_var})"
+                    operand2_var = f"{operand2_var}"
                 else:
                     operand2_code, operand2_var = generate_code(operand2)
                     code.append(operand2_code)

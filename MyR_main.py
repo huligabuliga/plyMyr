@@ -7,6 +7,7 @@ from code_generation import generate_code
 from virtual_machine import VirtualMachine
 
 import traceback
+import pandas as pd
 
 
 def print_tokens(data):
@@ -76,6 +77,10 @@ if parse_tree is not None:
         code = generate_code(parse_tree)
         print('Generated code:')
         print(code)
+        # dataframe
+        df = pd.DataFrame(
+            code, columns=['Operator', 'Operand1', 'Operand2', 'Result'])
+
     except Exception as e:
         print('Error in code generation:', str(e))
         traceback.print_exc()
