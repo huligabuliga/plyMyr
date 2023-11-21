@@ -34,6 +34,7 @@ vars
     int result;
 {
     if (a > b) then {
+        
         result = 1;
     } else {
         result = 0;
@@ -61,8 +62,10 @@ function float returnFloat(float floatnum)
 function bool isGreaterThanTen(int num)
 {
     if (num > 10) then {
+        write("isGreaterThanTen");
         return (true);
     } else {
+        write("isGreaterThanTen");
         return (false);
     }
 }

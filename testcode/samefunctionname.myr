@@ -2,19 +2,18 @@ program pelos;
 vars
      int i, j, k; 
 
-function int uno (int j)
+function int dos (int j)
 vars 
     int i; 
 {
     i = j + (k - j * 2 + j);
     if(j > 0) then
     {
-        write("uno if");
         return(uno(i-j));
     }
     else
     {
-        write("uno else");
+        write("else statement");
         return(i+k);
     }
 }
@@ -27,26 +26,15 @@ vars
     x = i + j; 
     if(x > j * k) then
     {
-        write("if statement");
         write(uno(x-k));
     }
     else
     {
-        write("else statement");
         write(uno(j));
     }
 }
 
-function int tres(int i)
-vars
-    int x;
-{
-    x = i + i;
-    return(x);
-}
-
 main(){
-    read(k);
     i = 5;
     j = i * 2 + i;
     dos(j-i, j);

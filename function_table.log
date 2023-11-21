@@ -1,1 +1,1 @@
-{'uno': {'return_type': 'int', 'param_types': ['int']}, 'dos': {'return_type': 'void', 'param_types': ['int', 'int']}, 'tres': {'return_type': 'int', 'param_types': ['int']}}
+{}

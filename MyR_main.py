@@ -10,6 +10,18 @@ import traceback
 import pandas as pd
 
 
+def flatten(lst):
+    result = []
+    for i in lst:
+        if isinstance(i, list):
+            result.extend(flatten(i))
+        elif isinstance(i, tuple):
+            result.append(i)
+        else:
+            result.append(i)
+    return result
+
+
 def print_tokens(data):
     lexer.input(data)
     # for token in lexer:
@@ -31,6 +43,7 @@ print("""
 # Ask the user for the filename
 filename = input("Please enter the filename: ")
 
+filename = f'testcode/{filename}'
 # filename = 'test_code.txt'
 # Read input from file
 with open(filename, 'r') as f:
@@ -75,12 +88,15 @@ if parse_tree is not None:
     try:
         # Perform code generation
         code = generate_code(parse_tree)
+        code = flatten(code)
         print('Generated code:')
         print(code)
         # dataframe
         df = pd.DataFrame(
             code, columns=['Operator', 'Operand1', 'Operand2', 'Result'])
-
+        print(df)
+        # Write dataframe to a file
+        df.to_csv('code.csv', index=False)
     except Exception as e:
         print('Error in code generation:', str(e))
         traceback.print_exc()

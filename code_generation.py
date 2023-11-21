@@ -9,6 +9,36 @@ label_counter = 0
 temp_counter = 0
 
 
+# stacks for the compiler
+# local variables
+local_stack = []
+# global variables
+global_stack = []
+# temp variables
+temp_stack = []
+# constant variables
+constant_stack = []
+# function variables
+function_stack = []
+
+
+# void functions:
+
+
+# def flatten(lst):
+#     result = []
+#     for i in lst:
+#         if isinstance(i, (list, tuple)):
+#             result.extend(flatten(i))
+#         else:
+#             result.append(i)
+#     return result
+
+
+def is_void(function_name, function_table):
+    return function_table[function_name]['return_type'] == 'void'
+
+
 def generate_code(node):
     print(f"Processing node in generation: {node}")
     global label_counter
@@ -23,22 +53,21 @@ def generate_code(node):
         if node_type == 'program':
             _, _, vars_node, functions_node, main_node = node
             # reset temp counter
-            code = ["goto\t\t\tmain"]
+            code = [("goto", "main", "", "")]
             temp_counter = 0
             if vars_node is not None:
                 print("p1", vars_node)
-                code.append(generate_code(vars_node))
-            # code.append("goto L1")
+                code.extend(generate_code(vars_node))
             if functions_node is not None:
                 for function_node in functions_node:
                     print("p2", function_node)
                     function_code = generate_code(function_node)
                     if function_code is not None:
                         print("p3", function_code)
-                        code.append(function_code)
+                        code.extend(function_code)
             print("p4", main_node)
-            code.append(generate_code(main_node))
-            return "\n".join(code)
+            code.extend(generate_code(main_node))
+            return code
 
         elif node_type == 'vars':
             _, var_declarations = node
@@ -55,65 +84,59 @@ def generate_code(node):
             return_type, function_name, params, vars_node, body_nodes = node[1:]
             param_names = [param[1] for param in params]
             param_types = [param[0] for param in params]
-            param_declarations = [f"DECLARE {param_type} {param_name}" for param_type, param_name in zip(
-                param_types, param_names)]
+            param_declarations = [(param_type, param_name, "", "")
+                                  for param_type, param_name in zip(param_types, param_names)]
+            # Flatten the list of param_declarations
+            param_declarations = [
+                item for sublist in param_declarations for item in sublist]
             # reset temp counter
             temp_counter = 0
             body_code = []
             for body_node in body_nodes:
                 body_node_code = generate_code(body_node)
-                if isinstance(body_node_code, tuple):
-                    # Check for recursive call
-                    if body_node[0] == 'function_call' and body_node[1] == function_name:
-                        temp_counter += 1  # Increment temp counter
-                        temp_var = f"T{temp_counter}"  # Create temp variable
-                        body_code.append(
-                            f"{temp_var} = callfunc {function_name} {len(body_node[2])}")
-                    else:
-                        body_code.extend(body_node_code[0].split('\n'))
-                elif body_node_code is not None:  # Check if body_node_code is not None
-                    body_code.append(body_node_code)
+                if body_node_code is not None:  # Check if body_node_code is not None
+                    body_code.extend(body_node_code)
 
-            return_code = ""
+            return_code = []
             for i, body_node in enumerate(body_nodes):
                 if body_node[0] == 'return':
                     del body_nodes[i]
                     break
 
-            function_code = [
-                f"FUNCTION {return_type} {function_name}({', '.join(param_declarations)})",
-            ]
-            function_code = []  # Initialize function_code as an empty list
+            # Skip adding the function declaration to the quadruples
+            function_code = []
             if vars_node is not None:
                 vars_code = generate_code(vars_node)
-                if vars_code:  # Check if vars_code is not an empty string
-                    function_code.append(vars_code)
+                if vars_code:  # Check if vars_code is not an empty list
+                    function_code.extend(vars_code)
             function_code.extend(body_code)
             # Append the return code without splitting it
-            function_code.append(return_code)
-            function_code.append("EndFunc")
-            return "\n".join(function_code)
+            function_code.extend(return_code)
+            function_code.append(("EndFunc", "", "", ""))
+            return function_code
 
         elif node_type == 'function_call':
             function_name = node[1]
             args = node[2] if len(node) > 2 else []  # Adjust this line
-            code.append(f"ERA\t\t\t{function_name}")
+            code.append(("ERA", function_name, "", ""))
             for i, arg in enumerate(args):
                 if isinstance(arg, tuple):
                     arg_code, arg_var = generate_code(arg)
-                    code.append(arg_code)  # Add this line
-                    if isinstance(arg_code, tuple):
-                        code.extend(arg_code[0].split('\n'))
-                        arg = arg_var
+                    code.extend(arg_code)  # Add this line
+                    arg = arg_var
                 else:
                     arg_var = arg  # arg is a variable, not an operation
-                code.append(f"param\t{arg_var}\t\tpar{i+1}")
-            code.append(f"gosub\t\t\t{function_name}")
+                code.append(("param", arg_var, "", f"par{i+1}"))
+            code.append(("gosub", "", "", function_name))
             temp_counter += 1  # Increment temp counter
             temp_var = f"T{temp_counter}"  # Create temp variable
-            code.append(f"= \t {function_name}\t\t{temp_var}")
-            # code.append(f"return\t\t\t{temp_var}")
-            return "\n".join(code), temp_var
+            print("p7: creating temp var", temp_var)
+            print("p8: code generated", code)
+            if not is_void(function_name, function_table):
+                code.append(("=", function_name, "", "T" + str(len(code))))
+                return code, temp_var
+            else:
+                return code
 
         elif node_type == 'main':
             _, statements = node
@@ -121,76 +144,61 @@ def generate_code(node):
             temp_counter = 0
 
             label_counter += 1  # Increment label counter
-            # Use label counter to create label
-            # code.append(f"L{label_counter}:")
 
+            code = []  # Initialize code as an empty list
             for statement in statements:
                 print("p18", statement)
                 statement_code = generate_code(statement)
                 print("p19", statement_code)
-                if isinstance(statement_code, tuple):
-                    code.extend(statement_code[0].split('\n'))
-                    print("p20", code)
-                else:
+                if statement_code is not None:  # Check if statement_code is not None
                     code.append(statement_code)
-                    print("p21", code)
-            label_counter += 1  # Increment label counter
-            # Use label counter to create label
-            code.append(f"EndProg")
+                    print("p20", code)
 
-        elif node_type == 'function_call':
-            function_name = node[1]
-            args = node[2] if len(node) > 2 else []  # Adjust this line
-            code.append(f"ERA\t\t\t{function_name}")
-            for i, arg in enumerate(args):
-                if isinstance(arg, tuple):
-                    arg_code, arg_var = generate_code(arg)
-                    code.append(arg_code)  # Add this line
-                    if isinstance(arg_code, tuple):
-                        code.extend(arg_code[0].split('\n'))
-                        arg = arg_var
-                else:
-                    arg_var = arg  # arg is a variable, not an operation
-                code.append(f"param\t{arg_var}\t\tpar{i+1}")
-            code.append(f"gosub\t\t\t{function_name}")
-            if node[0] == 'function_call':
-                temp_counter += 1  # Increment temp counter only if function call is part of an operation
-            temp_var = f"T{temp_counter}"  # Create temp variable
-            code.append(f"= {function_name}\t\t{temp_var}")
-            return "\n".join(code), temp_var
+            label_counter += 1  # Increment label counter
+            code.append(("EndProg", "", "", ""))
+            return code
+
         elif node_type == 'return':
             _, expr = node
+            code = []
             if isinstance(expr, tuple):
                 expr_code, expr_var = generate_code(expr)
-                code.append(expr_code)
-                code.append(f"return\t\t\t{expr_var}")
+                if expr_code is not None:  # Check if expr_code is not None
+                    code.extend(expr_code)
+                code.append(("return", expr_var, "", ""))
             else:
-                code.append(f"return\t\t\t{expr}")
+                code.append(("return", expr, "", ""))
+            return code
+
         elif node_type == 'assignment':
             var_name, expr = node[1], node[2]
+            code = []
             if isinstance(expr, tuple):
-                if expr[0] == 'function_call':
-                    # generate code for function call
-                    func_call_code, func_call_var = generate_code(expr)
-                    code.append(func_call_code)
-                    code.append(f"=\t{func_call_var}\t{var_name}")
-                else:
-                    expr_code, expr_var = generate_code(expr)
+                expr_code, expr_var = generate_code(expr)
+                if expr_code is not None:  # Check if expr_code is not None
                     code.append(expr_code)
-                    code.append(f"=\t{expr_var}\t \t{var_name}")
+                if expr[0] == 'function_call':
+                    # Check if the function is not void before generating assignment code
+                    if not is_void(expr[1], function_table):
+                        code.append(("=", expr_var, "", var_name))
+                else:
+                    code.append(("=", expr_var, "", var_name))
             else:
-                code.append(f"=\t{expr}\t{var_name}")
+                code.append(("=", expr, "", var_name))
+            return code
 
         elif node_type == 'binop':
             operator, operand1, operand2 = node[1], node[2], node[3]
+            code = []
             if isinstance(operand1, tuple):
                 if operand1[0] == 'paren_expression':
                     operand1_code, operand1_var = generate_code(operand1[1])
-                    code.append(operand1_code)
-                    operand1_var = f"{operand1_var}"
+                    if operand1_code is not None:  # Check if operand1_code is not None
+                        code.extend(operand1_code)
                 else:
                     operand1_code, operand1_var = generate_code(operand1)
-                    code.append(operand1_code)
+                    if operand1_code is not None:  # Check if operand1_code is not None
+                        code.extend(operand1_code)
             else:
                 operand1_var = operand1  # operand1 is a variable, not an operation
 
@@ -198,58 +206,63 @@ def generate_code(node):
             if isinstance(operand2, tuple):
                 if operand2[0] == 'paren_expression':
                     operand2_code, operand2_var = generate_code(operand2[1])
-                    code.append(operand2_code)
-                    operand2_var = f"{operand2_var}"
+                    if operand2_code is not None:  # Check if operand2_code is not None
+                        code.extend(operand2_code)
                 else:
                     operand2_code, operand2_var = generate_code(operand2)
-                    code.append(operand2_code)
+                    if operand2_code is not None:  # Check if operand2_code is not None
+                        code.extend(operand2_code)
             else:
                 operand2_var = operand2  # operand2 is a variable, not an operation
 
             temp_counter += 1  # Increment temp counter
+            print("p9: creating temp var", temp_counter)
             temp_var = f"T{temp_counter}"  # Create temp variable
-            code.append(
-                f"{operator}\t{operand1_var}\t{operand2_var}\t{temp_var}")
-            return "\n".join(code), temp_var
+            print("p10: code generated", code)
+            code.append((operator, operand1_var, operand2_var, temp_var))
+            return code, temp_var
 
         elif node_type == 'if':
             condition, if_statements = node[1:]
             condition_code, condition_var = generate_code(condition)
-            code.append(condition_code)
-            code.append(f"gotoF\t{condition_var}\tL{label_counter+1}")
+            if condition_code is not None:  # Check if condition_code is not None
+                code.extend(condition_code)
+            code.append(("gotoF", condition_var, "", f"L{label_counter+1}"))
             for statement in if_statements:
                 statement_code = generate_code(statement)
-                if isinstance(statement_code, tuple):
-                    code.extend(statement_code[0].split('\n'))
+                if isinstance(statement_code, list):
+                    code.extend(statement_code)
                 elif statement_code is not None:  # Check if statement_code is not None
                     code.append(statement_code)
-            code.append(f"L{label_counter+1}:")
+            code.append(("label", "", "", f"L{label_counter+1}"))
             label_counter += 1
 
         elif node_type == 'if_else':
             condition, if_statements, else_statements = node[1:]
             condition_code, condition_var = generate_code(condition)
-            code.append(condition_code)
-            code.append(f"gotoF\t{condition_var}\t \tL{label_counter+2}")
+            if condition_code is not None:  # Check if condition_code is not None
+                code.extend(condition_code)
+            code.append(("gotoF", condition_var, "", f"L{label_counter+2}"))
             for statement in if_statements:
                 statement_code = generate_code(statement)
                 if isinstance(statement_code, tuple):
-                    code.extend(statement_code[0].split('\n'))
+                    code.extend(statement_code[0])
                 elif statement_code is not None:  # Check if statement_code is not None
                     code.append(statement_code)
-            code.append(f"goto\t\t\tL{label_counter+3}")
-            code.append(f"L{label_counter+2}:")
+            code.append(("goto", "", "", f"L{label_counter+3}"))
+            code.append(("label", "", "", f"L{label_counter+2}"))
             for statement in else_statements:
                 statement_code = generate_code(statement)
                 if isinstance(statement_code, tuple):
-                    code.extend(statement_code[0].split('\n'))
+                    code.extend(statement_code[0])
                 elif statement_code is not None:  # Check if statement_code is not None
                     code.append(statement_code)
-            code.append(f"L{label_counter+3}:")
+            code.append(("label", "", "", f"L{label_counter+3}"))
             label_counter += 3
 
         # for loops
 
+         # for loops
         elif node_type == 'for':
             var_name, start_expr, end_expr, statements = node[1:]
             start_label = label_counter
@@ -257,42 +270,38 @@ def generate_code(node):
             label_counter += 2
 
             # Initialize the loop variable
-            temp_counter += 1  # Increment the counter
-            temp_var = f"T{temp_counter}"
-            code.append(f"= \t{start_expr}\t\t{temp_var}")
-            code.append(f"= \t {temp_var}\t\t{var_name}")
+            code.append(("=", start_expr, "", var_name))
 
             # Start label
-            code.append(f"L{start_label}:")
+            code.append(("label", "", "", f"L{start_label}"))
 
             # Generate code for the loop condition
-            temp_counter += 1  # Increment the counter
-            temp_var = f"T{temp_counter}"
-
-            code.append(f"<= \t {var_name}\t{end_expr}\t{temp_var}")
+            temp_counter += 1  # Increment temp counter
+            temp_var = f"T{temp_counter}"  # Create temp variable
+            code.append((">", var_name, end_expr, temp_var))
 
             # Check the loop condition
-            code.append(f"gotoF {temp_var}\t\tL{end_label}")
+            code.append(("gotoF", temp_var, "", f"L{end_label}"))
 
             # Generate code for the statements inside the loop
             for statement in statements:
                 statement_code = generate_code(statement)
                 if isinstance(statement_code, tuple):
-                    code.extend(statement_code[0].split('\n'))
-                else:
+                    code.extend(statement_code[0])
+                elif statement_code is not None:  # Check if statement_code is not None
                     code.append(statement_code)
 
             # Increment the loop variable
-            temp_counter += 1
-            temp_var2 = f"T{temp_counter}"
-            code.append(f"+ {var_name}\t1\t{temp_var2}")
-            code.append(f"= {temp_var2}\t\t{var_name}")
+            temp_counter += 1  # Increment temp counter
+            temp_var = f"T{temp_counter}"  # Create temp variable
+            code.append(("+", var_name, "1", temp_var))
+            code.append(("=", temp_var, "", var_name))
 
             # Go back to the start label
-            code.append(f"goto\t\t\tL{start_label}")
+            code.append(("goto", "", "", f"L{start_label}"))
 
             # End label
-            code.append(f"L{end_label}:")
+            code.append(("label", "", "", f"L{end_label}"))
 
         elif node_type == 'while':
             condition, statements = node[1], node[2]
@@ -302,41 +311,45 @@ def generate_code(node):
 
             # Generate code for the loop condition
             condition_code, condition_var = generate_code(condition)
-            code.append(condition_code)
+            if condition_code is not None:  # Check if condition_code is not None
+                code.extend(condition_code)
 
             # Go to end label if condition is false
-            code.append(f"gotoF\t{condition_var}\t\tL{end_label}")
+            code.append(("gotoF", condition_var, "", f"L{end_label}"))
 
             # Start label
-            code.append(f"L{start_label}:")
+            code.append(("label", "", "", f"L{start_label}"))
 
             # Generate code for the statements inside the loop
             for statement in statements:
                 statement_code = generate_code(statement)
                 if isinstance(statement_code, tuple):
-                    code.extend(statement_code[0].split('\n'))
-                else:
+                    code.extend(statement_code[0])
+                elif statement_code is not None:  # Check if statement_code is not None
                     code.append(statement_code)
 
             # Go back to the start label
-            code.append(f"goto\t\t\tL{start_label}")
+            code.append(("goto", "", "", f"L{start_label}"))
 
             # End label
-            code.append(f"L{end_label}:")
+            code.append(("label", "", "", f"L{end_label}"))
 
         elif node_type == 'write':
             _, args = node
             for arg in args:
                 if isinstance(arg, tuple):
                     arg_code, arg_var = generate_code(arg)
-                    code.append(arg_code)
-                    code.append(f"param \t\t\t{arg_var}")
+                    if arg_code is not None:  # Check if arg_code is not None
+                        code.extend(arg_code)
+                    code.append(("param", "", "", arg_var))
                 else:
-                    code.append(f"param \t\t\t {arg}")
-            code.append(f"write \t\t\t {len(args)}")
+                    code.append(("param", "", "", arg))
+            code.append(("write", "", "", len(args)))
 
-        return "\n".join(code)
+        return (code)
     except Exception as e:
         print(f"Error occurred during code generation: {e}")
+        print(f"Node causing the error: {node}")
+        raise e
         raise ValueError(f"Unhandled node type: {node[0]}")
         return None

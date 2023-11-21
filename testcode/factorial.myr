@@ -1,23 +1,25 @@
 program factorial;
 vars 
-    int num;
+    int num, result;
 
 function int factorial(int n)
 vars
     int result;
 {
     if (n == 0) then {
-        return (1);
         write("factorial:", n);
+        return (1);
+        
         
     } 
     else {
-        return (n * factorial(n - 1));
         write("factorial:", n);
+        return (n * factorial(n - 1));
+        
     }
 }
    
 main(){
   num = 5;
-  factorial(num);
+  result = factorial(num);
 }

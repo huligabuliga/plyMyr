@@ -1,0 +1,19 @@
+program fibonacci;
+vars 
+    int num, result;
+
+function int fibonacci(int n) {
+    if (n <= 1) then {
+        write("base case");
+        return(n);
+    } else {
+        write("fibbonacci iteration 1");
+        return (fibonacci(n - 1) + fibonacci(n - 2));
+    }
+}
+   
+main(){
+  num = 10;
+  result = fibonacci(num);
+  write("Fibonacci of", num);
+}
