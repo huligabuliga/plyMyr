@@ -310,7 +310,8 @@ def generate_code(node):
             start_label = label_counter
             end_label = label_counter + 1
             label_counter += 2
-
+            # start for loop
+            code.append(("for", "", "", var_name))
             # Initialize the loop variable
             code.append(("=", start_expr, "", var_name))
 
@@ -318,9 +319,9 @@ def generate_code(node):
             code.append(("label", "", "", f"L{start_label}"))
 
             # Generate code for the loop condition
-            temp_counter += 1  # Increment temp counter
-            temp_var = f"T{temp_counter}"  # Create temp variable
-            code.append((">", var_name, end_expr, temp_var))
+            temp_counter_int += 1  # Increment temp counter
+            temp_var = f"Ti{temp_counter_int}"  # Create temp variable
+            code.append(("<=", var_name, end_expr, temp_var))
 
             # Check the loop condition
             code.append(("gotoF", temp_var, "", f"L{end_label}"))
@@ -334,8 +335,8 @@ def generate_code(node):
                     code.append(statement_code)
 
             # Increment the loop variable
-            temp_counter += 1  # Increment temp counter
-            temp_var = f"T{temp_counter}"  # Create temp variable
+            temp_counter_int += 1  # Increment temp counter
+            temp_var = f"Ti{temp_counter_int}"  # Create temp variable
             code.append(("+", var_name, "1", temp_var))
             code.append(("=", temp_var, "", var_name))
 
@@ -344,6 +345,9 @@ def generate_code(node):
 
             # End label
             code.append(("label", "", "", f"L{end_label}"))
+
+            # end for
+            code.append(("endfor", "", "", var_name))
 
         elif node_type == 'while':
             condition, statements = node[1], node[2]

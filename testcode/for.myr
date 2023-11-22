@@ -1,6 +1,5 @@
 program forloop;
 vars
-    int i, j;
 
 main(){
     for i [1 to 10] do {

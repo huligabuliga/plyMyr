@@ -23,25 +23,108 @@ class VirtualMachine:
     def is_global(self, var):
         return var in self.memory_map.global_vars
 
+    # helper functions for repetitve code
+
+    def get_value(self, arg):
+        try:
+            return float(arg) if '.' in arg else int(arg)
+        except ValueError:
+            if arg.startswith(('Ti', 'Tf', 'Tb')):
+                arg_value = self.memory_map.get_value(
+                    self.memory_map.get_temp(arg))
+                return float(arg_value) if '.' in str(arg_value) else int(arg_value)
+            else:
+                if self.memory_map.local_vars and arg in self.memory_map.local_vars[-1]:
+                    arg_value = self.memory_map.get_value(
+                        self.memory_map.get_local(arg))
+                    return float(arg_value) if '.' in str(arg_value) else int(arg_value)
+                elif arg in self.memory_map.global_vars:
+                    arg_value = self.memory_map.get_value(
+                        self.memory_map.get_global(arg))
+                    return float(arg_value) if '.' in str(arg_value) else int(arg_value)
+                else:
+                    print(
+                        f"Variable {arg} is not defined in global_vars or local_vars")
+                    return None
+
+    def perform_operation(self, op, result, arg1, arg2):
+        print(f"{op} node detected")
+        if result.startswith(('Ti', 'Tf', 'Tb')) and not self.memory_map.exists_temp(result):
+            print("new temporal variable detected")
+            self.memory_map.declare_temp(result)
+            print("Declared temp variable: ", result)
+
+            if result in self.memory_map.temp_vars_int or result in self.memory_map.temp_vars_float or result in self.memory_map.temp_vars_bool:
+                arg1_value = self.get_value(arg1)
+                arg2_value = self.get_value(arg2)
+
+                if arg1_value is not None and arg2_value is not None:
+                    if op == "+":
+                        self.memory_map.set_value(self.memory_map.get_temp(
+                            result), arg1_value + arg2_value)
+                    elif op == "-":
+                        self.memory_map.set_value(self.memory_map.get_temp(
+                            result), arg1_value - arg2_value)
+                    elif op == "*":
+                        self.memory_map.set_value(self.memory_map.get_temp(
+                            result), arg1_value * arg2_value)
+                    elif op == "/":
+                        self.memory_map.set_value(self.memory_map.get_temp(
+                            result), arg1_value / arg2_value)
+
+    def get_arg_value(self, arg):
+        if isinstance(arg, str) and not arg.isdigit():
+            if self.memory_map.get_local(arg):
+                return self.memory_map.get_value(self.memory_map.get_local(arg))
+            else:
+                return self.memory_map.get_value(self.memory_map.get_global(arg))
+        else:
+            return int(arg) if isinstance(arg, str) else arg
+
+    def perform_comparison(self, op, result, arg1, arg2):
+        arg1_value = self.get_value(arg1)
+        arg2_value = self.get_value(arg2)
+        if arg1_value is None or arg2_value is None:
+            print("Error: One of the arguments is None")
+            return
+        self.memory_map.declare_temp(result)
+
+        if op == "==":
+            self.memory_map.set_value(self.memory_map.get_temp(
+                result), arg1_value == arg2_value)
+        elif op == "!=":
+            self.memory_map.set_value(self.memory_map.get_temp(
+                result), arg1_value != arg2_value)
+        elif op == ">":
+            self.memory_map.set_value(self.memory_map.get_temp(
+                result), arg1_value > arg2_value)
+        elif op == "<":
+            self.memory_map.set_value(self.memory_map.get_temp(
+                result), arg1_value < arg2_value)
+        elif op == ">=":
+            self.memory_map.set_value(self.memory_map.get_temp(
+                result), arg1_value >= arg2_value)
+        elif op == "<=":
+            self.memory_map.set_value(self.memory_map.get_temp(
+                result), arg1_value <= arg2_value)
+
     def run(self):
         while self.pc < len(self.code):
             op, arg1, arg2, result = self.code[self.pc]
             self.pc += 1
             print("pc = ", self.pc)
 
-            if op == "call":
-                # Push the current MemoryMap object onto the stack
-                self.stack.append(self.memory_map)
-                # Create a new MemoryMap object for the called function
-                self.memory_map = MemoryMap()
-
-            elif op == "=":
+            if op == "=":
                 print("equal node detected")
                 print("arg1: ", arg1)
                 print("arg2: ", arg2)
                 print("result: ", result)
                 # Determine where to get the value from for arg1
-                if arg1.startswith(('Ti', 'Tf')):
+                if arg1.lower() == 'true':
+                    arg1_value = True
+                elif arg1.lower() == 'false':
+                    arg1_value = False
+                elif arg1.startswith(('Ti', 'Tf')):
                     arg1_value = self.memory_map.get_value(
                         self.memory_map.get_temp(arg1))
                     if '.' in str(arg1_value):
@@ -83,339 +166,51 @@ class VirtualMachine:
                         self.memory_map.get_local(result), arg1_value)
                     print("Value of ", result, " is now ", self.memory_map.get_value(
                         self.memory_map.get_local(result)))
+                    # print local vars to debug
+                    print("local_vars: ", self.memory_map.local_vars)
+                    # prints local memory map to debug
+                    print("local memory map: ", self.memory_map.memory)
                 else:
                     print(f"Error: Variable {result} is not defined")
 
             # ------ Arithmetic Operations ------#
             # ------ + - * / ------#
             elif op == "+":
-                print("plus node detected")
-                if result.startswith(('Ti', 'Tf', 'Tb')) and not self.memory_map.exists_temp(result):
-                    print("new temporal varible detected")
-                    self.memory_map.declare_temp(result)
-                    print("Declared temp variable: ", result)
-
-                    if result in self.memory_map.temp_vars_int or result in self.memory_map.temp_vars_float or result in self.memory_map.temp_vars_bool:
-                        # Determine where to get the value from for arg1
-                        try:
-                            arg1_value = float(
-                                arg1) if '.' in arg1 else int(arg1)
-                        except ValueError:
-                            if arg1.startswith(('Ti', 'Tf')):
-                                print("arg1 is a temporal variable")
-                                arg1_value = self.memory_map.get_value(
-                                    self.memory_map.get_temp(arg1))
-                                print("temporal arg1_value: ", arg1_value)
-                                if '.' in str(arg1_value):
-                                    arg1_value = float(arg1_value)
-                                else:
-                                    arg1_value = int(arg1_value)
-                            else:
-                                # Check local vars first
-                                if self.memory_map.local_vars and arg1 in self.memory_map.local_vars[-1]:
-                                    print("arg1 is a local variable")
-                                    print(arg1)
-                                    arg1_value = self.memory_map.get_value(
-                                        self.memory_map.get_local(arg1))
-                                    print("local arg1_value: ", arg1_value)
-                                    if '.' in str(arg1_value):
-                                        arg1_value = float(arg1_value)
-                                    else:
-                                        arg1_value = int(arg1_value)
-                                elif arg1 in self.memory_map.global_vars:
-                                    arg1_value = self.memory_map.get_value(
-                                        self.memory_map.get_global(arg1))
-                                    if '.' in str(arg1_value):
-                                        arg1_value = float(arg1_value)
-                                    else:
-                                        arg1_value = int(arg1_value)
-                                else:
-                                    print(
-                                        f"Variable {arg1} is not defined in global_vars or local_vars")
-
-                        # Determine where to get the value from for arg2
-                        try:
-                            arg2_value = float(
-                                arg2) if '.' in arg2 else int(arg2)
-                        except ValueError:
-                            if arg2.startswith('Ti'):
-                                arg2_value = self.memory_map.get_value(
-                                    self.memory_map.get_temp(arg2))
-                                if '.' in str(arg2_value):
-                                    arg2_value = float(arg2_value)
-                                else:
-                                    arg2_value = int(arg2_value)
-                            else:
-                                # Check local vars first
-                                if self.memory_map.local_vars and arg2 in self.memory_map.local_vars[-1]:
-                                    arg2_value = self.memory_map.get_value(
-                                        self.memory_map.get_local(arg2))
-                                    if '.' in str(arg2_value):
-                                        arg2_value = float(arg2_value)
-                                    else:
-                                        arg2_value = int(arg2_value)
-                                elif arg2 in self.memory_map.global_vars:
-                                    arg2_value = self.memory_map.get_value(
-                                        self.memory_map.get_global(arg2))
-                                    if '.' in str(arg2_value):
-                                        arg2_value = float(arg2_value)
-                                    else:
-                                        arg2_value = int(arg2_value)
-                                else:
-                                    print(
-                                        f"Variable {arg2} is not defined in global_vars or local_vars")
-
-                        self.memory_map.set_value(
-                            self.memory_map.get_temp(result),
-                            arg1_value + arg2_value)
-
+                self.perform_operation(op, result, arg1, arg2)
             elif op == "-":
-                print("minus node detected")
-                if result.startswith(('Ti', 'Tf', 'Tb')) and not self.memory_map.exists_temp(result):
-                    print("new temporal varible detected")
-                    self.memory_map.declare_temp(result)
-                    print("Declared temp variable: ", result)
-
-                    if result in self.memory_map.temp_vars_int or result in self.memory_map.temp_vars_float or result in self.memory_map.temp_vars_bool:
-                        # Determine where to get the value from for arg1
-                        try:
-                            arg1_value = float(
-                                arg1) if '.' in arg1 else int(arg1)
-                        except ValueError:
-                            # Check local vars first
-                            if self.memory_map.local_vars and arg1 in self.memory_map.local_vars[-1]:
-                                arg1_value = self.memory_map.get_value(
-                                    self.memory_map.get_local(arg1))
-                                if '.' in arg1_value:
-                                    arg1_value = float(arg1_value)
-                                else:
-                                    arg1_value = int(arg1_value)
-                                print("plus local arg1_value: ", arg1_value)
-                            elif arg1 in self.memory_map.global_vars:
-                                arg1_value = self.memory_map.get_value(
-                                    self.memory_map.get_global(arg1))
-                                if '.' in arg1_value:
-                                    arg1_value = float(arg1_value)
-                                else:
-                                    arg1_value = int(arg1_value)
-                                print("plus global arg1_value: ", arg1_value)
-                            else:
-                                print(
-                                    f"Variable {arg1} is not defined in global_vars or local_vars")
-
-                        # Determine where to get the value from for arg2
-                        try:
-                            arg2_value = float(
-                                arg2) if '.' in arg2 else int(arg2)
-                        except ValueError:
-                            # Check local vars first
-                            if self.memory_map.local_vars and arg2 in self.memory_map.local_vars[-1]:
-                                arg2_value = self.memory_map.get_value(
-                                    self.memory_map.get_local(arg2))
-                                if '.' in arg2_value:
-                                    arg2_value = float(arg2_value)
-                                else:
-                                    arg2_value = int(arg2_value)
-                                print("plus local arg2_value: ", arg2_value)
-                            elif arg2 in self.memory_map.global_vars:
-                                arg2_value = self.memory_map.get_value(
-                                    self.memory_map.get_global(arg2))
-                                if '.' in arg2_value:
-                                    arg2_value = float(arg2_value)
-                                else:
-                                    arg2_value = int(arg2_value)
-                                print("plus global arg2_value: ", arg2_value)
-                            else:
-                                print(
-                                    f"Variable {arg2} is not defined in global_vars or local_vars")
-
-                        print("arg1_value: ", arg1_value)
-                        print("arg2_value: ", arg2_value)
-                        self.memory_map.set_value(
-                            self.memory_map.get_temp(result),
-                            arg1_value - arg2_value)
-
+                self.perform_operation(op, result, arg1, arg2)
             elif op == "*":
-                print("multiply node detected")
-                if result.startswith(('Ti', 'Tf', 'Tb')) and not self.memory_map.exists_temp(result):
-                    print("new temporal varible detected")
-                    self.memory_map.declare_temp(result)
-                    print("Declared temp variable: ", result)
-
-                    if result in self.memory_map.temp_vars_int or result in self.memory_map.temp_vars_float or result in self.memory_map.temp_vars_bool:
-                        # Determine where to get the value from for arg1
-                        try:
-                            arg1_value = float(
-                                arg1) if '.' in arg1 else int(arg1)
-                        except ValueError:
-                            # Check local vars first
-                            if self.memory_map.local_vars and arg1 in self.memory_map.local_vars[-1]:
-                                arg1_value = self.memory_map.get_value(
-                                    self.memory_map.get_local(arg1))
-                                if '.' in arg1_value:
-                                    arg1_value = float(arg1_value)
-                                else:
-                                    arg1_value = int(arg1_value)
-                                print("plus local arg1_value: ", arg1_value)
-                            elif arg1 in self.memory_map.global_vars:
-                                arg1_value = self.memory_map.get_value(
-                                    self.memory_map.get_global(arg1))
-                                if '.' in arg1_value:
-                                    arg1_value = float(arg1_value)
-                                else:
-                                    arg1_value = int(arg1_value)
-                                print("plus global arg1_value: ", arg1_value)
-                            else:
-                                print(
-                                    f"Variable {arg1} is not defined in global_vars or local_vars")
-
-                        # Determine where to get the value from for arg2
-                        try:
-                            arg2_value = float(
-                                arg2) if '.' in arg2 else int(arg2)
-                        except ValueError:
-                            # Check local vars first
-                            if self.memory_map.local_vars and arg2 in self.memory_map.local_vars[-1]:
-                                arg2_value = self.memory_map.get_value(
-                                    self.memory_map.get_local(arg2))
-                                if '.' in arg2_value:
-                                    arg2_value = float(arg2_value)
-                                else:
-                                    arg2_value = int(arg2_value)
-                                print("plus local arg2_value: ", arg2_value)
-                            elif arg2 in self.memory_map.global_vars:
-                                arg2_value = self.memory_map.get_value(
-                                    self.memory_map.get_global(arg2))
-                                if '.' in arg2_value:
-                                    arg2_value = float(arg2_value)
-                                else:
-                                    arg2_value = int(arg2_value)
-                                print("plus global arg2_value: ", arg2_value)
-                            else:
-                                print(
-                                    f"Variable {arg2} is not defined in global_vars or local_vars")
-
-                        print("arg1_value: ", arg1_value)
-                        print("arg2_value: ", arg2_value)
-                        self.memory_map.set_value(
-                            self.memory_map.get_temp(result),
-                            arg1_value * arg2_value)
-
+                self.perform_operation(op, result, arg1, arg2)
             elif op == "/":
-                print("divide node detected")
-                if result.startswith(('Ti', 'Tf', 'Tb')) and not self.memory_map.exists_temp(result):
-                    print("new temporal varible detected")
-                    self.memory_map.declare_temp(result)
-                    print("Declared temp variable: ", result)
-
-                    if result in self.memory_map.temp_vars_int or result in self.memory_map.temp_vars_float or result in self.memory_map.temp_vars_bool:
-                        # Determine where to get the value from for arg1
-                        try:
-                            arg1_value = float(
-                                arg1) if '.' in arg1 else int(arg1)
-                        except ValueError:
-                            # Check local vars first
-                            if self.memory_map.local_vars and arg1 in self.memory_map.local_vars[-1]:
-                                arg1_value = self.memory_map.get_value(
-                                    self.memory_map.get_local(arg1))
-                                if '.' in arg1_value:
-                                    arg1_value = float(arg1_value)
-                                else:
-                                    arg1_value = int(arg1_value)
-                                print("plus local arg1_value: ", arg1_value)
-                            elif arg1 in self.memory_map.global_vars:
-                                arg1_value = self.memory_map.get_value(
-                                    self.memory_map.get_global(arg1))
-                                if '.' in arg1_value:
-                                    arg1_value = float(arg1_value)
-                                else:
-                                    arg1_value = int(arg1_value)
-                                print("plus global arg1_value: ", arg1_value)
-                            else:
-                                print(
-                                    f"Variable {arg1} is not defined in global_vars or local_vars")
-                        print("arg1_value: ", arg1_value)
-                        print("arg2_value: ", arg2_value)
-                        self.memory_map.set_value(
-                            self.memory_map.get_temp(result),
-                            arg1_value / arg2_value)
-                        # Determine where to get the value from for arg2
-                        try:
-                            arg2_value = float(
-                                arg2) if '.' in arg2 else int(arg2)
-                        except ValueError:
-                            # Check local vars first
-                            if self.memory_map.local_vars and arg2 in self.memory_map.local_vars[-1]:
-                                arg2_value = self.memory_map.get_value(
-                                    self.memory_map.get_local(arg2))
-                                if '.' in arg2_value:
-                                    arg2_value = float(arg2_value)
-                                else:
-                                    arg2_value = int(arg2_value)
-                                print("plus local arg2_value: ", arg2_value)
-                            elif arg2 in self.memory_map.global_vars:
-                                arg2_value = self.memory_map.get_value(
-                                    self.memory_map.get_global(arg2))
-                                if '.' in arg2_value:
-                                    arg2_value = float(arg2_value)
-                                else:
-                                    arg2_value = int(arg2_value)
-                                print("plus global arg2_value: ", arg2_value)
-                            else:
-                                print(
-                                    f"Variable {arg2} is not defined in global_vars or local_vars")
+                self.perform_operation(op, result, arg1, arg2)
 
             # ------ boolean Operations ------#
             # ------ and or ------#
             # ------ > >= <= < == != ------#
-            # ------ gotoF goto label ------
+            # ------ gotoF goto label ------#
             elif op == ">":
-                self.memory_map.set_value(self.memory_map.get_global(result), self.memory_map.get_value(
-                    self.memory_map.get_global(arg1)) > self.memory_map.get_value(self.memory_map.get_global(arg2)))
+                self.perform_comparison(op, result, arg1, arg2)
+            elif op == ">=":
+                self.perform_comparison(op, result, arg1, arg2)
             elif op == "<":
-                self.memory_map.set_value(self.memory_map.get_global(result), self.memory_map.get_value(
-                    self.memory_map.get_global(arg1)) < self.memory_map.get_value(self.memory_map.get_global(arg2)))
+                self.perform_comparison(op, result, arg1, arg2)
+            elif op == "<=":
+                self.perform_comparison(op, result, arg1, arg2)
             elif op == "==":
-                # prints local and global vars
-                print("local_vars: ", self.memory_map.local_vars)
-                print("global_vars: ", self.memory_map.global_vars)
-                # prints their values
-                print("local_vars: ", self.memory_map.memory)
-                print("global_vars: ", self.memory_map.memory)
-                # Check if arg1 is a variable name (string) or a direct value (int/float)
-                if isinstance(arg1, str) and not arg1.isdigit():
-                    print("arg1 is a string")
-                    if self.memory_map.get_local(arg1):
-                        arg1_value = self.memory_map.get_value(
-                            self.memory_map.get_local(arg1))
-                    else:
-                        arg1_value = self.memory_map.get_value(
-                            self.memory_map.get_global(arg1))
-                else:
-                    arg1_value = int(arg1) if isinstance(arg1, str) else arg1
-
-                # Check if arg2 is a variable name (string) or a direct value (int/float)
-                if isinstance(arg2, str) and not arg2.isdigit():
-                    if self.memory_map.get_local(arg2):
-                        arg2_value = self.memory_map.get_value(
-                            self.memory_map.get_local(arg2))
-                    else:
-                        arg2_value = self.memory_map.get_value(
-                            self.memory_map.get_global(arg2))
-                else:
-                    arg2_value = int(arg2) if isinstance(arg2, str) else arg2
-                print("comparing ", arg1_value, " and ", arg2_value)
-
-                # Declare the temporary boolean variable
-                self.memory_map.declare_temp(result)
-
-                # Perform the comparison and store the result in the result variable
-                self.memory_map.set_value(self.memory_map.get_temp(
-                    result), arg1_value == arg2_value)
-
+                self.perform_comparison(op, result, arg1, arg2)
             elif op == "!=":
-                self.memory_map.set_value(self.memory_map.get_global(result), self.memory_map.get_value(
-                    self.memory_map.get_global(arg1)) != self.memory_map.get_value(self.memory_map.get_global(arg2)))
+                self.perform_comparison(op, result, arg1, arg2)
+
+            # ------ for and while Operations ------#
+            elif op == 'for':
+                # Enter a new scope and declare the loop variable
+                self.memory_map.enter_scope()
+                self.memory_map.allocate_local(result)
+                self.pc += 1
+            elif op == 'endfor':
+                # Exit the current scope
+                self.memory_map.exit_scope()
+                # self.pc += 1
 
             elif op == "gotoF":
                 print("gotoF node detected")
@@ -468,11 +263,11 @@ class VirtualMachine:
                         # If arg1 exists in global_vars, get its value and push it onto the stack
                         self.stack.append(self.memory_map.get_value(
                             self.memory_map.get_global(arg1)))
-                    elif arg1 in self.memory_map.local_vars:
+                    elif arg1 in self.memory_map.local_vars[-1]:
                         print("found in local_vars")
                         # If arg1 exists in local_vars, get its value and push it onto the stack
                         self.stack.append(self.memory_map.get_value(
-                            self.memory_map.get_local(arg1)))
+                            self.memory_map.get_local_value(arg1)))
                     elif arg1 in self.memory_map.temp_vars_int or arg1 in self.memory_map.temp_vars_float or arg1 in self.memory_map.temp_vars_bool:
                         print("found in temp_vars")
                         # If arg1 exists in temp_vars, get its value and push it onto the stack
@@ -484,15 +279,20 @@ class VirtualMachine:
                         self.stack.append(arg1)
                 else:
                     # If arg1 is an empty string, push the value of result directly onto the stack
-                    if result in self.memory_map.global_vars:
+                    # If arg1 is an empty string, push the value of result directly onto the stack
+                    if result.startswith('"') and result.endswith('"'):
+                        # If result is a string literal (enclosed in quotes), push it directly onto the stack
+                        self.stack.append(result)
+                    elif result in self.memory_map.global_vars:
                         self.stack.append(self.memory_map.get_value(
                             self.memory_map.get_global(result)))
-                    elif result in self.memory_map.local_vars:
+                    elif result in self.memory_map.local_vars[-1]:
                         self.stack.append(self.memory_map.get_value(
                             self.memory_map.get_local(result)))
                     elif result in self.memory_map.temp_vars_int or result in self.memory_map.temp_vars_float or result in self.memory_map.temp_vars_bool:
                         self.stack.append(self.memory_map.get_value(
                             self.memory_map.get_temp(result)))
+
                     else:
                         self.stack.append(result)
                 print("stack: ", self.stack)

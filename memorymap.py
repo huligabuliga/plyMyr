@@ -7,7 +7,7 @@ class MemoryMap:
         self.temp_vars_int = {}
         self.temp_vars_float = {}
         self.temp_vars_bool = {}
-        self.temp_return_index = 0  # return temporal variable index
+        self.temp_return_index = 80  # return temporal variable index
 
     def allocate_global(self, name):
         address = len(self.global_vars)
