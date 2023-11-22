@@ -355,6 +355,9 @@ def generate_code(node):
             end_label = label_counter + 1
             label_counter += 2
 
+            # Start label
+            code.append(("label", "", "", f"L{start_label}"))
+
             # Generate code for the loop condition
             condition_code, condition_var = generate_code(condition)
             if condition_code is not None:  # Check if condition_code is not None
@@ -362,9 +365,6 @@ def generate_code(node):
 
             # Go to end label if condition is false
             code.append(("gotoF", condition_var, "", f"L{end_label}"))
-
-            # Start label
-            code.append(("label", "", "", f"L{start_label}"))
 
             # Generate code for the statements inside the loop
             for statement in statements:

@@ -1,34 +1,26 @@
 Operator,Operand1,Operand2,Result
 goto,,,start_main
 label,,,start_main
-for,,,i
-=,1,,i
+=,10,,x
+=,10,,y
 label,,,L1
-<=,i,5,Ti1
-gotoF,Ti1,,L2
-+,i,5,Ti2
-=,Ti2,,i
-param,,,"""for loop iteration"""
-param,,,i
+<,y,20,Tb1
+gotoF,Tb1,,L2
+param,,,"""while loop number:"""
+param,,,y
 write,,,2
-for,,,j
-=,1,,j
++,y,2,Ti1
+=,Ti1,,y
 label,,,L3
-<=,j,5,Ti3
-gotoF,Ti3,,L4
-+,j,5,Ti4
-=,Ti4,,j
-param,,,"""second for loop"""
-param,,,j
+<,x,20,Tb2
+gotoF,Tb2,,L4
+param,,,"""while loop 2"""
+param,,,x
 write,,,2
-+,j,1,Ti5
-=,Ti5,,j
++,x,10,Ti2
+=,Ti2,,x
 goto,,,L3
 label,,,L4
-endfor,,,j
-+,i,1,Ti6
-=,Ti6,,i
 goto,,,L1
 label,,,L2
-endfor,,,i
 EndProg,,,

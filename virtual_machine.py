@@ -54,23 +54,23 @@ class VirtualMachine:
             self.memory_map.declare_temp(result)
             print("Declared temp variable: ", result)
 
-            if result in self.memory_map.temp_vars_int or result in self.memory_map.temp_vars_float or result in self.memory_map.temp_vars_bool:
-                arg1_value = self.get_value(arg1)
-                arg2_value = self.get_value(arg2)
+        if result in self.memory_map.temp_vars_int or result in self.memory_map.temp_vars_float or result in self.memory_map.temp_vars_bool:
+            arg1_value = self.get_value(arg1)
+            arg2_value = self.get_value(arg2)
 
-                if arg1_value is not None and arg2_value is not None:
-                    if op == "+":
-                        self.memory_map.set_value(self.memory_map.get_temp(
-                            result), arg1_value + arg2_value)
-                    elif op == "-":
-                        self.memory_map.set_value(self.memory_map.get_temp(
-                            result), arg1_value - arg2_value)
-                    elif op == "*":
-                        self.memory_map.set_value(self.memory_map.get_temp(
-                            result), arg1_value * arg2_value)
-                    elif op == "/":
-                        self.memory_map.set_value(self.memory_map.get_temp(
-                            result), arg1_value / arg2_value)
+            if arg1_value is not None and arg2_value is not None:
+                if op == "+":
+                    self.memory_map.set_value(self.memory_map.get_temp(
+                        result), arg1_value + arg2_value)
+                elif op == "-":
+                    self.memory_map.set_value(self.memory_map.get_temp(
+                        result), arg1_value - arg2_value)
+                elif op == "*":
+                    self.memory_map.set_value(self.memory_map.get_temp(
+                        result), arg1_value * arg2_value)
+                elif op == "/":
+                    self.memory_map.set_value(self.memory_map.get_temp(
+                        result), arg1_value / arg2_value)
 
     def get_arg_value(self, arg):
         if isinstance(arg, str) and not arg.isdigit():
@@ -225,6 +225,8 @@ class VirtualMachine:
                     label_index = next(i for i, instruction in enumerate(
                         self.code) if instruction[0] == "label" and instruction[3] == result)
                     self.pc = label_index
+                continue
+                break
 
             elif op == "goto":
                 print("goto node detected")
