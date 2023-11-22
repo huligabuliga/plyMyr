@@ -7,7 +7,9 @@ from semantic_analysis import function_table
 # code generation for the compiler
 label_counter = 0
 temp_counter = 0
-
+temp_counter_int = 0
+temp_counter_float = 0
+temp_counter_bool = 0
 
 # stacks for the compiler
 # local variables
@@ -15,7 +17,9 @@ local_stack = []
 # global variables
 global_stack = []
 # temp variables
-temp_stack = []
+temp_int_stack = []
+temp_float_stack = []
+temp_bool_stack = []
 # constant variables
 constant_stack = []
 # function variables
@@ -43,6 +47,9 @@ def generate_code(node):
     print(f"Processing node in generation: {node}")
     global label_counter
     global temp_counter
+    global temp_counter_int
+    global temp_counter_float
+    global temp_counter_bool
     code = []  # quadruples
 
     try:
@@ -55,12 +62,16 @@ def generate_code(node):
             # reset temp counter
             code = [("goto", "", "", "start_main")]
             temp_counter = 0
+            temp_int_counter = 0
+            temp_float_counter = 0
+            temp_bool_counter = 0
             if vars_node is not None:
                 print("p1", vars_node)
                 code.extend(generate_code(vars_node))
             if functions_node is not None:
                 for function_node in functions_node:
                     print("p2", function_node)
+                    code.append(("label", "", "", function_node[2]))
                     function_code = generate_code(function_node)
                     if function_code is not None:
                         print("p3", function_code)
@@ -117,6 +128,7 @@ def generate_code(node):
 
         elif node_type == 'function_call':
             function_name = node[1]
+            function_args = node[2]
             args = node[2] if len(node) > 2 else []  # Adjust this line
             code.append(("ERA", function_name, "", ""))
             for i, arg in enumerate(args):
@@ -128,12 +140,27 @@ def generate_code(node):
                     arg_var = arg  # arg is a variable, not an operation
                 code.append(("param", arg_var, "", f"par{i+1}"))
             code.append(("gosub", "", "", function_name))
-            temp_counter += 1  # Increment temp counter
-            temp_var = f"T{temp_counter}"  # Create temp variable
-            print("p7: creating temp var", temp_var)
-            print("p8: code generated", code)
+
+            # Determine the type of the temporary variable
+            function_return_type = function_table.get(
+                function_name, {}).get('return_type', 'unknown')
+            if function_return_type == 'int':
+                temp_counter_int += 1
+                temp_var = f"Ti{temp_counter_int}"
+            elif function_return_type == 'float':
+                temp_counter_float += 1
+                temp_var = f"Tf{temp_counter_float}"
+            elif function_return_type == 'bool':
+                temp_counter_bool += 1
+                temp_var = f"Tb{temp_counter_bool}"
+            elif function_return_type == 'void':
+                temp_var = None
+            else:
+                raise ValueError(
+                    f"Unsupported return type: {function_return_type}")
+
             if not is_void(function_name, function_table):
-                code.append(("=", function_name, "", "T" + str(len(code))))
+                code.append(("=", function_name, "", temp_var))
                 return code, temp_var
             else:
                 return code
@@ -166,9 +193,9 @@ def generate_code(node):
                 expr_code, expr_var = generate_code(expr)
                 if expr_code is not None:  # Check if expr_code is not None
                     code.extend(expr_code)
-                code.append(("return", expr_var, "", ""))
+                code.append(("return", "", "", expr_var))
             else:
-                code.append(("return", expr, "", ""))
+                code.append(("return", "", "", expr))
             return code
 
         elif node_type == 'assignment':
@@ -216,10 +243,24 @@ def generate_code(node):
             else:
                 operand2_var = operand2  # operand2 is a variable, not an operation
 
-            temp_counter += 1  # Increment temp counter
-            print("p9: creating temp var", temp_counter)
-            temp_var = f"T{temp_counter}"  # Create temp variable
-            print("p10: code generated", code)
+            operand1_type = symbol_table.get(operand1_var, 'unknown')
+            operand2_type = symbol_table.get(operand2_var, 'unknown')
+
+            # Determine the type of the temporary variable
+            if operator in ['==', '!=', '<', '>', '<=', '>=']:  # Boolean operations
+                temp_counter_bool += 1
+                temp_var = f"Tb{temp_counter_bool}"
+            elif operator in ['+', '-', '*', '/']:  # Arithmetic operations
+                # If either operand is a float, the result will be a float
+                if operand1_type == 'float' or operand2_type == 'float':
+                    temp_counter_float += 1
+                    temp_var = f"Tf{temp_counter_float}"
+                else:  # Otherwise, the result will be an int
+                    temp_counter_int += 1
+                    temp_var = f"Ti{temp_counter_int}"
+            else:
+                raise ValueError(f"Unsupported operator: {operator}")
+
             code.append((operator, operand1_var, operand2_var, temp_var))
             return code, temp_var
 

@@ -11,3 +11,97 @@ functions
 Arrays
 
 LINEA, PUNTO, CIRCULO, ARCO, PENUP, PENDOWN, COLOR, GROSOR, LIMPIAR, etc
+
+
+   Operator Operand1 Operand2      Result
+0      goto                    start_main
+1     label                           add
+2         +        a        5         Ti1
+3         =      Ti1               result
+4         +   result        b         Ti2
+5         =      Ti2               result
+6    return                        result
+7   EndFunc
+8     label                    start_main
+9         =       20                    x
+10        =       40                    y
+11      ERA      add
+12    param        x                 par1
+13    param        y                 par2
+14    gosub                           add
+15        =      add                  Ti3
+16        =      Ti3                    c
+17    param                      "sum is"
+18    param                             c
+19    write                             2
+20  EndProg
+Local variables:
+Global variables:
+x 0
+y 1
+c 2
+a 3
+b 4
+Running the generated code on the virtual machine:
+goto node detected
+equal node detected
+arg1:  20
+arg2:
+result:  x
+Assigning value to global variable
+Value of  x  is now  20
+equal node detected
+arg1:  40
+arg2:
+result:  y
+Assigning value to global variable
+Value of  y  is now  40
+ERA node detected
+function info {'return_type': 'int', 'param_types': ['int', 'int'], 'params': ['a', 'b'], 'vars': [('int', ['result'])]}
+adding var_name:  a
+adding var_name:  b
+adding var:  result
+param node detected
+memory_map:  ['20', '40', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+stack:  []
+result:  par1
+arg1:  x
+arg2:
+global_vars:  {'x': 0, 'y': 1, 'c': 2, 'a': 3, 'b': 4}
+local_vars:  [{'a': 0, 'b': 1, 'result': 2}]
+temp_vars:  {} {} {}
+found in global_vars
+stack:  ['20']
+param node detected
+memory_map:  ['20', '40', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+stack:  ['20']
+result:  par2
+arg1:  y
+arg2:
+global_vars:  {'x': 0, 'y': 1, 'c': 2, 'a': 3, 'b': 4}
+local_vars:  [{'a': 0, 'b': 1, 'result': 2}]
+temp_vars:  {} {} {}
+found in global_vars
+stack:  ['20', '40']
+Assigning 40 value to param b
+Assigning 20 value to param a
+stack:  [16]
+plus node detected
+new temporal varible detected
+Declared temp variable:  Ti1
+Error in virtual machine: slice indices must be integers or None or have an __index__ method
+Traceback (most recent call last):
+  File "C:\Users\hulig\Documents\github\plyMyr\virtual_machine.py", line 68, in run
+    arg1) if '.' in arg1 else int(arg1)
+                              ^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'a'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\hulig\Documents\github\plyMyr\MyR_main.py", line 119, in <module>
+    vm.run()
+  File "C:\Users\hulig\Documents\github\plyMyr\virtual_machine.py", line 70, in run
+    if arg1.startswith('Ti', 'Tf', 'Tb'):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: slice indices must be integers or None or have an __index__ method

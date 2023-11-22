@@ -107,7 +107,8 @@ if parse_tree is not None:
         # print local variables
         print('Local variables:')
         for key in memory_map.local_vars:
-            print(key, memory_map.local_vars[key])
+            for dict_item in memory_map.local_vars:
+                print(dict_item)
         # print global variables
         print('Global variables:')
         for key in memory_map.global_vars:

@@ -1,1 +1,1 @@
-{'factorial': {'return_type': 'int', 'param_types': ['int']}}
+{'add': {'return_type': 'int', 'param_types': ['int', 'int'], 'params': ['a', 'b'], 'vars': [('int', ['dobby'])]}}

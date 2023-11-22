@@ -5,7 +5,8 @@ from memorymap import MemoryMap
 
 # Define the symbol table
 symbol_table = {}
-
+# define symbol table stack for local variables
+symbol_table_stack = [{}]
 # define function table
 function_table = {}
 
@@ -125,19 +126,39 @@ def check_types(node):
 
     elif node_type == 'function':
         print(f"Processing function node: {node}")
+        # add local variables to symbol table
+
+        # symbol_table_stack.append({})
+        # for param in node[3]:  # Assuming node[3] contains the function parameters
+        #     param_type, param_name = param
+        #     symbol_table_stack[-1][param_name] = param_type
+        #     memory_map.allocate_local(param_name)
+        #     print(
+        #         f"Allocated local variable {param_name} at address {memory_map.get_local(param_name)}")
+        # print('Finished processing node:', node)
+        # print('Symbol table stack:', symbol_table_stack)
+
+        # Add the function to the function table
         if node and len(node) > 1:
             print(f"Processing function node: {node}")
             # Add the function to the function table
             (_, return_type, function_name, params, vars, body) = node
             param_types = [param[0] for param in params]
+            # Extract the names of the parameters
+            param_names = [param[1] for param in params]
+            param_types = [param[0] for param in params]
             function_table[function_name] = {
                 'return_type': return_type,
-                'param_types': param_types
+                'param_types': param_types,
+                'params': param_names,
+                'vars': vars[1],
             }
             # Add the parameters to the symbol table
             for param in params:
                 param_type, param_name = param
                 symbol_table[param_name] = param_type
+                # Add the variable name to the function table
+
             print('Finished processing node:', node)
             # print function table
             print('Function table:', function_table)
@@ -341,4 +362,10 @@ def check_types(node):
     # Assuming symbol_table and memory_map are defined and initialized
     for var_name, var_type in symbol_table.items():
         memory_map.allocate_global(var_name)
+
+    # Assuming function_table and memory_map are defined and initialized
+    # for function_name, function_info in function_table.items():
+    #     for param_name in function_info['params']:
+    #         memory_map.allocate_local(param_name)
+
     return memory_map
