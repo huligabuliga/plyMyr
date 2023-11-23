@@ -101,5 +101,5 @@ _lr_productions = [
   ('factor -> INTEGER','factor',1,'p_factor','MyR_parser.py',235),
   ('factor -> function_call','factor',1,'p_factor','MyR_parser.py',236),
   ('factor -> FLOATING_POINT','factor',1,'p_factor','MyR_parser.py',237),
-  ('empty -> <empty>','empty',0,'p_empty','MyR_parser.py',245),
+  ('empty -> <empty>','empty',0,'p_empty','MyR_parser.py',248),
 ]

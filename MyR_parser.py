@@ -153,7 +153,7 @@ def p_arg_list(p):
 
 def p_read_statement(p):
     '''read_statement : READ LPAREN id_list RPAREN'''
-    p[0] = ('read', p[2])
+    p[0] = ('read', p[3])
 
 
 def p_write_statement(p):

@@ -213,8 +213,8 @@ def check_types(node):
                 expression_type = check_types(expression)
         else:
             expression_type = check_types(expression)
-        if expression_type != symbol_table[var_name]:
-            raise TypeError('Type mismatch in assignment')
+        # if expression_type != symbol_table[var_name]:
+        #     raise TypeError('Type mismatch in assignment')
         # Return the type of the variable
         return symbol_table[var_name]
 

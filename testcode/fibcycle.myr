@@ -1,0 +1,21 @@
+program fibonacci;
+vars 
+    int num, fib1, fib2, temp_result;
+
+main(){
+  fib1 = 0;
+  fib2 = 1;
+
+    write("fibbonacci", 0);
+    write("fibbonacci", 1);
+
+  for i [1 to 8] do {
+    temp_result = fib1 + fib2;
+    write("Fibonacci:", temp_result);
+    fib1 = fib2;
+    fib2 = temp_result;
+  }
+  
+  num = temp_result;
+  write("result", num);
+}

@@ -392,6 +392,11 @@ def generate_code(node):
                     code.append(("param", "", "", arg))
             code.append(("write", "", "", len(args)))
 
+        elif node_type == 'read':
+            _, args = node
+            for arg in args:
+                code.append(("read", "", "", arg))
+
         return (code)
     except Exception as e:
         print(f"Error occurred during code generation: {e}")

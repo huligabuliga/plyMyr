@@ -367,12 +367,31 @@ class VirtualMachine:
                 self.log_message("param node end")
                 # debug stack
 
+            # ------ read and write Operations ------#
             elif op == "write":
                 self.log_message("write node detected")
                 values = [self.stack.pop() for _ in range(result)]
                 for value in reversed(values):
                     print(value, end=' ')
                 print()
+            elif op == "read":
+                # Get user input
+                value = int(input("Enter a value for " + result + ": "))
+                # Check if the result is a temporary variable and declare it if it's not already declared
+                if result.startswith(('Ti', 'Tf')) and not self.memory_map.exists_temp(result):
+                    self.memory_map.declare_temp(result)
+                    # Assign the value to the result
+                    self.memory_map.set_value(
+                        self.memory_map.get_temp(result), value)
+                elif result in self.memory_map.global_vars:
+                    self.memory_map.set_value(
+                        self.memory_map.get_global(result), value)
+                elif result in self.memory_map.local_vars[-1]:
+                    self.memory_map.set_value(
+                        self.memory_map.get_local(result), value)
+                else:
+                    raise ValueError(
+                        f"Variable {result} is not defined in global_vars or local_vars")
 
                 # ------ Functions------#
                 # handle function local variables
@@ -483,18 +502,35 @@ class VirtualMachine:
                 if result.startswith(('Ti', 'Tf', 'Tb')) and self.memory_map.exists_temp(result):
                     return_value = self.memory_map.get_value(
                         self.memory_map.get_temp(result))
+                    self.log_message("temp return_value: ", return_value)
+                    # print temp vars to debug
+                    self.log_message("temp_vars: ", self.memory_map.temp_vars_int,
+                                     self.memory_map.temp_vars_float, self.memory_map.temp_vars_bool)
                 elif result in self.memory_map.local_vars[-1]:
                     address = self.memory_map.get_local(result)
                     return_value = self.memory_map.get_value(address)
+                    self.log_message("local return_value: ", return_value)
                 elif result in self.memory_map.global_vars:
                     address = self.memory_map.get_global(result)
                     return_value = self.memory_map.get_value(address)
+                    self.log_message("global return_value: ", return_value)
                 else:
-                    return_value = None
+                    # Try to convert result to an int, float, or bool
+                    try:
+                        if '.' in result:
+                            return_value = float(result)
+                        elif result.lower() == 'true':
+                            return_value = True
+                        elif result.lower() == 'false':
+                            return_value = False
+                        else:
+                            return_value = int(result)
+                    except ValueError:
+                        return_value = None
 
                     # print global variable being declared
                     self.log_message(
-                        "global_vars: ", self.memory_map.global_vars)
+                        "global_vars bein dececlared during return: ", self.memory_map.global_vars)
 
                 self.log_message("return_value: ", return_value)
                 self.stack.append(return_value)
@@ -503,10 +539,6 @@ class VirtualMachine:
             elif op == "EndFunc":
                 self.log_message("EndFunc node detected")
                 self.log_message("call stack: ", self.call_stack)
-                # Reverse the call stack
-                # self.call_stack.reverse()
-                # self.log_message("reversed call stack: ", self.call_stack)
-
                 # jump to call stack position
                 if self.call_stack:
                     # Pop the return address from the call_stack

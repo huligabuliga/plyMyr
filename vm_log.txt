@@ -1,334 +1,63 @@
 run started
 pc =  1
 goto node detected
-pc =  49
-label node detected
-pc =  50
-equal node detected
-arg1:  2
-arg2:  
-result:  k
-Assigning value to global variable
-Value of  k  is now  2
-equal node end
-pc =  51
-equal node detected
-arg1:  20
-arg2:  
-result:  i
-Assigning value to global variable
-Value of  i  is now  20
-equal node end
-pc =  52
-multiply node detected
-perform_operation ended
-* node detected
-new temporal variable detected
-Declared temp variable:  Ti13
-get_value statrted
-recieving, getting value of  i
-getting arg1 value:  20
-get_value statrted
-recieving, getting value of  2
-getting arg2 value:  2
-arg1_value 20 arg2_value: 2 product is 40
-pc =  53
-add node detected
-perform_operation ended
-+ node detected
-new temporal variable detected
-Declared temp variable:  Ti14
-get_value statrted
-recieving, getting value of  Ti13
-getting arg1 value:  40
-get_value statrted
-recieving, getting value of  i
-getting arg2 value:  20
-arg1_value 40 arg2_value: 20 sum is 60
-pc =  54
-equal node detected
-arg1:  Ti14
-arg2:  
-result:  j
-Assigning value to global variable
-Value of  j  is now  60
-equal node end
-pc =  55
-ERA node detected
-function info {'return_type': 'void', 'param_types': ['int', 'int'], 'params': ['i', 'j'], 'vars': [('int', ['x', 'y'])]}
-memory_map:  [20, 60, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 60]
-local_vars:  [{}, {}]
-function info {'return_type': 'void', 'param_types': ['int', 'int'], 'params': ['i', 'j'], 'vars': [('int', ['x', 'y'])]}
-checking var_name:  i
-adding var_name:  i
-checking var_name:  j
-adding var_name:  j
-checking var:  x
-adding var:  x
-checking var:  y
-adding var:  y
-pc =  56
-subtract node detected
-perform_operation ended
-- node detected
-new temporal variable detected
-Declared temp variable:  Ti15
-get_value statrted
-recieving, getting value of  j
-get_value: found in local_vars
-get_Value: address 1
-get_Value: arg_value 60
-getting arg1 value:  60
-get_value statrted
-recieving, getting value of  i
-get_value: found in local_vars
-get_Value: address 0
-get_Value: arg_value 20
-getting arg2 value:  20
-arg1_value 60 arg2_value: 20 difference is 40
-pc =  57
-param node start
-memory_map:  [20, 60, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 60, 40]
-stack:  []
-result:  par1
-arg1:  Ti15
-arg2:  
-global_vars:  {'i': 0, 'j': 1, 'k': 2}
-local_vars:  [{}, {'i': 0, 'j': 1, 'x': 2, 'y': 3}]
-temp_vars:  {'Ti13': 50, 'Ti14': 51, 'Ti15': 52} {} {}
-found in temp_vars
-stack:  [40]
-param node end
-pc =  58
-param node start
-memory_map:  [20, 60, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 60, 40]
-stack:  [40]
-result:  par2
-arg1:  j
-arg2:  
-global_vars:  {'i': 0, 'j': 1, 'k': 2}
-local_vars:  [{}, {'i': 0, 'j': 1, 'x': 2, 'y': 3}]
-temp_vars:  {'Ti13': 50, 'Ti14': 51, 'Ti15': 52} {} {}
-get_value: found in local_vars
-get_Value: address 1
-get_Value: arg_value 60
-stack:  [40, 60]
-param node end
-pc =  59
-gosub node start
-Assigning 60 value to param j
-Value of j is now 60
-Assigning 40 value to param i
-Value of i is now 40
-call stack:  [59]
-function_name_stack:  ['dos']
-gosub node end
-pc =  26
-label node detected
-pc =  27
-add node detected
-perform_operation ended
-+ node detected
-new temporal variable detected
-Declared temp variable:  Ti8
-get_value statrted
-recieving, getting value of  i
-get_value: found in local_vars
-get_Value: address 5
-get_Value: arg_value 40
-getting arg1 value:  40
-get_value statrted
-recieving, getting value of  j
-get_value: found in local_vars
-get_Value: address 4
-get_Value: arg_value 60
-getting arg2 value:  60
-arg1_value 40 arg2_value: 60 sum is 100
-pc =  28
-equal node detected
-arg1:  Ti8
-arg2:  
-result:  x
-Assigning value to local variable
-Value of  x  is now  100
-local_vars:  [{}, {'i': 5, 'j': 4, 'x': 2, 'y': 3}]
-local memory map:  [20, 60, 100, 0, 60, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 60, 40, 100]
-equal node end
-pc =  29
-multiply node detected
-perform_operation ended
-* node detected
-new temporal variable detected
-Declared temp variable:  Ti9
-get_value statrted
-recieving, getting value of  j
-get_value: found in local_vars
-get_Value: address 4
-get_Value: arg_value 60
-getting arg1 value:  60
-get_value statrted
-recieving, getting value of  k
-getting arg2 value:  100
-arg1_value 60 arg2_value: 100 product is 6000
-pc =  30
-greater than node detected
-perform_comparison started
-get_value statrted
-recieving, getting value of  x
-get_value: found in local_vars
-get_Value: address 2
-get_Value: arg_value 100
-get_value statrted
-recieving, getting value of  Ti9
-> node detected
-pc =  31
-gotoF node detected
-pc =  40
-label node detected
-pc =  41
-ERA node detected
-function info {'return_type': 'int', 'param_types': ['int'], 'params': ['j'], 'vars': [('int', ['i'])]}
-memory_map:  [20, 60, 100, 0, 60, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 60, 40, 100, 6000, False]
-local_vars:  [{}, {'i': 5, 'j': 4, 'x': 2, 'y': 3}, {'i': 5, 'j': 4, 'x': 2, 'y': 3}]
-function info {'return_type': 'int', 'param_types': ['int'], 'params': ['j'], 'vars': [('int', ['i'])]}
-checking var_name:  j
-checking var:  i
-pc =  42
-param node start
-memory_map:  [20, 60, 100, 0, 60, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 60, 40, 100, 6000, False]
-stack:  []
-result:  par1
-arg1:  j
-arg2:  
-global_vars:  {'i': 0, 'j': 1, 'k': 2}
-local_vars:  [{}, {'i': 5, 'j': 4, 'x': 2, 'y': 3}, {'i': 5, 'j': 4, 'x': 2, 'y': 3}]
-temp_vars:  {'Ti13': 50, 'Ti14': 51, 'Ti15': 52, 'Ti8': 53, 'Ti9': 54} {} {'Tb2': 55}
-get_value: found in local_vars
-get_Value: address 4
-get_Value: arg_value 60
-stack:  [60]
-param node end
-pc =  43
-gosub node start
-Assigning 60 value to param j
-Value of j is now 60
-call stack:  [59, 43]
-function_name_stack:  ['dos', 'uno']
-gosub node end
 pc =  2
 label node detected
 pc =  3
-multiply node detected
-perform_operation ended
-* node detected
-new temporal variable detected
-Declared temp variable:  Ti1
-get_value statrted
-recieving, getting value of  j
-get_value: found in local_vars
-get_Value: address 6
-get_Value: arg_value 60
-getting arg1 value:  60
-get_value statrted
-recieving, getting value of  2
-getting arg2 value:  2
-arg1_value 60 arg2_value: 2 product is 120
 pc =  4
-subtract node detected
-perform_operation ended
-- node detected
-new temporal variable detected
-Declared temp variable:  Ti2
-get_value statrted
-recieving, getting value of  k
-getting arg1 value:  100
-get_value statrted
-recieving, getting value of  Ti1
-getting arg2 value:  120
-arg1_value 100 arg2_value: 120 difference is -20
+equal node detected
+arg1:  40
+arg2:  
+result:  y
+Assigning value to global variable
+Value of  y  is now  40
+equal node end
 pc =  5
 add node detected
 perform_operation ended
 + node detected
 new temporal variable detected
-Declared temp variable:  Ti3
+Declared temp variable:  Ti1
 get_value statrted
-recieving, getting value of  Ti2
-getting arg1 value:  -20
+recieving, getting value of  x
+getting arg1 value:  500
 get_value statrted
-recieving, getting value of  j
-get_value: found in local_vars
-get_Value: address 6
-get_Value: arg_value 60
-getting arg2 value:  60
-arg1_value -20 arg2_value: 60 sum is 40
-pc =  6
-add node detected
-perform_operation ended
-+ node detected
-new temporal variable detected
-Declared temp variable:  Ti4
-get_value statrted
-recieving, getting value of  j
-get_value: found in local_vars
-get_Value: address 6
-get_Value: arg_value 60
-getting arg1 value:  60
-get_value statrted
-recieving, getting value of  Ti3
+recieving, getting value of  y
 getting arg2 value:  40
-arg1_value 60 arg2_value: 40 sum is 100
-pc =  7
+arg1_value 500 arg2_value: 40 sum is 540
+pc =  6
 equal node detected
-arg1:  Ti4
+arg1:  Ti1
 arg2:  
-result:  i
+result:  c
 Assigning value to global variable
-Value of  i  is now  100
+Value of  c  is now  540
 equal node end
-pc =  8
-greater than node detected
-perform_comparison started
-get_value statrted
-recieving, getting value of  j
-get_value: found in local_vars
-get_Value: address 6
-get_Value: arg_value 60
-get_value statrted
-recieving, getting value of  0
-> node detected
-pc =  9
-gotoF node detected
-pc =  10
+pc =  7
 param node start
-memory_map:  [100, 60, 100, 0, 60, None, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 60, 40, 100, 6000, False, 120, -20, 40, 100, True]
-stack:  [5]
-result:  "if statement"
+memory_map:  [500, 40, 540, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 540]
+stack:  []
+result:  "sum is"
 arg1:  
 arg2:  
-global_vars:  {'i': 0, 'j': 1, 'k': 2}
-local_vars:  [{}, {'i': 5, 'j': 4, 'x': 2, 'y': 3}, {'i': 5, 'j': 6, 'x': 2, 'y': 3}]
-temp_vars:  {'Ti13': 50, 'Ti14': 51, 'Ti15': 52, 'Ti8': 53, 'Ti9': 54, 'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x00000182814455D0>>': 5, 'Ti1': 56, 'Ti2': 57, 'Ti3': 58, 'Ti4': 59} {} {'Tb2': 55, 'Tb1': 60}
-stack:  [5, '"if statement"']
+global_vars:  {'x': 0, 'y': 1, 'c': 2}
+local_vars:  [{}]
+temp_vars:  {'Ti1': 50} {} {}
+stack:  ['"sum is"']
 param node end
-pc =  11
+pc =  8
+param node start
+memory_map:  [500, 40, 540, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 540]
+stack:  ['"sum is"']
+result:  c
+arg1:  
+arg2:  
+global_vars:  {'x': 0, 'y': 1, 'c': 2}
+local_vars:  [{}]
+temp_vars:  {'Ti1': 50} {} {}
+stack:  ['"sum is"', 540]
+param node end
+pc =  9
 write node detected
-pc =  12
-ERA node detected
-function info {'return_type': 'int', 'param_types': ['int'], 'params': ['j'], 'vars': [('int', ['i'])]}
-memory_map:  [100, 60, 100, 0, 60, None, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 60, 40, 100, 6000, False, 120, -20, 40, 100, True]
-local_vars:  [{}, {'i': 5, 'j': 4, 'x': 2, 'y': 3}, {'i': 5, 'j': 6, 'x': 2, 'y': 3}, {'i': 5, 'j': 6, 'x': 2, 'y': 3}]
-function info {'return_type': 'int', 'param_types': ['int'], 'params': ['j'], 'vars': [('int', ['i'])]}
-checking var_name:  j
-checking var:  i
-pc =  13
-subtract node detected
-perform_operation ended
-- node detected
-new temporal variable detected
-Declared temp variable:  Ti5
-get_value statrted
-recieving, getting value of  i
-get_value: found in local_vars
-get_Value: address 5
-get_Value: arg_value None
+pc =  10
+EndProg node detected

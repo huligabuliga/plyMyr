@@ -1,0 +1,11 @@
+program functiontest;
+vars
+    int x, y, c;
+    
+
+main() {
+    read(x);
+    y = 40;
+    c = x + y;
+    write("sum is", c);
+}

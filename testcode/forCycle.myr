@@ -4,7 +4,7 @@ vars
 
 main(){
   temp_result = 1;
-  for i [1 to 3] do {
+  for i [1 to 7] do {
     temp_result = temp_result * i;
     write("factorial:", i, temp_result);
   }
