@@ -1,1 +1,1 @@
-{'x': 'int', 'y': 'int', 'c': 'int'}
+{'x': 'int', 'y': 'int', 's': 'int', 'c': 'int', 'f': 'int', 'a': 'int', 'b': 'int', 'd': 'int', 'g': 'int', 'n': 'float', 'check': 'bool'}

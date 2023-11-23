@@ -4,6 +4,8 @@ from memorymap import MemoryMap
 from semantic_analysis import symbol_table
 from semantic_analysis import function_table
 
+import turtle  # for turtle graphics
+
 
 class VirtualMachine:
     def __init__(self, code, memory_map, function_table, symbol_table):
@@ -393,6 +395,39 @@ class VirtualMachine:
                     raise ValueError(
                         f"Variable {result} is not defined in global_vars or local_vars")
 
+            # ------ turtle Operations ------#
+            elif op == "circle":
+                self.log_message("circle node detected")
+                values = [self.stack.pop() for _ in range(result)]
+                for value in reversed(values):
+                    turtle.circle(value)
+            elif op == "line":
+                self.log_message("line node detected")
+                values = [self.stack.pop() for _ in range(result)]
+                for value in reversed(values):
+                    turtle.forward(value)
+            elif op == "color":
+                self.log_message("color node detected")
+                values = [self.stack.pop() for _ in range(result)]
+                for value in reversed(values):
+                    turtle.color(value)
+            elif op == "point":
+                self.log_message("point node detected")
+                values = [self.stack.pop() for _ in range(result)]
+                for value in reversed(values):
+                    turtle.dot(value)
+            elif op == "penup":
+                self.log_message("penup node detected")
+                turtle.penup()
+            elif op == "pendown":
+                self.log_message("pendown node detected")
+                turtle.pendown()
+            elif op == "thickness":
+                self.log_message("thickness node detected")
+                values = [self.stack.pop() for _ in range(result)]
+                for value in reversed(values):
+                    turtle.pensize(value)
+
                 # ------ Functions------#
                 # handle function local variables
             elif op == "ERA":
@@ -584,3 +619,5 @@ class VirtualMachine:
             elif op == "EndProg":
                 self.log_message("EndProg node detected")
                 break
+        # Keep the turtle window open until the user closes it
+        turtle.done()

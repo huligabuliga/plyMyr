@@ -1,5 +1,11 @@
 # plyMyr
 
+# 1st avance 
+Created lexer and parser in antlr, not working but grammar rules defined 
+
+# 2nd avance
+hit a wall
+
 From scratch start again October..
 
 # 1st avance 22-24 oct:
@@ -17,3 +23,5 @@ code generation at 80%. working missing functions, and loops.
 # 4th avance 7-nov 13nov 
 updated code gen, more testing needed, will start on virt machine tomorrow, looks promising... 
 
+# 5th avance 13nov - 23nov
+panic mode, redid code generation for correct format, recreated vm so it ran that code, added grafics with turtle python, added array functionality, fixed bugs

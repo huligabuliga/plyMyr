@@ -35,7 +35,6 @@ reserved = {
     'point': 'POINT',
     'line': 'LINE',
     'circle': 'CIRCLE',
-    'arc': 'ARC',
     'penup': 'PENUP',
     'pendown': 'PENDOWN',
     'color': 'COLOR',
@@ -95,7 +94,6 @@ t_WRITE = r'write'
 t_POINT = r'POINT'
 t_LINE = r'LINE'
 t_CIRCLE = r'CIRCLE'
-t_ARC = r'ARC'
 t_PENUP = r'PENUP'
 t_PENDOWN = r'PENDOWN'
 t_COLOR = r'COLOR'

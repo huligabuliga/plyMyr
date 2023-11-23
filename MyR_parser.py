@@ -120,7 +120,14 @@ def p_statement(p):
                  | write_statement SEMICOLON
                  | if_statement
                  | while_statement
-                 | for_statement'''
+                 | for_statement
+                 | circle SEMICOLON
+                 | line SEMICOLON
+                 | color SEMICOLON
+                 | point SEMICOLON
+                 | penup SEMICOLON
+                 | pendown SEMICOLON
+                 | thickness SEMICOLON'''
     p[0] = p[1]
 
 
@@ -200,6 +207,56 @@ def p_return_statement(p):
     p[0] = ('return', p[3])
 
 
+def p_draw_circle_one_param(p):
+    '''circle : CIRCLE LPAREN expression RPAREN'''
+    p[0] = ('circle', p[3])
+
+
+def p_draw_circle_two_params(p):
+    '''circle : CIRCLE LPAREN expression COMMA expression RPAREN'''
+    p[0] = ('circle', p[3], p[5])
+
+
+def p_draw_circle_three_params(p):
+    '''circle : CIRCLE LPAREN expression COMMA expression COMMA expression RPAREN'''
+    p[0] = ('circle', p[3], p[5], p[7])
+
+
+def p_draw_line(p):
+    '''line : LINE LPAREN expression RPAREN'''
+    p[0] = ('line', p[3])
+
+
+def p_color(p):
+    '''color : COLOR LPAREN STRING RPAREN'''
+    p[0] = ('color', p[3])
+
+
+def p_point_one_param(p):
+    '''point : POINT LPAREN expression RPAREN'''
+    p[0] = ('point', p[3])
+
+
+def p_point_two_params(p):
+    '''point : POINT LPAREN expression COMMA STRING RPAREN'''
+    p[0] = ('point', p[3], p[5])
+
+
+def p_penup(p):
+    '''penup : PENUP LPAREN RPAREN'''
+    p[0] = ('penup',)  # Note the comma after 'penup'
+
+
+def p_pendown(p):
+    '''pendown : PENDOWN LPAREN RPAREN'''
+    p[0] = ('pendown',)  # Note the comma after 'pendown'
+
+
+def p_thickness(p):
+    '''thickness : THICKNESS LPAREN expression RPAREN'''
+    p[0] = ('thickness', p[3])
+
+
 def p_expression(p):
     '''expression : expression PLUS term
                   | expression MINUS term
@@ -242,6 +299,8 @@ def p_factor(p):
             p[0] = ('array', p[1], p[3])
     else:
         p[0] = p[1]
+
+# grafics
 
 
 def p_empty(p):

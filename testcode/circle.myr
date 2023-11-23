@@ -1,0 +1,10 @@
+program DrawCircle;
+vars 
+    int extent, steps, radius;
+
+main() {
+    extent = 0;
+    steps = 0;
+    radius = 50;
+    circle(radius);
+}

@@ -1,0 +1,18 @@
+program drawLine;
+vars 
+    int length, size;
+
+main() {
+    length = 50;
+    size = 20;
+    point(size);
+    color("blue");
+    line(length);
+    color("red");
+    point(size);
+    penup();
+    line(length);
+    pendown();
+    thickness(size);
+    line(length);
+}

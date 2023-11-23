@@ -397,6 +397,85 @@ def generate_code(node):
             for arg in args:
                 code.append(("read", "", "", arg))
 
+        # ---- grafics -------- #
+
+        elif node_type == 'circle':
+            _, args = node
+            if isinstance(args, str):  # If there's only one argument and it's a string
+                args = [args]  # Convert it to a list
+            for arg in args:
+                if isinstance(arg, tuple):
+                    arg_code, arg_var = generate_code(arg)
+                    if arg_code is not None:  # Check if arg_code is not None
+                        code.extend(arg_code)
+                    code.append(("param", "", "", arg_var))
+                else:
+                    code.append(("param", "", "", arg))
+            code.append(("circle", "", "", len(args)))
+
+        elif node_type == 'line':
+            _, args = node
+            if isinstance(args, str):  # If there's only one argument and it's a string
+                args = [args]  # Convert it to a list
+            for arg in args:
+                if isinstance(arg, tuple):
+                    arg_code, arg_var = generate_code(arg)
+                    if arg_code is not None:  # Check if arg_code is not None
+                        code.extend(arg_code)
+                    code.append(("param", "", "", arg_var))
+                else:
+                    code.append(("param", "", "", arg))
+            code.append(("line", "", "", len(args)))
+
+        elif node_type == 'color':
+            _, args = node
+            if isinstance(args, str):
+                # Remove the double quotes from the color string
+                args = [args.strip('"')]
+            for arg in args:
+                if isinstance(arg, tuple):
+                    arg_code, arg_var = generate_code(arg)
+                    if arg_code is not None:
+                        code.extend(arg_code)
+                    code.append(("param", "", "", arg_var))
+                else:
+                    code.append(("param", "", "", arg))
+            code.append(("color", "", "", len(args)))
+
+        elif node_type == 'point':
+            _, args = node
+            if isinstance(args, str):  # If there's only one argument and it's a string
+                args = [args]  # Convert it to a list
+            for arg in args:
+                if isinstance(arg, tuple):
+                    arg_code, arg_var = generate_code(arg)
+                    if arg_code is not None:  # Check if arg_code is not None
+                        code.extend(arg_code)
+                    code.append(("param", "", "", arg_var))
+                else:
+                    code.append(("param", "", "", arg))
+            code.append(("point", "", "", len(args)))
+
+        elif node_type == 'thickness':
+            _, args = node
+            if isinstance(args, str):
+                args = [args]
+            for arg in args:
+                if isinstance(arg, tuple):
+                    arg_code, arg_var = generate_code(arg)
+                    if arg_code is not None:
+                        code.extend(arg_code)
+                    code.append(("param", "", "", arg_var))
+                else:
+                    code.append(("param", "", "", arg))
+            code.append(("thickness", "", "", len(args)))
+
+        elif node_type == 'penup':
+            code.append(("penup", "", "", ""))
+
+        elif node_type == 'pendown':
+            code.append(("pendown", "", "", ""))
+
         return (code)
     except Exception as e:
         print(f"Error occurred during code generation: {e}")

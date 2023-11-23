@@ -147,11 +147,13 @@ def check_types(node):
             # Extract the names of the parameters
             param_names = [param[1] for param in params]
             param_types = [param[0] for param in params]
+            # Check if vars is None before trying to access its elements
+            vars_value = vars[1] if vars is not None else ""
             function_table[function_name] = {
                 'return_type': return_type,
                 'param_types': param_types,
                 'params': param_names,
-                'vars': vars[1],
+                'vars': vars_value,
             }
             # Add the parameters to the symbol table
             # for param in params:
