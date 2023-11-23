@@ -1,0 +1,18 @@
+program recursiveFunction;
+vars 
+    int n;
+
+function int recursive_function(int n) 
+vars
+    int result;
+{
+    if (n > 0) then {
+        write("This is loop number", n);
+        return(n + recursive_function(n - 1));
+    }
+}
+
+main() {
+    n = 1;
+    recursive_function(n);
+}

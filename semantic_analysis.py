@@ -86,7 +86,7 @@ def is_float(s):
 
 def check_types(node):
     # memory map
-    memory_map = MemoryMap(100)  # Adjust the size as needed
+    memory_map = MemoryMap(50)  # Adjust the size as needed
     if node is None:
         return
     if isinstance(node, int):
@@ -154,10 +154,10 @@ def check_types(node):
                 'vars': vars[1],
             }
             # Add the parameters to the symbol table
-            for param in params:
-                param_type, param_name = param
-                symbol_table[param_name] = param_type
-                # Add the variable name to the function table
+            # for param in params:
+            #     param_type, param_name = param
+            #     symbol_table[param_name] = param_type
+            # Add the variable name to the function table
 
             print('Finished processing node:', node)
             # print function table

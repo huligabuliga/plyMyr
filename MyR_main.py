@@ -117,8 +117,11 @@ if parse_tree is not None:
         print('Running the generated code on the virtual machine:')
         vm = VirtualMachine(code, memory_map, symbol_table, function_table)
         vm.run()
+
     except Exception as e:
         print('Error in virtual machine:', str(e))
         traceback.print_exc()
+    finally:
+        vm.write_log_to_file('vm_log.txt')
 else:
     print('Syntax error detected.')

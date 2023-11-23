@@ -1,0 +1,17 @@
+program fibonacci;
+vars 
+    int num, result;
+
+function int test(int n)
+vars 
+        int test;
+{
+   write("test", n);
+   return(n-1);
+}
+   
+main(){
+  num = 10;
+  result = test(num - 5);
+  write("test of", result);
+}

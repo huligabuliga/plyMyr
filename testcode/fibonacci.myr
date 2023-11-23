@@ -2,7 +2,10 @@ program fibonacci;
 vars 
     int num, result;
 
-function int fibonacci(int n) {
+function int fibonacci(int n) 
+vars 
+    int result;
+{
     if (n <= 1) then {
         write("base case");
         return(n);

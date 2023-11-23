@@ -1,0 +1,13 @@
+program factorial;
+vars 
+    int num, result, temp_result;
+
+main(){
+  temp_result = 1;
+  for i [1 to 3] do {
+    temp_result = temp_result * i;
+    write("factorial:", i, temp_result);
+  }
+  result = temp_result;
+  write("result", result);
+}

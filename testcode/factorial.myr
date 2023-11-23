@@ -6,7 +6,7 @@ function int factorial(int n)
 vars
     int result;
 {
-    if (n == 0) then {
+    if (n <= 0) then {
         write("factorial:", n);
         return (1);
         

@@ -36,7 +36,8 @@ vars
 }
 
 main(){
-    i = 5;
+    k = 2;
+    i = 20;
     j = i * 2 + i;
     dos(j-i, j);
 }
