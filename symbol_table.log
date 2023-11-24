@@ -1,1 +1,1 @@
-{'x': 'int', 'y': 'int', 'd': 'int', 'z': ('int', 11)}
+{'num': 'int', 'result': 'int'}

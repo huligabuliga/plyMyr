@@ -39,34 +39,41 @@ class VirtualMachine:
     # helper functions for repetitve code
 
     def get_value(self, arg):
-        self.log_message("get_value statrted")
-        self.log_message("recieving, getting value of ", arg)
+        self.log_message("get_value started")
+        self.log.append("memory_map in get value: " +
+                        str(self.memory_map.memory))
+        self.log_message("receiving, getting value of ", arg)
         try:
             return float(arg) if '.' in arg else int(arg)
         except ValueError:
             if arg.startswith(('Ti', 'Tf', 'Tb')):
                 arg_value = self.memory_map.get_value(
                     self.memory_map.get_temp(arg))
-                return float(arg_value) if '.' in str(arg_value) else int(arg_value)
+                if arg_value is None:
+                    raise ValueError(
+                        f"Temporary variable {arg} is not defined")
             else:
                 if arg in self.memory_map.local_vars[-1]:
                     self.log_message("get_value: found in local_vars")
                     address = self.memory_map.get_local(arg)
                     self.log_message("get_Value: address", address)
                     arg_value = self.memory_map.get_value(address)
-                    self.log_message("get_Value: arg_value", arg_value)
-                    return float(arg_value) if '.' in str(arg_value) else int(arg_value)
-
+                    if arg_value is None:
+                        raise ValueError(
+                            f"Local variable {arg} is not defined")
                 elif arg in self.memory_map.global_vars:
                     arg_value = self.memory_map.get_value(
                         self.memory_map.get_global(arg))
-                    return float(arg_value) if '.' in str(arg_value) else int(arg_value)
+                    if arg_value is None:
+                        raise ValueError(
+                            f"Global variable {arg} is not defined")
                 else:
-                    self.log_message(
+                    raise ValueError(
                         f"Variable {arg} is not defined in global_vars or local_vars")
-                    return None
+            return float(arg_value) if '.' in str(arg_value) else int(arg_value)
 
     def perform_operation(self, op, result, arg1, arg2):
+
         self.log_message("perform_operation ended")
         self.log_message(f"{op} node detected")
         if result.startswith(('Ti', 'Tf', 'Tb')) and not self.memory_map.exists_temp(result):
@@ -89,6 +96,8 @@ class VirtualMachine:
                 elif op == "-":
                     self.memory_map.set_value(self.memory_map.get_temp(
                         result), arg1_value - arg2_value)
+                    self.log.append(
+                        "memory_map in perform_operation get  +: " + str(self.memory_map.memory))
                     self.log_message("arg1_value", arg1_value, "arg2_value:",
                                      arg2_value, "difference is", arg1_value - arg2_value)
                 elif op == "*":
@@ -113,6 +122,7 @@ class VirtualMachine:
 
     def perform_comparison(self, op, result, arg1, arg2):
         self.log_message("perform_comparison started")
+
         arg1_value = self.get_value(arg1)
         arg2_value = self.get_value(arg2)
         if arg1_value is None or arg2_value is None:
@@ -150,7 +160,7 @@ class VirtualMachine:
     def run(self):
         self.log_message("run started")
         # enter scope
-        self.memory_map.enter_scope()
+        # self.memory_map.enter_scope()
         while self.pc < len(self.code):
             op, arg1, arg2, result = self.code[self.pc]
             self.pc += 1
@@ -213,7 +223,7 @@ class VirtualMachine:
                     self.log_message(
                         "local_vars: ", self.memory_map.local_vars)
                     # prints local memory map to debug
-                    self.log_message("local memory map: ",
+                    self.log_message("memory map after =: ",
                                      self.memory_map.memory)
                 else:
                     self.log_message(
@@ -223,15 +233,19 @@ class VirtualMachine:
             # ------ + - * / ------#
             elif op == "+":
                 self.log_message("add node detected")
+
                 self.perform_operation(op, result, arg1, arg2)
             elif op == "-":
                 self.log_message("subtract node detected")
+
                 self.perform_operation(op, result, arg1, arg2)
             elif op == "*":
                 self.log_message("multiply node detected")
+
                 self.perform_operation(op, result, arg1, arg2)
             elif op == "/":
                 self.log_message("divide node detected")
+
                 self.perform_operation(op, result, arg1, arg2)
 
             # ------ boolean Operations ------#
@@ -328,7 +342,7 @@ class VirtualMachine:
                         self.stack.append(arg_value)
 
                     elif arg1 in self.memory_map.global_vars:
-                        self.log_message("found in global_vars")
+                        self.log_message("arg 1 found in global_vars", arg1)
                         # If arg1 exists in global_vars, get its value and push it onto the stack
                         self.stack.append(self.memory_map.get_value(
                             self.memory_map.get_global(arg1)))
@@ -348,13 +362,13 @@ class VirtualMachine:
                     if result.startswith('"') and result.endswith('"'):
                         # If result is a string literal (enclosed in quotes), push it directly onto the stack
                         self.stack.append(result)
-                    elif result in self.memory_map.local_vars[-1]:
-                        self.log_message("get_value: found in local_vars")
-                        address = self.memory_map.get_local(result)
-                        self.log_message("get_Value: address", address)
-                        arg_value = self.memory_map.get_value(address)
-                        self.log_message("get_Value: arg_value", arg_value)
-                        self.stack.append(arg_value)
+                    # elif result in self.memory_map.local_vars[-1]:
+                    #     self.log_message("get_value: found in local_vars")
+                    #     address = self.memory_map.get_local(result)
+                    #     self.log_message("get_Value: address", address)
+                    #     arg_value = self.memory_map.get_value(address)
+                    #     self.log_message("get_Value: arg_value", arg_value)
+                    #     self.stack.append(arg_value)
 
                     elif result in self.memory_map.global_vars:
                         self.stack.append(self.memory_map.get_value(
@@ -366,16 +380,20 @@ class VirtualMachine:
                     else:
                         self.stack.append(result)
                 self.log_message("stack: ", self.stack)
+                self.log_message("memory_map after param: ",
+                                 self.memory_map.memory)
                 self.log_message("param node end")
                 # debug stack
 
             # ------ read and write Operations ------#
             elif op == "write":
+                # self.log("memory_map in write: ", self.memory_map.memory)
                 self.log_message("write node detected")
                 values = [self.stack.pop() for _ in range(result)]
                 for value in reversed(values):
                     print(value, end=' ')
                 print()
+                # self.log("memory_map after write: ", self.memory_map.memory)
             elif op == "read":
                 # Get user input
                 value = int(input("Enter a value for " + result + ": "))
@@ -432,11 +450,15 @@ class VirtualMachine:
                 # handle function local variables
             elif op == "ERA":
                 self.log_message("ERA node detected")
+                self.log_message("memory map before ERA: ",
+                                 self.memory_map.memory)
+                self.log_message("memory_map: ", self.memory_map.memory)
                 # Enter a new scope
                 self.memory_map.enter_scope()
                 self.log_message("function info", function_table[arg1])
                 # log memory map
-                self.log_message("memory_map: ", self.memory_map.memory)
+                self.log_message("memory_map after era: ",
+                                 self.memory_map.memory)
                 self.log_message("local_vars: ", self.memory_map.local_vars)
                 # Add the local variables for the function to the MemoryMap
                 function_info = function_table[arg1]
@@ -456,18 +478,23 @@ class VirtualMachine:
             elif op == "gosub":
                 # enter scope
                 self.log_message("gosub node start")
+                self.log.append("memory_map in gosub: " +
+                                str(self.memory_map.memory))
                 # Pop the parameters off the stack and assign them to the function's parameters
                 function_info = function_table[result]
                 for var_name in reversed(function_info['params']):
                     address = self.memory_map.allocate_local(
                         var_name)  # Allocate a new local variable
+                    self.log.append("memory_map in after allocating local variable: " +
+                                    str(self.memory_map.memory))
                     if self.stack:  # Check if the stack is not empty
                         param_value = self.stack.pop()  # Pop the parameter value from the stack
                         # Assign the parameter value to the local variable
                         self.memory_map.set_value(address, param_value)
                         self.log_message(
                             f"Assigning {param_value} value to param {var_name}")
-
+                        self.log.append("memory_map in after setting value: " +
+                                        str(self.memory_map.memory))
                         self.log_message(
                             f"Value of {var_name} is now {self.memory_map.get_value(address)}")
                     else:
@@ -489,6 +516,8 @@ class VirtualMachine:
 
                 # add to function name stack
                 self.function_name_stack.append(result)
+                self.log.append("memory_map in after appending result: " +
+                                str(self.memory_map.memory))
                 self.log_message("function_name_stack: ",
                                  self.function_name_stack)
 
@@ -514,21 +543,29 @@ class VirtualMachine:
 
                     # Allocate the new temporary variable
                     temp_var = self.memory_map.allocate_temp(temp_var_name)
+                    self.log.append("memory_map after allocating temp: " + str(
+                        self.memory_map.memory))
 
-                    # Store the return value in the new temporary variable
-                    self.memory_map.set_value(temp_var, return_value)
-
+                    # # Store the return value in the new temporary variable
+                    # self.memory_map.set_value(temp_var, return_value)
+                    # self.log.append("memory_map after setting value: " + str(
+                    #     self.memory_map.memory))
                     # Push the new temporary variable onto the stack
                     self.stack.append(temp_var)
+                    self.log.append("memory_map after gosub: " + str(
+                        self.memory_map.memory))
 
                 # If the function is a void function, do not handle a return value
                 else:
                     pass
+                self.log.append("memory_map after pass: " + str(
+                    self.memory_map.memory))
                 self.log_message("gosub node end")
 
             elif op == "return":
                 self.log_message("return node detected")
-
+                self.log_message(
+                    "memory_map in return before exit: ", self.memory_map.memory)
                 # print local vars to debug
                 self.log_message("local_vars: ", self.memory_map.local_vars)
                 # print global vars to debug
@@ -561,13 +598,17 @@ class VirtualMachine:
                         else:
                             return_value = int(result)
                     except ValueError:
-                        return_value = None
+                        raise ValueError(
+                            f"Error: {result} is not a valid number or variable")
 
                     # print global variable being declared
                     self.log_message(
                         "global_vars bein dececlared during return: ", self.memory_map.global_vars)
 
                 self.log_message("return_value: ", return_value)
+                self.memory_map.exit_scope()
+                self.log_message("memory map after exit: ",
+                                 self.memory_map.memory)
                 self.stack.append(return_value)
                 self.log_message("stack: ", self.stack)
 
@@ -589,7 +630,7 @@ class VirtualMachine:
                 else:
                     self.log_message("Error: call_stack is empty")
                 # pop the current memory map off the stack
-                self.memory_map.exit_scope()
+                # self.memory_map.exit_scope()
 
                 # Check if function_name_stack is not empty
                 if self.function_name_stack:

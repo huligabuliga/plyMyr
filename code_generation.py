@@ -224,7 +224,7 @@ def generate_code(node):
                         code.append(binop_code)
                     # Assign the result to the pointer
                     code.append(
-                        ("pointer_assign", pointer_name, "", binop_var))
+                        ("assign_pointer", pointer_name, "", binop_var))
                 else:
                     # Generate code for the array assignment
                     code.append(("array_assign", array_name, index_var, expr))

@@ -1,0 +1,34 @@
+program functiontest;
+vars
+    int x, y, s, c, f, d, g;
+    float n;
+    bool check;
+
+function int add (int a, int b)
+vars
+    int sum; 
+{      
+        sum = a + b;
+        return (sum);
+}
+
+function int subtract (int a, int b)
+vars 
+    int result; 
+{
+    result = a - b;
+    return (result);
+
+}
+
+
+main() {
+    x = 20;
+    y = 30;
+
+    c = add(x, y);
+    write("sum is", c);
+
+    s = subtract(x, y);
+    write("subtract is", s);
+}

@@ -1,29 +1,34 @@
 Operator,Operand1,Operand2,Result
 goto,,,start_main
+label,,,factorial
+<=,n,0,Tb1
+gotoF,Tb1,,L2
+param,,,"""factorial:"""
+param,,,n
+write,,,2
+return,,,1
+goto,,,L3
+label,,,L2
+param,,,"""factorial:"""
+param,,,n
+write,,,2
+ERA,factorial,,
+-,n,1,Ti1
+param,Ti1,,par1
+gosub,,,factorial
+=,factorial,,Ti2
+*,n,Ti2,Ti3
+return,,,Ti3
+label,,,L3
+EndFunc,,,
 label,,,start_main
-=,10,,x
-=,20,,y
-=,11,,d
-array_assign,z,4,2
-array_assign,z,5,2
-array_assign,z,6,4
-array_assign,z,7,5
-array_assign,z,8,8
-array_assign,z,9,9
-array_assign,z,10,10
-param,,,d
-write,,,1
-param,,,"""this is a string"""
-write,,,1
-param,,,"""this is var d"""
-param,,,d
-write,,,2
-param,,,"""z in position 9 is"""
-load,z,9,Ti1
-param,,,Ti1
-write,,,2
-param,,,"""z in position 5 is"""
-load,z,5,Ti2
-param,,,Ti2
+=,5,,num
+ERA,factorial,,
+param,num,,par1
+gosub,,,factorial
+=,factorial,,Ti4
+=,Ti4,,result
+param,,,"""factorial of num is"""
+param,,,result
 write,,,2
 EndProg,,,

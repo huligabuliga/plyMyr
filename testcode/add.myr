@@ -7,8 +7,7 @@ function int add (int a, int b)
 vars
     int dobby; 
 {      
-        dobby = a + 5;
-        dobby = dobby + b;
+        dobby = a + b;
         return (dobby);
 }
 

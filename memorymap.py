@@ -22,11 +22,12 @@ class MemoryMap:
         return start_address, size
 
     def allocate_local(self, name):
-        # Use the counter instead of the length of the current scope's dictionary
-        address = self.next_local_address
+        # Calculate the total size of the previous scopes
+        offset = sum(len(vars) for vars in self.local_vars)
+        # Use the counter plus the offset instead of the length of the current scope's dictionary
+        address = offset
         # Add the variable to the current scope
         self.local_vars[-1][name] = address
-        self.next_local_address += 1  # Increment the counter after allocating an address
         return address
 
     def allocate_temp(self, name):
@@ -94,8 +95,35 @@ class MemoryMap:
         except KeyError:
             raise ValueError(f"Local variable {name} is not defined")
 
+    def set_temp_value(self, name, value):
+        if name.startswith('Ti'):
+            temp_vars = self.temp_vars_int
+        elif name.startswith('Tf'):
+            temp_vars = self.temp_vars_float
+        elif name.startswith('Tb'):
+            temp_vars = self.temp_vars_bool
+        else:
+            raise ValueError(f"Unsupported temporary variable type: {name}")
+
+        try:
+            # Get the address of the temporary variable
+            address = temp_vars[name]
+            # Use the address to set the value in the memory
+            self.memory[address] = value
+        except KeyError:
+            raise ValueError(f"Temporary variable {name} is not defined")
+
     def get_value(self, address):
-        return self.memory[address]
+        # Check if address is a name of a local variable
+        if self.local_vars and address in self.local_vars[-1]:
+            # Get the address of the local variable
+            real_address = self.local_vars[-1][address]
+            # Use the address to get the value from the memory
+            value = self.memory[real_address]
+        else:
+            # Address is a memory address
+            value = self.memory[address]
+        return value
 
     def push_stack(self, value):
         self.stack.append(value)
@@ -150,9 +178,6 @@ class MemoryMap:
     def exit_scope(self):
         # Restore the saved state of the local variables
         self.local_vars.pop()
-        # Reset the next local address to the end of the current local variables
-        self.next_local_address = len(
-            self.local_vars[-1]) if self.local_vars else 0
 
     def set_value(self, address, value):
         self.memory[address] = value

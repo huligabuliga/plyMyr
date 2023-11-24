@@ -23,4 +23,5 @@ main(){
     write("z in position 9 is", z[9]);
     write("z in position 5 is", z[5]);
     
+    
 }
