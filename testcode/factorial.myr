@@ -20,7 +20,7 @@ vars
 }
    
 main(){
-  num = 5;
+  num = 4;
   result = factorial(num);
   write("factorial of num is", result);
 }

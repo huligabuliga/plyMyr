@@ -49,11 +49,17 @@ def p_type(p):
 
 def p_id_list(p):
     '''id_list : id_list COMMA ID
-               | ID'''
+               | ID
+               | id_list COMMA ID LBRACKET INTEGER RBRACKET
+               | ID LBRACKET INTEGER RBRACKET'''
     if len(p) == 4:
         p[0] = p[1] + [p[3]]
-    else:
+    elif len(p) == 2:
         p[0] = [p[1]]
+    elif len(p) == 7:
+        p[0] = p[1] + [(p[3], p[5])]
+    else:
+        p[0] = [(p[1], p[3])]
 
 
 def p_function_list(p):

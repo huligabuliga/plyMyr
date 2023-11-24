@@ -43,7 +43,7 @@ reserved = {
 
 # Define the tokens for the MyR language
 tokens = [
-    'ID', 'SEMICOLON',
+    'ID', 'ARRAY', 'SEMICOLON',
     'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'COMMA', 'ASSIGN', 'PLUS', 'MINUS',
     'TIMES', 'DIVIDE', 'AND', 'OR', 'NOT', 'EQ', 'NE', 'LT', 'LE', 'GT', 'GE',
     'STRING', 'INTEGER', 'FLOATING_POINT',
@@ -118,6 +118,14 @@ def t_ID(t):
 def t_STRING(t):
     r'"[^"]*"'
     # t.value = t.value[1:-1]  # Remove the quotes
+    return t
+
+
+def t_ARRAY(t):
+    r'([a-zA-Z_][a-zA-Z_0-9]*)\[(\d+)\]'
+    # Store the identifier and the size as a tuple
+    t.value = (t.value[1], int(t.value[2]))
+    t.type = 'ARRAY'
     return t
 
 

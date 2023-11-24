@@ -1,234 +1,126 @@
 run started
 pc =  1
 goto node detected
-pc =  61
-label node detected
-pc =  62
-equal node detected
-arg1:  20
-arg2:  
-result:  a
-Assigning value to global variable
-Value of  a  is now  20
-equal node end
-pc =  63
-equal node detected
-arg1:  30
-arg2:  
-result:  b
-Assigning value to global variable
-Value of  b  is now  30
-equal node end
-pc =  64
-equal node detected
-arg1:  5.5123
-arg2:  
-result:  n
-Assigning value to global variable
-Value of  n  is now  5.5123
-equal node end
-pc =  65
-ERA node detected
-function info {'return_type': 'int', 'param_types': ['int', 'int'], 'params': ['a', 'b'], 'vars': [('int', ['result'])]}
-memory_map:  [0, 0, 0, 0, 0, 20, 30, 0, 0, 5.5123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-local_vars:  [{}, {}]
-function info {'return_type': 'int', 'param_types': ['int', 'int'], 'params': ['a', 'b'], 'vars': [('int', ['result'])]}
-checking var_name:  a
-adding var_name:  a
-checking var_name:  b
-adding var_name:  b
-checking var:  result
-adding var:  result
-pc =  66
-param node start
-memory_map:  [0, 0, 0, 0, 0, 20, 30, 0, 0, 5.5123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-stack:  []
-result:  par1
-arg1:  a
-arg2:  
-global_vars:  {'x': 0, 'y': 1, 's': 2, 'c': 3, 'f': 4, 'a': 5, 'b': 6, 'd': 7, 'g': 8, 'n': 9, 'check': 10}
-local_vars:  [{}, {'a': 0, 'b': 1, 'result': 2}]
-temp_vars:  {} {} {}
-get_value: found in local_vars
-get_Value: address 0
-get_Value: arg_value 0
-stack:  [0]
-param node end
-pc =  67
-param node start
-memory_map:  [0, 0, 0, 0, 0, 20, 30, 0, 0, 5.5123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-stack:  [0]
-result:  par2
-arg1:  b
-arg2:  
-global_vars:  {'x': 0, 'y': 1, 's': 2, 'c': 3, 'f': 4, 'a': 5, 'b': 6, 'd': 7, 'g': 8, 'n': 9, 'check': 10}
-local_vars:  [{}, {'a': 0, 'b': 1, 'result': 2}]
-temp_vars:  {} {} {}
-get_value: found in local_vars
-get_Value: address 1
-get_Value: arg_value 0
-stack:  [0, 0]
-param node end
-pc =  68
-gosub node start
-Assigning 0 value to param b
-Value of b is now 0
-Assigning 0 value to param a
-Value of a is now 0
-call stack:  [68]
-function_name_stack:  ['add']
-gosub node end
 pc =  2
 label node detected
 pc =  3
-add node detected
-perform_operation ended
-+ node detected
-new temporal variable detected
-Declared temp variable:  Ti1
-get_value statrted
-recieving, getting value of  a
-get_value: found in local_vars
-get_Value: address 4
-get_Value: arg_value 0
-getting arg1 value:  0
-get_value statrted
-recieving, getting value of  b
-get_value: found in local_vars
-get_Value: address 3
-get_Value: arg_value 0
-getting arg2 value:  0
-arg1_value 0 arg2_value: 0 sum is 0
+equal node detected
+arg1:  10
+arg2:  
+result:  x
+Assigning value to global variable
+Value of  x  is now  10
+equal node end
 pc =  4
 equal node detected
-arg1:  Ti1
+arg1:  20
 arg2:  
-result:  result
-Assigning value to local variable
-Value of  result  is now  0
-local_vars:  [{}, {'a': 4, 'b': 3, 'result': 2}]
-local memory map:  [None, 0, 0, 0, 0, 20, 30, 0, 0, 5.5123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+result:  y
+Assigning value to global variable
+Value of  y  is now  20
 equal node end
 pc =  5
-return node detected
-local_vars:  [{}, {'a': 4, 'b': 3, 'result': 2}]
-global_vars:  {'x': 0, 'y': 1, 's': 2, 'c': 3, 'f': 4, 'a': 5, 'b': 6, 'd': 7, 'g': 8, 'n': 9, 'check': 10}
-local return_value:  0
-return_value:  0
-stack:  [0, 0]
+equal node detected
+arg1:  0
+arg2:  
+result:  z
+Error: Variable z is not defined
+equal node end
 pc =  6
-EndFunc node detected
-call stack:  [68]
-going to return address:  68
-pc:  68
-code:  ('=', 'add', '', 'Ti3')
-function_name:  add
-assining value to global variable:  0
-global_vars:  {'x': 0, 'y': 1, 's': 2, 'c': 3, 'f': 4, 'a': 5, 'b': 6, 'd': 7, 'g': 8, 'n': 9, 'check': 10, 'add': 11}
-pc =  69
 equal node detected
-arg1:  add
+arg1:  1
 arg2:  
-result:  Ti3
-Declaring temp variable:  Ti3
-Assigning value to a temporal variable
-Value of  Ti3  is now  0
+result:  z
+Error: Variable z is not defined
 equal node end
-pc =  70
-equal node detected
-arg1:  Ti3
-arg2:  
-result:  c
-Assigning value to global variable
-Value of  c  is now  0
-equal node end
-pc =  71
-param node start
-memory_map:  [None, 0, 0, 0, 0, 20, 30, 0, 0, 5.5123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-stack:  [0]
-result:  "sum is"
-arg1:  
-arg2:  
-global_vars:  {'x': 0, 'y': 1, 's': 2, 'c': 3, 'f': 4, 'a': 5, 'b': 6, 'd': 7, 'g': 8, 'n': 9, 'check': 10, 'add': 11}
-local_vars:  [{}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x0000016A91B62A90>>': 0, 'Ti1': 50, 'Ti3': 51} {} {}
-stack:  [0, '"sum is"']
-param node end
-pc =  72
-param node start
-memory_map:  [None, 0, 0, 0, 0, 20, 30, 0, 0, 5.5123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-stack:  [0, '"sum is"']
-result:  c
-arg1:  
-arg2:  
-global_vars:  {'x': 0, 'y': 1, 's': 2, 'c': 3, 'f': 4, 'a': 5, 'b': 6, 'd': 7, 'g': 8, 'n': 9, 'check': 10, 'add': 11}
-local_vars:  [{}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x0000016A91B62A90>>': 0, 'Ti1': 50, 'Ti3': 51} {} {}
-stack:  [0, '"sum is"', 0]
-param node end
-pc =  73
-write node detected
-pc =  74
-ERA node detected
-function info {'return_type': 'int', 'param_types': ['int', 'int'], 'params': ['a', 'b'], 'vars': [('int', ['result'])]}
-memory_map:  [None, 0, 0, 0, 0, 20, 30, 0, 0, 5.5123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-local_vars:  [{}, {}]
-function info {'return_type': 'int', 'param_types': ['int', 'int'], 'params': ['a', 'b'], 'vars': [('int', ['result'])]}
-checking var_name:  a
-adding var_name:  a
-checking var_name:  b
-adding var_name:  b
-checking var:  result
-adding var:  result
-pc =  75
-param node start
-memory_map:  [None, 0, 0, 0, 0, 20, 30, 0, 0, 5.5123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-stack:  [0]
-result:  par1
-arg1:  a
-arg2:  
-global_vars:  {'x': 0, 'y': 1, 's': 2, 'c': 3, 'f': 4, 'a': 5, 'b': 6, 'd': 7, 'g': 8, 'n': 9, 'check': 10, 'add': 11}
-local_vars:  [{}, {'a': 0, 'b': 1, 'result': 2}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x0000016A91B62A90>>': 0, 'Ti1': 50, 'Ti3': 51} {} {}
-get_value: found in local_vars
-get_Value: address 0
-get_Value: arg_value None
-stack:  [0, None]
-param node end
-pc =  76
-param node start
-memory_map:  [None, 0, 0, 0, 0, 20, 30, 0, 0, 5.5123, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-stack:  [0, None]
-result:  par2
-arg1:  b
-arg2:  
-global_vars:  {'x': 0, 'y': 1, 's': 2, 'c': 3, 'f': 4, 'a': 5, 'b': 6, 'd': 7, 'g': 8, 'n': 9, 'check': 10, 'add': 11}
-local_vars:  [{}, {'a': 0, 'b': 1, 'result': 2}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x0000016A91B62A90>>': 0, 'Ti1': 50, 'Ti3': 51} {} {}
-get_value: found in local_vars
-get_Value: address 1
-get_Value: arg_value 0
-stack:  [0, None, 0]
-param node end
-pc =  77
-gosub node start
-Assigning 0 value to param b
-Value of b is now 0
-Assigning None value to param a
-Value of a is now None
-call stack:  [77]
-function_name_stack:  ['subtract']
-gosub node end
 pc =  7
-label node detected
+equal node detected
+arg1:  2
+arg2:  
+result:  z
+Error: Variable z is not defined
+equal node end
 pc =  8
-subtract node detected
-perform_operation ended
-- node detected
-new temporal variable detected
-Declared temp variable:  Ti2
-get_value statrted
-recieving, getting value of  a
-get_value: found in local_vars
-get_Value: address 4
-get_Value: arg_value None
+equal node detected
+arg1:  3
+arg2:  
+result:  z
+Error: Variable z is not defined
+equal node end
+pc =  9
+equal node detected
+arg1:  4
+arg2:  
+result:  z
+Error: Variable z is not defined
+equal node end
+pc =  10
+equal node detected
+arg1:  5
+arg2:  
+result:  z
+Error: Variable z is not defined
+equal node end
+pc =  11
+equal node detected
+arg1:  6
+arg2:  
+result:  z
+Error: Variable z is not defined
+equal node end
+pc =  12
+equal node detected
+arg1:  7
+arg2:  
+result:  z
+Error: Variable z is not defined
+equal node end
+pc =  13
+equal node detected
+arg1:  8
+arg2:  
+result:  z
+Error: Variable z is not defined
+equal node end
+pc =  14
+equal node detected
+arg1:  9
+arg2:  
+result:  z
+Error: Variable z is not defined
+equal node end
+pc =  15
+equal node detected
+arg1:  10
+arg2:  
+result:  z
+Error: Variable z is not defined
+equal node end
+pc =  16
+param node start
+memory_map:  [10, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+stack:  []
+result:  "z in position 2 is"
+arg1:  
+arg2:  
+global_vars:  {'x': 0, 'y': 1, ('z', '10'): 2}
+local_vars:  [{}]
+temp_vars:  {} {} {}
+stack:  ['"z in position 2 is"']
+param node end
+pc =  17
+param node start
+memory_map:  [10, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+stack:  ['"z in position 2 is"']
+result:  z
+arg1:  
+arg2:  
+global_vars:  {'x': 0, 'y': 1, ('z', '10'): 2}
+local_vars:  [{}]
+temp_vars:  {} {} {}
+stack:  ['"z in position 2 is"', 'z']
+param node end
+pc =  18
+write node detected
+pc =  19
+EndProg node detected
