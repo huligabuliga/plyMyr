@@ -615,6 +615,34 @@ class VirtualMachine:
                 else:
                     self.log_message("Error: function_name_stack is empty")
 
+            # ------ Arrays ------#
+            elif op == 'array_assign':
+                print("array_assign node detected")
+                array_name = arg1
+                index = int(arg2)
+                value = int(result)  # directly use result as the value
+                self.memory_map.set_array_value(array_name, value, index)
+                print("assigning value to array: ", array_name,
+                      "index: ", index, "value: ", value)
+                print("array_assign node end")
+
+            elif op == 'pointer_assign':
+                pointer_name = arg1
+                value = self.memory_map.get_value(
+                    self.memory_map.get_temp(result))
+                self.memory_map.pointer_assign(pointer_name, value)
+
+            elif op == 'load':
+                array_name = arg1
+                index = int(arg2)
+                if result.startswith(('Ti', 'Tf', 'Tb')) and not self.memory_map.exists_temp(result):
+                    self.log_message("new temporal variable detected")
+                    self.memory_map.declare_temp(result)
+                    self.log_message("Declared temp variable: ", result)
+                result_address = self.memory_map.get_temp(result)
+                self.memory_map.set_value(
+                    result_address, self.memory_map.get_array_value(array_name, index))
+
         # endprogram
             elif op == "EndProg":
                 self.log_message("EndProg node detected")

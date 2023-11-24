@@ -15,6 +15,12 @@ class MemoryMap:
         self.global_vars[name] = address
         return address
 
+    def allocate_global_array(self, name, size):
+        start_address = len(self.global_vars)
+        for i in range(size):
+            self.global_vars[f"{name}_{i}"] = start_address + i
+        return start_address, size
+
     def allocate_local(self, name):
         # Use the counter instead of the length of the current scope's dictionary
         address = self.next_local_address
@@ -58,6 +64,10 @@ class MemoryMap:
         except KeyError:
             raise ValueError(f"Global variable {name} is not defined")
 
+    def get_global_array(self, name, size):
+        start_address = self.global_vars[f"{name}_0"]
+        return start_address, size
+
     def get_local(self, name):
         try:
             return self.local_vars[-1][name]
@@ -66,6 +76,14 @@ class MemoryMap:
 
     def set_value(self, address, value):
         self.memory[address] = value
+
+    def set_array_value(self, name, value, index):
+        key = f"{name}_{index}"
+        if key in self.global_vars:
+            self.memory[self.global_vars[key]] = value
+        else:
+            raise ValueError(
+                f"Global array {name} at index {index} is not defined")
 
     def set_local_value(self, name, value):
         try:
@@ -128,7 +146,6 @@ class MemoryMap:
         # Save the current state of the local variables
         self.local_vars.append(
             self.local_vars[-1].copy() if self.local_vars else {})
-        print("Local variables:", self.local_vars)
 
     def exit_scope(self):
         # Restore the saved state of the local variables
@@ -139,3 +156,15 @@ class MemoryMap:
 
     def set_value(self, address, value):
         self.memory[address] = value
+
+    def pointer_assign(self, pointer_name, value):
+        if pointer_name not in self.global_vars:
+            raise ValueError(f"Pointer {pointer_name} is not defined")
+        self.memory[self.global_vars[pointer_name]] = value
+
+    def get_array_value(self, array_name, index):
+        key = f"{array_name}_{index}"
+        if key not in self.global_vars:
+            raise ValueError(
+                f"Array {array_name} at index {index} is not defined")
+        return self.memory[self.global_vars[key]]

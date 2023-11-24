@@ -21,106 +21,130 @@ Value of  y  is now  20
 equal node end
 pc =  5
 equal node detected
-arg1:  0
+arg1:  11
 arg2:  
-result:  z
-Error: Variable z is not defined
+result:  d
+Assigning value to global variable
+Value of  d  is now  11
 equal node end
 pc =  6
-equal node detected
-arg1:  1
-arg2:  
-result:  z
-Error: Variable z is not defined
-equal node end
 pc =  7
-equal node detected
-arg1:  2
-arg2:  
-result:  z
-Error: Variable z is not defined
-equal node end
 pc =  8
-equal node detected
-arg1:  3
-arg2:  
-result:  z
-Error: Variable z is not defined
-equal node end
 pc =  9
-equal node detected
-arg1:  4
-arg2:  
-result:  z
-Error: Variable z is not defined
-equal node end
 pc =  10
-equal node detected
-arg1:  5
-arg2:  
-result:  z
-Error: Variable z is not defined
-equal node end
 pc =  11
-equal node detected
-arg1:  6
-arg2:  
-result:  z
-Error: Variable z is not defined
-equal node end
 pc =  12
-equal node detected
-arg1:  7
-arg2:  
-result:  z
-Error: Variable z is not defined
-equal node end
 pc =  13
-equal node detected
-arg1:  8
-arg2:  
-result:  z
-Error: Variable z is not defined
-equal node end
-pc =  14
-equal node detected
-arg1:  9
-arg2:  
-result:  z
-Error: Variable z is not defined
-equal node end
-pc =  15
-equal node detected
-arg1:  10
-arg2:  
-result:  z
-Error: Variable z is not defined
-equal node end
-pc =  16
 param node start
-memory_map:  [10, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+memory_map:  [10, 20, 11, 0, 0, 0, 0, 2, 2, 4, 5, 8, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 stack:  []
-result:  "z in position 2 is"
+result:  d
 arg1:  
 arg2:  
-global_vars:  {'x': 0, 'y': 1, ('z', '10'): 2}
+global_vars:  {'x': 0, 'y': 1, 'd': 2, 'z_0': 3, 'z_1': 4, 'z_2': 5, 'z_3': 6, 'z_4': 7, 'z_5': 8, 'z_6': 9, 'z_7': 10, 'z_8': 11, 'z_9': 12, 'z_10': 13}
 local_vars:  [{}]
 temp_vars:  {} {} {}
-stack:  ['"z in position 2 is"']
+stack:  [11]
 param node end
+pc =  14
+write node detected
+pc =  15
+param node start
+memory_map:  [10, 20, 11, 0, 0, 0, 0, 2, 2, 4, 5, 8, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+stack:  []
+result:  "this is a string"
+arg1:  
+arg2:  
+global_vars:  {'x': 0, 'y': 1, 'd': 2, 'z_0': 3, 'z_1': 4, 'z_2': 5, 'z_3': 6, 'z_4': 7, 'z_5': 8, 'z_6': 9, 'z_7': 10, 'z_8': 11, 'z_9': 12, 'z_10': 13}
+local_vars:  [{}]
+temp_vars:  {} {} {}
+stack:  ['"this is a string"']
+param node end
+pc =  16
+write node detected
 pc =  17
 param node start
-memory_map:  [10, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-stack:  ['"z in position 2 is"']
-result:  z
+memory_map:  [10, 20, 11, 0, 0, 0, 0, 2, 2, 4, 5, 8, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+stack:  []
+result:  "this is var d"
 arg1:  
 arg2:  
-global_vars:  {'x': 0, 'y': 1, ('z', '10'): 2}
+global_vars:  {'x': 0, 'y': 1, 'd': 2, 'z_0': 3, 'z_1': 4, 'z_2': 5, 'z_3': 6, 'z_4': 7, 'z_5': 8, 'z_6': 9, 'z_7': 10, 'z_8': 11, 'z_9': 12, 'z_10': 13}
 local_vars:  [{}]
 temp_vars:  {} {} {}
-stack:  ['"z in position 2 is"', 'z']
+stack:  ['"this is var d"']
 param node end
 pc =  18
-write node detected
+param node start
+memory_map:  [10, 20, 11, 0, 0, 0, 0, 2, 2, 4, 5, 8, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+stack:  ['"this is var d"']
+result:  d
+arg1:  
+arg2:  
+global_vars:  {'x': 0, 'y': 1, 'd': 2, 'z_0': 3, 'z_1': 4, 'z_2': 5, 'z_3': 6, 'z_4': 7, 'z_5': 8, 'z_6': 9, 'z_7': 10, 'z_8': 11, 'z_9': 12, 'z_10': 13}
+local_vars:  [{}]
+temp_vars:  {} {} {}
+stack:  ['"this is var d"', 11]
+param node end
 pc =  19
+write node detected
+pc =  20
+param node start
+memory_map:  [10, 20, 11, 0, 0, 0, 0, 2, 2, 4, 5, 8, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+stack:  []
+result:  "z in position 4 is"
+arg1:  
+arg2:  
+global_vars:  {'x': 0, 'y': 1, 'd': 2, 'z_0': 3, 'z_1': 4, 'z_2': 5, 'z_3': 6, 'z_4': 7, 'z_5': 8, 'z_6': 9, 'z_7': 10, 'z_8': 11, 'z_9': 12, 'z_10': 13}
+local_vars:  [{}]
+temp_vars:  {} {} {}
+stack:  ['"z in position 4 is"']
+param node end
+pc =  21
+new temporal variable detected
+Declared temp variable:  Ti1
+pc =  22
+param node start
+memory_map:  [10, 20, 11, 0, 0, 0, 0, 2, 2, 4, 5, 8, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2]
+stack:  ['"z in position 4 is"']
+result:  Ti1
+arg1:  
+arg2:  
+global_vars:  {'x': 0, 'y': 1, 'd': 2, 'z_0': 3, 'z_1': 4, 'z_2': 5, 'z_3': 6, 'z_4': 7, 'z_5': 8, 'z_6': 9, 'z_7': 10, 'z_8': 11, 'z_9': 12, 'z_10': 13}
+local_vars:  [{}]
+temp_vars:  {'Ti1': 50} {} {}
+stack:  ['"z in position 4 is"', 2]
+param node end
+pc =  23
+write node detected
+pc =  24
+param node start
+memory_map:  [10, 20, 11, 0, 0, 0, 0, 2, 2, 4, 5, 8, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2]
+stack:  []
+result:  "z in position 5 is"
+arg1:  
+arg2:  
+global_vars:  {'x': 0, 'y': 1, 'd': 2, 'z_0': 3, 'z_1': 4, 'z_2': 5, 'z_3': 6, 'z_4': 7, 'z_5': 8, 'z_6': 9, 'z_7': 10, 'z_8': 11, 'z_9': 12, 'z_10': 13}
+local_vars:  [{}]
+temp_vars:  {'Ti1': 50} {} {}
+stack:  ['"z in position 5 is"']
+param node end
+pc =  25
+new temporal variable detected
+Declared temp variable:  Ti2
+pc =  26
+param node start
+memory_map:  [10, 20, 11, 0, 0, 0, 0, 2, 2, 4, 5, 8, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2]
+stack:  ['"z in position 5 is"']
+result:  Ti2
+arg1:  
+arg2:  
+global_vars:  {'x': 0, 'y': 1, 'd': 2, 'z_0': 3, 'z_1': 4, 'z_2': 5, 'z_3': 6, 'z_4': 7, 'z_5': 8, 'z_6': 9, 'z_7': 10, 'z_8': 11, 'z_9': 12, 'z_10': 13}
+local_vars:  [{}]
+temp_vars:  {'Ti1': 50, 'Ti2': 51} {} {}
+stack:  ['"z in position 5 is"', 2]
+param node end
+pc =  27
+write node detected
+pc =  28
 EndProg node detected

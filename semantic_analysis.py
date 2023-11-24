@@ -171,10 +171,20 @@ def check_types(node):
         for var_declaration in node[1]:
             var_type, var_names = var_declaration
             for var_name in var_names:
-                symbol_table[var_name] = var_type
-                memory_map.allocate_global(var_name)
-                print(
-                    f"Allocated global variable {var_name} at address {memory_map.get_global(var_name)}")
+                if isinstance(var_name, tuple):
+                    # This is an array declaration
+                    array_name, array_size = var_name
+                    # Convert the size to an integer
+                    array_size = int(array_size)
+                    symbol_table[array_name] = (var_type, array_size)
+                    # memory_map.allocate_global_array(array_name, array_size)  # Commented out
+                    # start_address, array_size = memory_map.get_global_array(array_name, array_size)  # Commented out
+                    # print(f"Allocated global array {array_name} of size {array_size} at address {start_address}")  # Commented out
+                else:
+                    # This is a single variable declaration
+                    symbol_table[var_name] = var_type
+                    # memory_map.allocate_global(var_name)  # Commented out
+                    # print(f"Allocated global variable {var_name} at address {memory_map.get_global(var_name)}")  # Commented out
         print('Finished processing node:', node)
         print('Symbol table:', symbol_table)
 
@@ -363,7 +373,19 @@ def check_types(node):
 
     # Assuming symbol_table and memory_map are defined and initialized
     for var_name, var_type in symbol_table.items():
-        memory_map.allocate_global(var_name)
+        if isinstance(var_type, tuple):
+            # This is an array declaration
+            array_type, array_size = var_type
+            memory_map.allocate_global_array(var_name, array_size)
+            start_address, array_size = memory_map.get_global_array(
+                var_name, array_size)
+            print(
+                f"Allocated global array {var_name} of size {array_size} at address {start_address}")
+        else:
+            # This is a single variable declaration
+            memory_map.allocate_global(var_name)
+            print(
+                f"Allocated global variable {var_name} at address {memory_map.get_global(var_name)}")
 
     # Assuming function_table and memory_map are defined and initialized
     # for function_name, function_info in function_table.items():

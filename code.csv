@@ -3,18 +3,27 @@ goto,,,start_main
 label,,,start_main
 =,10,,x
 =,20,,y
-=,0,,z
-=,1,,z
-=,2,,z
-=,3,,z
-=,4,,z
-=,5,,z
-=,6,,z
-=,7,,z
-=,8,,z
-=,9,,z
-=,10,,z
-param,,,"""z in position 2 is"""
-param,,,z
+=,11,,d
+array_assign,z,4,2
+array_assign,z,5,2
+array_assign,z,6,4
+array_assign,z,7,5
+array_assign,z,8,8
+array_assign,z,9,9
+array_assign,z,10,10
+param,,,d
+write,,,1
+param,,,"""this is a string"""
+write,,,1
+param,,,"""this is var d"""
+param,,,d
+write,,,2
+param,,,"""z in position 9 is"""
+load,z,9,Ti1
+param,,,Ti1
+write,,,2
+param,,,"""z in position 5 is"""
+load,z,5,Ti2
+param,,,Ti2
 write,,,2
 EndProg,,,

@@ -199,20 +199,46 @@ def generate_code(node):
             return code
 
         elif node_type == 'assignment':
-            var_name, expr = node[1], node[2]
-            code = []
-            if isinstance(expr, tuple):
-                expr_code, expr_var = generate_code(expr)
-                if expr_code is not None:  # Check if expr_code is not None
-                    code.append(expr_code)
-                if expr[0] == 'function_call':
-                    # Check if the function is not void before generating assignment code
-                    if not is_void(expr[1], function_table):
-                        code.append(("=", expr_var, "", var_name))
+            if len(node) == 4:
+                # This is an array assignment
+                array_name, array_index, expr = node[1], node[2], node[3]
+                code = []
+                # Check if the array index is a single digit
+                if isinstance(array_index, str) and array_index.isdigit():
+                    # The index is a single digit, use it directly
+                    index_var = array_index
                 else:
-                    code.append(("=", expr_var, "", var_name))
+                    # The index is not a single digit, generate code for it
+                    index_code, index_var = generate_code(array_index)
+                    if index_code is not None:
+                        code.append(index_code)
+                # Generate code for the expression
+                if isinstance(expr, tuple) and expr[0] == 'binop':
+                    # Create a pointer for the array at the specific index
+                    pointer_name = f"tp{index_var}"
+                    code.append(
+                        ("pointer_assign", pointer_name, array_name, index_var))
+                    # Perform the binary operation
+                    binop_code, binop_var = generate_code(expr)
+                    if binop_code is not None:
+                        code.append(binop_code)
+                    # Assign the result to the pointer
+                    code.append(
+                        ("pointer_assign", pointer_name, "", binop_var))
+                else:
+                    # Generate code for the array assignment
+                    code.append(("array_assign", array_name, index_var, expr))
             else:
-                code.append(("=", expr, "", var_name))
+                # This is a non-array assignment
+                var_name, expr = node[1], node[2]
+                code = []
+                if isinstance(expr, tuple):
+                    expr_code, expr_var = generate_code(expr)
+                    if expr_code is not None:  # Check if expr_code is not None
+                        code.append(expr_code)
+                    code.append(("=", expr_var, "", var_name))
+                else:
+                    code.append(("=", expr, "", var_name))
             return code
 
         elif node_type == 'binop':
@@ -384,10 +410,19 @@ def generate_code(node):
             _, args = node
             for arg in args:
                 if isinstance(arg, tuple):
-                    arg_code, arg_var = generate_code(arg)
-                    if arg_code is not None:  # Check if arg_code is not None
-                        code.extend(arg_code)
-                    code.append(("param", "", "", arg_var))
+                    if arg[0] == 'array_element':
+                        # Generate code to load array element into a temporary variable
+                        array_name, index = arg[1], arg[2]
+                        temp_counter_int += 1
+                        # assign int temp variable
+                        temp_var = f"Ti{temp_counter_int }"
+                        code.append(("load", array_name, index, temp_var))
+                        code.append(("param", "", "", temp_var))
+                    else:
+                        arg_code, arg_var = generate_code(arg)
+                        if arg_code is not None:  # Check if arg_code is not None
+                            code.extend(arg_code)
+                        code.append(("param", "", "", arg_var))
                 else:
                     code.append(("param", "", "", arg))
             code.append(("write", "", "", len(args)))

@@ -176,13 +176,15 @@ def p_write_statement(p):
 
 def p_write_list(p):
     '''write_list : write_list COMMA expression
-                  | STRING
-                  | function_call
-                  | ID COMMA expression'''
+                  | expression COMMA expression
+                  | expression'''
     if len(p) == 4:
-        p[0] = p[1] + [(p[3])]
+        if isinstance(p[1], list):
+            p[0] = p[1] + [p[3]]
+        else:
+            p[0] = [p[1], p[3]]
     else:
-        p[0] = [(p[1])]
+        p[0] = [p[1]]
 
 
 def p_if_statement(p):
@@ -274,11 +276,23 @@ def p_expression(p):
                   | expression GE term
                   | expression AND term
                   | expression OR term
+                  | array_element
+                  | ID
+                  | INTEGER
+                  | FLOATING_POINT
+                  | STRING
+                  | function_call
                   | term'''
     if len(p) == 4:
-        p[0] = ('binop', p[2], p[1], p[3])
+        if p[2] in ['+', '-', '==', '!=', '<', '<=', '>', '>=', '&&', '||']:
+            p[0] = ('binop', p[2], p[1], p[3])
     else:
         p[0] = p[1]
+
+
+def p_array_element(p):
+    '''array_element : ID LBRACKET expression RBRACKET'''
+    p[0] = ('array_element', p[1], p[3])
 
 
 def p_term(p):
@@ -293,8 +307,8 @@ def p_term(p):
 
 def p_factor(p):
     '''factor : LPAREN expression RPAREN
-              | ID
               | ID LBRACKET expression RBRACKET
+              | ID
               | INTEGER
               | function_call
               | FLOATING_POINT'''
