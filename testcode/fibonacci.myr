@@ -18,5 +18,5 @@ vars
 main(){
   num = 10;
   result = fibonacci(num);
-  write("Fibonacci of", num);
+  write("Fibonacci of", result);
 }

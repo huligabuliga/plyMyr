@@ -1,31 +1,31 @@
 run started
 pc =  1
 goto node detected
-pc =  23
+pc =  29
 label node detected
-pc =  24
+pc =  30
 equal node detected
-arg1:  5
+arg1:  3
 arg2:  
 result:  num
 Assigning value to global variable
-Value of  num  is now  5
+Value of  num  is now  3
 equal node end
-pc =  25
+pc =  31
 ERA node detected
-memory map before ERA:  [5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-memory_map:  [5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+memory map before ERA:  [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+memory_map:  [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 function info {'return_type': 'int', 'param_types': ['int'], 'params': ['n'], 'vars': [('int', ['result'])]}
-memory_map after era:  [5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+memory_map after era:  [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 local_vars:  [{}]
 function info {'return_type': 'int', 'param_types': ['int'], 'params': ['n'], 'vars': [('int', ['result'])]}
 checking var_name:  n
 adding var_name:  n
 checking var:  result
 adding var:  result
-pc =  26
+pc =  32
 param node start
-memory_map:  [5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+memory_map:  [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 stack:  []
 result:  par1
 arg1:  num
@@ -34,22 +34,22 @@ global_vars:  {'num': 0, 'result': 1}
 local_vars:  [{'n': 0, 'result': 1}]
 temp_vars:  {} {} {}
 arg 1 found in global_vars num
-stack:  [5]
-memory_map after param:  [5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+stack:  [3]
+memory_map after param:  [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 param node end
-pc =  27
+pc =  33
 gosub node start
-memory_map in gosub: [5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-memory_map in after allocating local variable: [5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-Assigning 5 value to param n
-memory_map in after setting value: [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-Value of n is now 5
-call stack:  [27]
-memory_map in after appending result: [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+memory_map in gosub: [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+memory_map in after allocating local variable: [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Assigning 3 value to param n
+memory_map in after setting value: [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+Value of n is now 3
+call stack:  [33]
+memory_map in after appending result: [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 function_name_stack:  ['factorial']
-memory_map after allocating temp: [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-memory_map after gosub: [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-memory_map after pass: [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+memory_map after allocating temp: [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+memory_map after gosub: [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+memory_map after pass: [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 gosub node end
 pc =  2
 label node detected
@@ -57,301 +57,129 @@ pc =  3
 less than or equal node detected
 perform_comparison started
 get_value started
-memory_map in get value: [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+memory_map in get value: [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 receiving, getting value of  n
 get_value: found in local_vars
 get_Value: address 2
 get_value started
-memory_map in get value: [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+memory_map in get value: [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 receiving, getting value of  0
 <= node detected
 pc =  4
 gotoF node detected
-pc =  10
+pc =  13
 label node detected
-pc =  11
+pc =  14
 param node start
-memory_map:  [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
+memory_map:  [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
 stack:  [0]
 result:  "factorial:"
 arg1:  
 arg2:  
 global_vars:  {'num': 0, 'result': 1}
 local_vars:  [{'n': 2, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 0} {} {'Tb1': 50}
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 0} {} {'Tb1': 50}
 stack:  [0, '"factorial:"']
-memory_map after param:  [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
+memory_map after param:  [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
 param node end
-pc =  12
+pc =  15
 param node start
-memory_map:  [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
+memory_map:  [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
 stack:  [0, '"factorial:"']
 result:  n
 arg1:  
 arg2:  
 global_vars:  {'num': 0, 'result': 1}
 local_vars:  [{'n': 2, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 0} {} {'Tb1': 50}
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 0} {} {'Tb1': 50}
 stack:  [0, '"factorial:"', 'n']
-memory_map after param:  [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
+memory_map after param:  [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
 param node end
-pc =  13
+pc =  16
 write node detected
-pc =  14
+pc =  17
+param node start
+memory_map:  [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
+stack:  [0]
+result:  "result so far:"
+arg1:  
+arg2:  
+global_vars:  {'num': 0, 'result': 1}
+local_vars:  [{'n': 2, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 0} {} {'Tb1': 50}
+stack:  [0, '"result so far:"']
+memory_map after param:  [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
+param node end
+pc =  18
+param node start
+memory_map:  [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
+stack:  [0, '"result so far:"']
+result:  result
+arg1:  
+arg2:  
+global_vars:  {'num': 0, 'result': 1}
+local_vars:  [{'n': 2, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 0} {} {'Tb1': 50}
+stack:  [0, '"result so far:"', 0]
+memory_map after param:  [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
+param node end
+pc =  19
+write node detected
+pc =  20
 ERA node detected
-memory map before ERA:  [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
-memory_map:  [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
+memory map before ERA:  [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
+memory_map:  [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
 function info {'return_type': 'int', 'param_types': ['int'], 'params': ['n'], 'vars': [('int', ['result'])]}
-memory_map after era:  [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
+memory_map after era:  [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False]
 local_vars:  [{'n': 2, 'result': 1}, {'n': 2, 'result': 1}]
 function info {'return_type': 'int', 'param_types': ['int'], 'params': ['n'], 'vars': [('int', ['result'])]}
 checking var_name:  n
 checking var:  result
-pc =  15
+pc =  21
 subtract node detected
 perform_operation ended
 - node detected
 new temporal variable detected
 Declared temp variable:  Ti1
 get_value started
-memory_map in get value: [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
+memory_map in get value: [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
 receiving, getting value of  n
 get_value: found in local_vars
 get_Value: address 2
-getting arg1 value:  5
+getting arg1 value:  3
 get_value started
-memory_map in get value: [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
+memory_map in get value: [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
 receiving, getting value of  1
 getting arg2 value:  1
-memory_map in perform_operation get  +: [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-arg1_value 5 arg2_value: 1 difference is 4
-pc =  16
+memory_map in perform_operation get  +: [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+arg1_value 3 arg2_value: 1 difference is 2
+pc =  22
 param node start
-memory_map:  [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
+memory_map:  [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
 stack:  [0]
 result:  par1
 arg1:  Ti1
 arg2:  
 global_vars:  {'num': 0, 'result': 1}
 local_vars:  [{'n': 2, 'result': 1}, {'n': 2, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 0, 'Ti1': 51} {} {'Tb1': 50}
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 0, 'Ti1': 51} {} {'Tb1': 50}
 found in temp_vars
-stack:  [0, 4]
-memory_map after param:  [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-param node end
-pc =  17
-gosub node start
-memory_map in gosub: [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-memory_map in after allocating local variable: [5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-Assigning 4 value to param n
-memory_map in after setting value: [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-Value of n is now 4
-call stack:  [27, 17]
-memory_map in after appending result: [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-function_name_stack:  ['factorial', 'factorial']
-memory_map after allocating temp: [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-memory_map after gosub: [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-memory_map after pass: [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-gosub node end
-pc =  2
-label node detected
-pc =  3
-less than or equal node detected
-perform_comparison started
-get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-receiving, getting value of  n
-get_value: found in local_vars
-get_Value: address 4
-get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-receiving, getting value of  0
-<= node detected
-pc =  4
-gotoF node detected
-pc =  10
-label node detected
-pc =  11
-param node start
-memory_map:  [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
 stack:  [0, 2]
-result:  "factorial:"
-arg1:  
-arg2:  
-global_vars:  {'num': 0, 'result': 1}
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
-stack:  [0, 2, '"factorial:"']
-memory_map after param:  [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
+memory_map after param:  [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
 param node end
-pc =  12
-param node start
-memory_map:  [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-stack:  [0, 2, '"factorial:"']
-result:  n
-arg1:  
-arg2:  
-global_vars:  {'num': 0, 'result': 1}
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
-stack:  [0, 2, '"factorial:"', 'n']
-memory_map after param:  [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-param node end
-pc =  13
-write node detected
-pc =  14
-ERA node detected
-memory map before ERA:  [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-memory_map:  [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-function info {'return_type': 'int', 'param_types': ['int'], 'params': ['n'], 'vars': [('int', ['result'])]}
-memory_map after era:  [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 4, 'result': 1}]
-function info {'return_type': 'int', 'param_types': ['int'], 'params': ['n'], 'vars': [('int', ['result'])]}
-checking var_name:  n
-checking var:  result
-pc =  15
-subtract node detected
-perform_operation ended
-- node detected
-get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-receiving, getting value of  n
-get_value: found in local_vars
-get_Value: address 4
-getting arg1 value:  4
-get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 4]
-receiving, getting value of  1
-getting arg2 value:  1
-memory_map in perform_operation get  +: [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-arg1_value 4 arg2_value: 1 difference is 3
-pc =  16
-param node start
-memory_map:  [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-stack:  [0, 2]
-result:  par1
-arg1:  Ti1
-arg2:  
-global_vars:  {'num': 0, 'result': 1}
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 4, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
-found in temp_vars
-stack:  [0, 2, 3]
-memory_map after param:  [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-param node end
-pc =  17
+pc =  23
 gosub node start
-memory_map in gosub: [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-memory_map in after allocating local variable: [5, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-Assigning 3 value to param n
-memory_map in after setting value: [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-Value of n is now 3
-call stack:  [27, 17, 17]
-memory_map in after appending result: [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-function_name_stack:  ['factorial', 'factorial', 'factorial']
-memory_map after allocating temp: [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-memory_map after gosub: [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-memory_map after pass: [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-gosub node end
-pc =  2
-label node detected
-pc =  3
-less than or equal node detected
-perform_comparison started
-get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-receiving, getting value of  n
-get_value: found in local_vars
-get_Value: address 6
-get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-receiving, getting value of  0
-<= node detected
-pc =  4
-gotoF node detected
-pc =  10
-label node detected
-pc =  11
-param node start
-memory_map:  [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-stack:  [0, 2, 2]
-result:  "factorial:"
-arg1:  
-arg2:  
-global_vars:  {'num': 0, 'result': 1}
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
-stack:  [0, 2, 2, '"factorial:"']
-memory_map after param:  [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-param node end
-pc =  12
-param node start
-memory_map:  [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-stack:  [0, 2, 2, '"factorial:"']
-result:  n
-arg1:  
-arg2:  
-global_vars:  {'num': 0, 'result': 1}
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
-stack:  [0, 2, 2, '"factorial:"', 'n']
-memory_map after param:  [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-param node end
-pc =  13
-write node detected
-pc =  14
-ERA node detected
-memory map before ERA:  [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-memory_map:  [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-function info {'return_type': 'int', 'param_types': ['int'], 'params': ['n'], 'vars': [('int', ['result'])]}
-memory_map after era:  [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 6, 'result': 1}]
-function info {'return_type': 'int', 'param_types': ['int'], 'params': ['n'], 'vars': [('int', ['result'])]}
-checking var_name:  n
-checking var:  result
-pc =  15
-subtract node detected
-perform_operation ended
-- node detected
-get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-receiving, getting value of  n
-get_value: found in local_vars
-get_Value: address 6
-getting arg1 value:  3
-get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 3]
-receiving, getting value of  1
-getting arg2 value:  1
-memory_map in perform_operation get  +: [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
-arg1_value 3 arg2_value: 1 difference is 2
-pc =  16
-param node start
-memory_map:  [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
-stack:  [0, 2, 2]
-result:  par1
-arg1:  Ti1
-arg2:  
-global_vars:  {'num': 0, 'result': 1}
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 6, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
-found in temp_vars
-stack:  [0, 2, 2, 2]
-memory_map after param:  [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
-param node end
-pc =  17
-gosub node start
-memory_map in gosub: [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
-memory_map in after allocating local variable: [5, 0, 5, 0, 4, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+memory_map in gosub: [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+memory_map in after allocating local variable: [3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
 Assigning 2 value to param n
-memory_map in after setting value: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+memory_map in after setting value: [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
 Value of n is now 2
-call stack:  [27, 17, 17, 17]
-memory_map in after appending result: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
-function_name_stack:  ['factorial', 'factorial', 'factorial', 'factorial']
-memory_map after allocating temp: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
-memory_map after gosub: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
-memory_map after pass: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+call stack:  [33, 23]
+memory_map in after appending result: [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+function_name_stack:  ['factorial', 'factorial']
+memory_map after allocating temp: [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+memory_map after gosub: [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+memory_map after pass: [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
 gosub node end
 pc =  2
 label node detected
@@ -359,99 +187,127 @@ pc =  3
 less than or equal node detected
 perform_comparison started
 get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+memory_map in get value: [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
 receiving, getting value of  n
 get_value: found in local_vars
-get_Value: address 8
+get_Value: address 4
 get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+memory_map in get value: [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
 receiving, getting value of  0
 <= node detected
 pc =  4
 gotoF node detected
-pc =  10
+pc =  13
 label node detected
-pc =  11
+pc =  14
 param node start
-memory_map:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
-stack:  [0, 2, 2, 2]
+memory_map:  [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+stack:  [0, 2]
 result:  "factorial:"
 arg1:  
 arg2:  
 global_vars:  {'num': 0, 'result': 1}
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
-stack:  [0, 2, 2, 2, '"factorial:"']
-memory_map after param:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
+stack:  [0, 2, '"factorial:"']
+memory_map after param:  [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
 param node end
-pc =  12
+pc =  15
 param node start
-memory_map:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
-stack:  [0, 2, 2, 2, '"factorial:"']
+memory_map:  [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+stack:  [0, 2, '"factorial:"']
 result:  n
 arg1:  
 arg2:  
 global_vars:  {'num': 0, 'result': 1}
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
-stack:  [0, 2, 2, 2, '"factorial:"', 'n']
-memory_map after param:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
+stack:  [0, 2, '"factorial:"', 'n']
+memory_map after param:  [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
 param node end
-pc =  13
+pc =  16
 write node detected
-pc =  14
+pc =  17
+param node start
+memory_map:  [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+stack:  [0, 2]
+result:  "result so far:"
+arg1:  
+arg2:  
+global_vars:  {'num': 0, 'result': 1}
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
+stack:  [0, 2, '"result so far:"']
+memory_map after param:  [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+param node end
+pc =  18
+param node start
+memory_map:  [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+stack:  [0, 2, '"result so far:"']
+result:  result
+arg1:  
+arg2:  
+global_vars:  {'num': 0, 'result': 1}
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
+stack:  [0, 2, '"result so far:"', 0]
+memory_map after param:  [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+param node end
+pc =  19
+write node detected
+pc =  20
 ERA node detected
-memory map before ERA:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
-memory_map:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+memory map before ERA:  [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+memory_map:  [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
 function info {'return_type': 'int', 'param_types': ['int'], 'params': ['n'], 'vars': [('int', ['result'])]}
-memory_map after era:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}, {'n': 8, 'result': 1}]
+memory_map after era:  [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 4, 'result': 1}]
 function info {'return_type': 'int', 'param_types': ['int'], 'params': ['n'], 'vars': [('int', ['result'])]}
 checking var_name:  n
 checking var:  result
-pc =  15
+pc =  21
 subtract node detected
 perform_operation ended
 - node detected
 get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+memory_map in get value: [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
 receiving, getting value of  n
 get_value: found in local_vars
-get_Value: address 8
+get_Value: address 4
 getting arg1 value:  2
 get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
+memory_map in get value: [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 2]
 receiving, getting value of  1
 getting arg2 value:  1
-memory_map in perform_operation get  +: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+memory_map in perform_operation get  +: [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
 arg1_value 2 arg2_value: 1 difference is 1
-pc =  16
+pc =  22
 param node start
-memory_map:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
-stack:  [0, 2, 2, 2]
+memory_map:  [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+stack:  [0, 2]
 result:  par1
 arg1:  Ti1
 arg2:  
 global_vars:  {'num': 0, 'result': 1}
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}, {'n': 8, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 4, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
 found in temp_vars
-stack:  [0, 2, 2, 2, 1]
-memory_map after param:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+stack:  [0, 2, 1]
+memory_map after param:  [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
 param node end
-pc =  17
+pc =  23
 gosub node start
-memory_map in gosub: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
-memory_map in after allocating local variable: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+memory_map in gosub: [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+memory_map in after allocating local variable: [3, 0, 3, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
 Assigning 1 value to param n
-memory_map in after setting value: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+memory_map in after setting value: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
 Value of n is now 1
-call stack:  [27, 17, 17, 17, 17]
-memory_map in after appending result: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
-function_name_stack:  ['factorial', 'factorial', 'factorial', 'factorial', 'factorial']
-memory_map after allocating temp: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
-memory_map after gosub: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
-memory_map after pass: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+call stack:  [33, 23, 23]
+memory_map in after appending result: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+function_name_stack:  ['factorial', 'factorial', 'factorial']
+memory_map after allocating temp: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+memory_map after gosub: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+memory_map after pass: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
 gosub node end
 pc =  2
 label node detected
@@ -459,99 +315,127 @@ pc =  3
 less than or equal node detected
 perform_comparison started
 get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+memory_map in get value: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
 receiving, getting value of  n
 get_value: found in local_vars
-get_Value: address 10
+get_Value: address 6
 get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+memory_map in get value: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
 receiving, getting value of  0
 <= node detected
 pc =  4
 gotoF node detected
-pc =  10
+pc =  13
 label node detected
-pc =  11
+pc =  14
 param node start
-memory_map:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
-stack:  [0, 2, 2, 2, 2]
+memory_map:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+stack:  [0, 2, 2]
 result:  "factorial:"
 arg1:  
 arg2:  
 global_vars:  {'num': 0, 'result': 1}
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}, {'n': 10, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
-stack:  [0, 2, 2, 2, 2, '"factorial:"']
-memory_map after param:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
+stack:  [0, 2, 2, '"factorial:"']
+memory_map after param:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
 param node end
-pc =  12
+pc =  15
 param node start
-memory_map:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
-stack:  [0, 2, 2, 2, 2, '"factorial:"']
+memory_map:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+stack:  [0, 2, 2, '"factorial:"']
 result:  n
 arg1:  
 arg2:  
 global_vars:  {'num': 0, 'result': 1}
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}, {'n': 10, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
-stack:  [0, 2, 2, 2, 2, '"factorial:"', 'n']
-memory_map after param:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
+stack:  [0, 2, 2, '"factorial:"', 'n']
+memory_map after param:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
 param node end
-pc =  13
+pc =  16
 write node detected
-pc =  14
+pc =  17
+param node start
+memory_map:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+stack:  [0, 2, 2]
+result:  "result so far:"
+arg1:  
+arg2:  
+global_vars:  {'num': 0, 'result': 1}
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
+stack:  [0, 2, 2, '"result so far:"']
+memory_map after param:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+param node end
+pc =  18
+param node start
+memory_map:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+stack:  [0, 2, 2, '"result so far:"']
+result:  result
+arg1:  
+arg2:  
+global_vars:  {'num': 0, 'result': 1}
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
+stack:  [0, 2, 2, '"result so far:"', 0]
+memory_map after param:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+param node end
+pc =  19
+write node detected
+pc =  20
 ERA node detected
-memory map before ERA:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
-memory_map:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+memory map before ERA:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+memory_map:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
 function info {'return_type': 'int', 'param_types': ['int'], 'params': ['n'], 'vars': [('int', ['result'])]}
-memory_map after era:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}, {'n': 10, 'result': 1}, {'n': 10, 'result': 1}]
+memory_map after era:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 6, 'result': 1}]
 function info {'return_type': 'int', 'param_types': ['int'], 'params': ['n'], 'vars': [('int', ['result'])]}
 checking var_name:  n
 checking var:  result
-pc =  15
+pc =  21
 subtract node detected
 perform_operation ended
 - node detected
 get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+memory_map in get value: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
 receiving, getting value of  n
 get_value: found in local_vars
-get_Value: address 10
+get_Value: address 6
 getting arg1 value:  1
 get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
+memory_map in get value: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 1]
 receiving, getting value of  1
 getting arg2 value:  1
-memory_map in perform_operation get  +: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
+memory_map in perform_operation get  +: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
 arg1_value 1 arg2_value: 1 difference is 0
-pc =  16
+pc =  22
 param node start
-memory_map:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
-stack:  [0, 2, 2, 2, 2]
+memory_map:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
+stack:  [0, 2, 2]
 result:  par1
 arg1:  Ti1
 arg2:  
 global_vars:  {'num': 0, 'result': 1}
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}, {'n': 10, 'result': 1}, {'n': 10, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 6, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
 found in temp_vars
-stack:  [0, 2, 2, 2, 2, 0]
-memory_map after param:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
+stack:  [0, 2, 2, 0]
+memory_map after param:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
 param node end
-pc =  17
+pc =  23
 gosub node start
-memory_map in gosub: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
-memory_map in after allocating local variable: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
+memory_map in gosub: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
+memory_map in after allocating local variable: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
 Assigning 0 value to param n
-memory_map in after setting value: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
+memory_map in after setting value: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
 Value of n is now 0
-call stack:  [27, 17, 17, 17, 17, 17]
-memory_map in after appending result: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
-function_name_stack:  ['factorial', 'factorial', 'factorial', 'factorial', 'factorial', 'factorial']
-memory_map after allocating temp: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
-memory_map after gosub: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
-memory_map after pass: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
+call stack:  [33, 23, 23, 23]
+memory_map in after appending result: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
+function_name_stack:  ['factorial', 'factorial', 'factorial', 'factorial']
+memory_map after allocating temp: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
+memory_map after gosub: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
+memory_map after pass: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
 gosub node end
 pc =  2
 label node detected
@@ -559,67 +443,95 @@ pc =  3
 less than or equal node detected
 perform_comparison started
 get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
+memory_map in get value: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
 receiving, getting value of  n
 get_value: found in local_vars
-get_Value: address 12
+get_Value: address 8
 get_value started
-memory_map in get value: [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
+memory_map in get value: [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, False, 0]
 receiving, getting value of  0
 <= node detected
 pc =  4
 gotoF node detected
 pc =  5
 param node start
-memory_map:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
-stack:  [0, 2, 2, 2, 2, 2]
+memory_map:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
+stack:  [0, 2, 2, 2]
 result:  "factorial:"
 arg1:  
 arg2:  
 global_vars:  {'num': 0, 'result': 1}
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}, {'n': 10, 'result': 1}, {'n': 12, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
-stack:  [0, 2, 2, 2, 2, 2, '"factorial:"']
-memory_map after param:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
+stack:  [0, 2, 2, 2, '"factorial:"']
+memory_map after param:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
 param node end
 pc =  6
 param node start
-memory_map:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
-stack:  [0, 2, 2, 2, 2, 2, '"factorial:"']
+memory_map:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
+stack:  [0, 2, 2, 2, '"factorial:"']
 result:  n
 arg1:  
 arg2:  
 global_vars:  {'num': 0, 'result': 1}
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}, {'n': 10, 'result': 1}, {'n': 12, 'result': 1}]
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
-stack:  [0, 2, 2, 2, 2, 2, '"factorial:"', 'n']
-memory_map after param:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
+stack:  [0, 2, 2, 2, '"factorial:"', 'n']
+memory_map after param:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
 param node end
 pc =  7
 write node detected
 pc =  8
+param node start
+memory_map:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
+stack:  [0, 2, 2, 2]
+result:  "result so far:"
+arg1:  
+arg2:  
+global_vars:  {'num': 0, 'result': 1}
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
+stack:  [0, 2, 2, 2, '"result so far:"']
+memory_map after param:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
+param node end
+pc =  9
+param node start
+memory_map:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
+stack:  [0, 2, 2, 2, '"result so far:"']
+result:  result
+arg1:  
+arg2:  
+global_vars:  {'num': 0, 'result': 1}
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51} {} {'Tb1': 50}
+stack:  [0, 2, 2, 2, '"result so far:"', 0]
+memory_map after param:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
+param node end
+pc =  10
+write node detected
+pc =  11
 return node detected
-memory_map in return before exit:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}, {'n': 10, 'result': 1}, {'n': 12, 'result': 1}]
+memory_map in return before exit:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}]
 global_vars:  {'num': 0, 'result': 1}
 global_vars bein dececlared during return:  {'num': 0, 'result': 1}
 return_value:  1
-memory map after exit:  [5, 0, 5, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
-stack:  [0, 2, 2, 2, 2, 2, 1]
-pc =  9
+memory map after exit:  [3, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0]
+stack:  [0, 2, 2, 2, 1]
+pc =  12
 goto node detected
-pc =  21
+pc =  27
 label node detected
-pc =  22
+pc =  28
 EndFunc node detected
-call stack:  [27, 17, 17, 17, 17, 17]
-going to return address:  17
-pc:  17
+call stack:  [33, 23, 23, 23]
+going to return address:  23
+pc:  23
 code:  ('=', 'factorial', '', 'Ti2')
 function_name:  factorial
 assining value to global variable:  1
 global_vars:  {'num': 0, 'result': 1, 'factorial': 2}
-pc =  18
+pc =  24
 equal node detected
 arg1:  factorial
 arg2:  
@@ -628,45 +540,45 @@ Declaring temp variable:  Ti2
 Assigning value to a temporal variable
 Value of  Ti2  is now  1
 equal node end
-pc =  19
+pc =  25
 multiply node detected
 perform_operation ended
 * node detected
 new temporal variable detected
 Declared temp variable:  Ti3
 get_value started
-memory_map in get value: [5, 0, 1, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 0]
+memory_map in get value: [3, 0, 1, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 0]
 receiving, getting value of  n
 get_value: found in local_vars
-get_Value: address 10
+get_Value: address 6
 getting arg1 value:  1
 get_value started
-memory_map in get value: [5, 0, 1, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 0]
+memory_map in get value: [3, 0, 1, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 0]
 receiving, getting value of  Ti2
 getting arg2 value:  1
 arg1_value 1 arg2_value: 1 product is 1
-pc =  20
+pc =  26
 return node detected
-memory_map in return before exit:  [5, 0, 1, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 1]
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}, {'n': 10, 'result': 1}]
+memory_map in return before exit:  [3, 0, 1, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 1]
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}]
 global_vars:  {'num': 0, 'result': 1, 'factorial': 2}
 temp return_value:  1
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51, 'Ti2': 52, 'Ti3': 53} {} {'Tb1': 50}
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51, 'Ti2': 52, 'Ti3': 53} {} {'Tb1': 50}
 return_value:  1
-memory map after exit:  [5, 0, 1, 0, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 1]
-stack:  [0, 2, 2, 2, 2, 2, 1]
-pc =  21
+memory map after exit:  [3, 0, 1, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 1]
+stack:  [0, 2, 2, 2, 1]
+pc =  27
 label node detected
-pc =  22
+pc =  28
 EndFunc node detected
-call stack:  [27, 17, 17, 17, 17]
-going to return address:  17
-pc:  17
+call stack:  [33, 23, 23]
+going to return address:  23
+pc:  23
 code:  ('=', 'factorial', '', 'Ti2')
 function_name:  factorial
 assining value to global variable:  1
 global_vars:  {'num': 0, 'result': 1, 'factorial': 3}
-pc =  18
+pc =  24
 equal node detected
 arg1:  factorial
 arg2:  
@@ -674,43 +586,43 @@ result:  Ti2
 Assigning value to a temporal variable
 Value of  Ti2  is now  1
 equal node end
-pc =  19
+pc =  25
 multiply node detected
 perform_operation ended
 * node detected
 get_value started
-memory_map in get value: [5, 0, 1, 1, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 1]
+memory_map in get value: [3, 0, 1, 1, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 1]
 receiving, getting value of  n
 get_value: found in local_vars
-get_Value: address 8
+get_Value: address 4
 getting arg1 value:  2
 get_value started
-memory_map in get value: [5, 0, 1, 1, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 1]
+memory_map in get value: [3, 0, 1, 1, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 1]
 receiving, getting value of  Ti2
 getting arg2 value:  1
 arg1_value 2 arg2_value: 1 product is 2
-pc =  20
+pc =  26
 return node detected
-memory_map in return before exit:  [5, 0, 1, 1, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 2]
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}, {'n': 8, 'result': 1}]
+memory_map in return before exit:  [3, 0, 1, 1, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 2]
+local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}]
 global_vars:  {'num': 0, 'result': 1, 'factorial': 3}
 temp return_value:  2
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51, 'Ti2': 52, 'Ti3': 53} {} {'Tb1': 50}
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51, 'Ti2': 52, 'Ti3': 53} {} {'Tb1': 50}
 return_value:  2
-memory map after exit:  [5, 0, 1, 1, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 2]
-stack:  [0, 2, 2, 2, 2, 2, 2]
-pc =  21
+memory map after exit:  [3, 0, 1, 1, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 1, 2]
+stack:  [0, 2, 2, 2, 2]
+pc =  27
 label node detected
-pc =  22
+pc =  28
 EndFunc node detected
-call stack:  [27, 17, 17, 17]
-going to return address:  17
-pc:  17
+call stack:  [33, 23]
+going to return address:  23
+pc:  23
 code:  ('=', 'factorial', '', 'Ti2')
 function_name:  factorial
 assining value to global variable:  2
 global_vars:  {'num': 0, 'result': 1, 'factorial': 3}
-pc =  18
+pc =  24
 equal node detected
 arg1:  factorial
 arg2:  
@@ -718,174 +630,86 @@ result:  Ti2
 Assigning value to a temporal variable
 Value of  Ti2  is now  2
 equal node end
-pc =  19
+pc =  25
 multiply node detected
 perform_operation ended
 * node detected
 get_value started
-memory_map in get value: [5, 0, 1, 2, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 2, 2]
-receiving, getting value of  n
-get_value: found in local_vars
-get_Value: address 6
-getting arg1 value:  3
-get_value started
-memory_map in get value: [5, 0, 1, 2, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 2, 2]
-receiving, getting value of  Ti2
-getting arg2 value:  2
-arg1_value 3 arg2_value: 2 product is 6
-pc =  20
-return node detected
-memory_map in return before exit:  [5, 0, 1, 2, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 2, 6]
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}, {'n': 6, 'result': 1}]
-global_vars:  {'num': 0, 'result': 1, 'factorial': 3}
-temp return_value:  6
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51, 'Ti2': 52, 'Ti3': 53} {} {'Tb1': 50}
-return_value:  6
-memory map after exit:  [5, 0, 1, 2, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 2, 6]
-stack:  [0, 2, 2, 2, 2, 2, 6]
-pc =  21
-label node detected
-pc =  22
-EndFunc node detected
-call stack:  [27, 17, 17]
-going to return address:  17
-pc:  17
-code:  ('=', 'factorial', '', 'Ti2')
-function_name:  factorial
-assining value to global variable:  6
-global_vars:  {'num': 0, 'result': 1, 'factorial': 3}
-pc =  18
-equal node detected
-arg1:  factorial
-arg2:  
-result:  Ti2
-Assigning value to a temporal variable
-Value of  Ti2  is now  6
-equal node end
-pc =  19
-multiply node detected
-perform_operation ended
-* node detected
-get_value started
-memory_map in get value: [5, 0, 1, 6, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 6, 6]
-receiving, getting value of  n
-get_value: found in local_vars
-get_Value: address 4
-getting arg1 value:  4
-get_value started
-memory_map in get value: [5, 0, 1, 6, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 6, 6]
-receiving, getting value of  Ti2
-getting arg2 value:  6
-arg1_value 4 arg2_value: 6 product is 24
-pc =  20
-return node detected
-memory_map in return before exit:  [5, 0, 1, 6, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 6, 24]
-local_vars:  [{'n': 2, 'result': 1}, {'n': 4, 'result': 1}]
-global_vars:  {'num': 0, 'result': 1, 'factorial': 3}
-temp return_value:  24
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51, 'Ti2': 52, 'Ti3': 53} {} {'Tb1': 50}
-return_value:  24
-memory map after exit:  [5, 0, 1, 6, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 6, 24]
-stack:  [0, 2, 2, 2, 2, 2, 24]
-pc =  21
-label node detected
-pc =  22
-EndFunc node detected
-call stack:  [27, 17]
-going to return address:  17
-pc:  17
-code:  ('=', 'factorial', '', 'Ti2')
-function_name:  factorial
-assining value to global variable:  24
-global_vars:  {'num': 0, 'result': 1, 'factorial': 3}
-pc =  18
-equal node detected
-arg1:  factorial
-arg2:  
-result:  Ti2
-Assigning value to a temporal variable
-Value of  Ti2  is now  24
-equal node end
-pc =  19
-multiply node detected
-perform_operation ended
-* node detected
-get_value started
-memory_map in get value: [5, 0, 1, 24, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 24, 24]
+memory_map in get value: [3, 0, 1, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 2, 2]
 receiving, getting value of  n
 get_value: found in local_vars
 get_Value: address 2
 getting arg1 value:  1
 get_value started
-memory_map in get value: [5, 0, 1, 24, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 24, 24]
+memory_map in get value: [3, 0, 1, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 2, 2]
 receiving, getting value of  Ti2
-getting arg2 value:  24
-arg1_value 1 arg2_value: 24 product is 24
-pc =  20
+getting arg2 value:  2
+arg1_value 1 arg2_value: 2 product is 2
+pc =  26
 return node detected
-memory_map in return before exit:  [5, 0, 1, 24, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 24, 24]
+memory_map in return before exit:  [3, 0, 1, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 2, 2]
 local_vars:  [{'n': 2, 'result': 1}]
 global_vars:  {'num': 0, 'result': 1, 'factorial': 3}
-temp return_value:  24
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51, 'Ti2': 52, 'Ti3': 53} {} {'Tb1': 50}
-return_value:  24
-memory map after exit:  [5, 0, 1, 24, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 24, 24]
-stack:  [0, 2, 2, 2, 2, 2, 24]
-pc =  21
+temp return_value:  2
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51, 'Ti2': 52, 'Ti3': 53} {} {'Tb1': 50}
+return_value:  2
+memory map after exit:  [3, 0, 1, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 2, 2]
+stack:  [0, 2, 2, 2, 2]
+pc =  27
 label node detected
-pc =  22
+pc =  28
 EndFunc node detected
-call stack:  [27]
-going to return address:  27
-pc:  27
+call stack:  [33]
+going to return address:  33
+pc:  33
 code:  ('=', 'factorial', '', 'Ti4')
 function_name:  factorial
-assining value to global variable:  24
+assining value to global variable:  2
 global_vars:  {'num': 0, 'result': 1, 'factorial': 3}
-pc =  28
+pc =  34
 equal node detected
 arg1:  factorial
 arg2:  
 result:  Ti4
 Declaring temp variable:  Ti4
 Assigning value to a temporal variable
-Value of  Ti4  is now  24
+Value of  Ti4  is now  2
 equal node end
-pc =  29
+pc =  35
 equal node detected
 arg1:  Ti4
 arg2:  
 result:  result
 Assigning value to global variable
-Value of  result  is now  24
+Value of  result  is now  2
 equal node end
-pc =  30
+pc =  36
 param node start
-memory_map:  [5, 24, 1, 24, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 24, 24, 24]
-stack:  [0, 2, 2, 2, 2, 2]
+memory_map:  [3, 2, 1, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 2, 2, 2]
+stack:  [0, 2, 2, 2]
 result:  "factorial of num is"
 arg1:  
 arg2:  
 global_vars:  {'num': 0, 'result': 1, 'factorial': 3}
 local_vars:  []
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51, 'Ti2': 52, 'Ti3': 53, 'Ti4': 54} {} {'Tb1': 50}
-stack:  [0, 2, 2, 2, 2, 2, '"factorial of num is"']
-memory_map after param:  [5, 24, 1, 24, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 24, 24, 24]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51, 'Ti2': 52, 'Ti3': 53, 'Ti4': 54} {} {'Tb1': 50}
+stack:  [0, 2, 2, 2, '"factorial of num is"']
+memory_map after param:  [3, 2, 1, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 2, 2, 2]
 param node end
-pc =  31
+pc =  37
 param node start
-memory_map:  [5, 24, 1, 24, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 24, 24, 24]
-stack:  [0, 2, 2, 2, 2, 2, '"factorial of num is"']
+memory_map:  [3, 2, 1, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 2, 2, 2]
+stack:  [0, 2, 2, 2, '"factorial of num is"']
 result:  result
 arg1:  
 arg2:  
 global_vars:  {'num': 0, 'result': 1, 'factorial': 3}
 local_vars:  []
-temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001753C263910>>': 2, 'Ti1': 51, 'Ti2': 52, 'Ti3': 53, 'Ti4': 54} {} {'Tb1': 50}
-stack:  [0, 2, 2, 2, 2, 2, '"factorial of num is"', 24]
-memory_map after param:  [5, 24, 1, 24, 4, 0, 3, 0, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 24, 24, 24]
+temp_vars:  {'Ti<bound method MemoryMap.next_temp_index of <memorymap.MemoryMap object at 0x000001F0DBAFF910>>': 2, 'Ti1': 51, 'Ti2': 52, 'Ti3': 53, 'Ti4': 54} {} {'Tb1': 50}
+stack:  [0, 2, 2, 2, '"factorial of num is"', 2]
+memory_map after param:  [3, 2, 1, 2, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, True, 0, 2, 2, 2]
 param node end
-pc =  32
+pc =  38
 write node detected
-pc =  33
+pc =  39
 EndProg node detected
